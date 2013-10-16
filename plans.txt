@@ -1,0 +1,51 @@
+Standard coordinate system will be used
+As y increases in an object, as will the z coordinate for layering purposes
+
+
+
+Classes:
+
+Camera
+	//Data Fields
+	Location	//the Camera's Location
+
+	//Methods
+	public Location getLocation()	//@return the Tile's Location
+
+Entity
+	//Data Field
+	Location	//the Entity's Location
+
+
+	//Methods
+	public Location getLocation()	//@return the Tile's Location
+
+Character extends Entity
+
+Tile
+	//Data Fields
+	Location	//the Tile's Location
+
+	//Methods
+	public Location getLocation()	//@return the Tile's Location
+
+
+
+Platform extends Tile
+
+MovingPlatform extends Platform
+	//Data Fields
+	Location[][] path	//the path to be traveled by the tileset
+
+Wall extends Tile
+	//Data fields
+
+Stage
+	//Data Fields
+	Tile[][] tiles	//stores Tileset
+
+	//Methods
+	public float height()
+
+	public float width()
+	
