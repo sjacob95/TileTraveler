@@ -1,28 +1,44 @@
-Standard coordinate system will be used
-As y increases in an object, as will the z coordinate for layering purposes
-
+Standard coordinate system will be used.
+As y increases in an object, as will the z coordinate for layering purposes.
+For collision based physics, invisible hitbox shapes could be VERY helpful.
+initialize() methods should add the HitBox after the actual Entity or Tile to allow for a showHitBoxes()
+	method... somewhere.
+All movement will be done one Tile at a time.
+UTILIZE THE stop() METHOD IN THE ANIMATOR CLASS OFTEN.
+A complex Collection item will be implemented in the MovingPlatform path system. The Moving Platform 
+	constructor will take a series of vertices for the path and fill in the coordinates as needed 
+	to produce a full set of adjacent coordinates that loop back to the first point. I'm feeling 
+	a LinkedList!
+I might create the Loop interface...
 
 
 Classes:
 
-Camera
+HitBox extends RectangleShape
+	//Methods
+	initialize()	//Create a HitBox that is completely transparent, but red for the sake of debugging
+
+public class Direction extends enum
+	WEST, NORTH, EAST, SOUTH
+
+public abstract class Entity
 	//Data Fields
-	Location	//the Camera's Location
-
-	//Methods
-	public Location getLocation()	//@return the Tile's Location
-
-Entity
-	//Data Field
 	Location	//the Entity's Location
-
+	HitBox		//the Entity's HitBox
 
 	//Methods
-	public Location getLocation()	//@return the Tile's Location
+	public Location getLocation()		//@return the Entity's Location
+	public void setLocation(Location loc)	//@param the new Location of the Entity
+	public void showHitBox()		//make the HitBox visible
+	public void Move(Direction dir) 	//@param the direction of movement; moves the Entity in a direction
+						//and sets the Entity's image to reflect the change in direction
+	
 
-Character extends Entity
+public class Player extends Entity
+	//methods
+	public void budge()		//play the Entity's budge animation to reflect a failed movement attempt
 
-Tile
+public class Tile
 	//Data Fields
 	Location	//the Tile's Location
 
@@ -31,16 +47,20 @@ Tile
 
 
 
-Platform extends Tile
+public abstract class Platform extends Tile
 
-MovingPlatform extends Platform
+public class MovingPlatform extends Platform
 	//Data Fields
 	Location[][] path	//the path to be traveled by the tileset
+	Shape[][] children
 
-Wall extends Tile
-	//Data fields
+	//Methods
+	setChild()	//adds a Shape to an Array of objects that set to follow the movingPlatform
 
-Stage
+public class Wall extends Tile
+	//Data Fields
+
+public class Stage
 	//Data Fields
 	Tile[][] tiles	//stores Tileset
 
