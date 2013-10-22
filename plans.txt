@@ -9,12 +9,19 @@ A complex Collection item will be implemented in the MovingPlatform path system.
 	constructor will take a series of vertices for the path and fill in the coordinates as needed 
 	to produce a full set of adjacent coordinates that loop back to the first point. I'm feeling 
 	a LinkedList!
-I might create the Loop interface...
+I might create the abstract Loop class or allow objects to inherit one... For looping paths.
+idea: When creating entity and tile images, base them off of a pixel length i (with tiles being lengths such 
+	as .5i, i, 2.5i, 2i, etc)
+For tiles and platforms where the side of the platform are visible beneath the actual physical tile,
+	their constructors must take the coordinates of the physical part of the tile but draw the
+	image slightly BELOW the given coordinates in order to compensate for this difference.
 
 
 Classes:
 
-HitBox extends RectangleShape
+public class Location
+
+public class HitBox extends RectangleShape
 	//Methods
 	initialize()	//Create a HitBox that is completely transparent, but red for the sake of debugging
 
@@ -51,7 +58,7 @@ public abstract class Platform extends Tile
 
 public class MovingPlatform extends Platform
 	//Data Fields
-	Location[][] path	//the path to be traveled by the tileset
+	Location[]path	//the path to be traveled by the tileset
 	Shape[][] children
 
 	//Methods
