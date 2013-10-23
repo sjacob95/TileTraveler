@@ -28,7 +28,6 @@ public class TileTravelerScreen
 
     public void initialize()
     {
-        getCoordinateSystem().flipY();
         tileSize = Math.min(getWidth(), getHeight()) / SCREENDIM;
         active = new Stage1();
         drawScreen();
@@ -53,30 +52,35 @@ public class TileTravelerScreen
     public void drawTile(int x, int y)
     {
         Tile tile = active.getTile(x, y);
+        if(tile == null)
+            return;
         switch(tile)
         {
             case DOOR:
-                add(new Door(x - origin.x(), y - origin.y(), tileSize));
+                add(new Door(x - origin.x(), SCREENDIM - (y - origin.y()), tileSize));
                 break;
 
             case FLOOR:
-                add(new Floor(x - origin.x(), y - origin.y(), tileSize));
+                add(new Floor(x - origin.x(), SCREENDIM - (y - origin.y()), tileSize));
                 break;
 
             case LILY:
-                add(new Lily(x - origin.x(), y - origin.y(), tileSize));
+                add(new Lily(x - origin.x(), SCREENDIM - (y - origin.y()), tileSize));
                 break;
 
             case PILLAR:
-                add(new Pillar(x - origin.x(), y - origin.y(), tileSize));
+                add(new Pillar(x - origin.x(), SCREENDIM - (y - origin.y()), tileSize));
                 break;
 
             case WALL:
-                add(new Door(x - origin.x(), y - origin.y(), tileSize));
+                add(new Wall(x - origin.x(), SCREENDIM - (y - origin.y()), tileSize));
                 break;
 
             case WATER:
-                add(new Door(x - origin.x(), y - origin.y(), tileSize));
+                add(new Water(x - origin.x(), SCREENDIM - (y - origin.y()), tileSize));
+                break;
+
+            case INVALID:
                 break;
         }
     }

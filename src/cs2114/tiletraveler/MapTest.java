@@ -61,7 +61,7 @@ public class MapTest
         assertNull(map1.getTile(0, 2));
         assertEquals(map1.getTile(42, 42), Tile.INVALID);
 
-        assertEquals(map1, map2);
+        assertEquals(map1.toString(), map2.toString());
     }
 
 }
