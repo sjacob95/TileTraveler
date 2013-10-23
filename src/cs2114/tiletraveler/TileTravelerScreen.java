@@ -10,28 +10,79 @@ import sofia.graphics.Color;
  *  Screen class to set up the tile traveler game screen
  *
  *  @author Luciano Biondi (lbiondi)
- *  @version 2013.10.21
+ *  @author Jacob Stenzel (sjacob95)
+ *  @version 2013.10.22
  */
 public class TileTravelerScreen
     extends ShapeScreen
 {
     private float tileSize;
     private TextView status;
-    private RectangleShape[][] map;
+    private Map active;
+    private static final int SCREENDIM = 5;   //tile size of one side in a single view
+
+    /**
+     * the map location currently at the bottom left of the screen
+     */
+    private Location origin = new Location(0, 0);
 
     public void initialize()
     {
-        tileSize = Math.min(getWidth(), getHeight()) / 5;
-        map = (new Map(tileSize)).get();
+        getCoordinateSystem().flipY();
+        tileSize = Math.min(getWidth(), getHeight()) / SCREENDIM;
+        active = new Stage1();
+        drawScreen();
+    }
+
+    public void drawScreen()
+    {
+        clear();
         RectangleShape background =
             new RectangleShape(0, 0, getWidth(), getHeight());
         background.setFillColor(Color.black);
-        for (int r = 0; r < 5; r++)
+        add(background);
+        for (int y = origin.y(); y - origin.y() < SCREENDIM; y++)
         {
-            for (int c = 0; c < 5; c++)
+            for (int x = origin.x(); x - origin.x() < SCREENDIM; x++)
             {
-                add(map[r][c]);
+                drawTile(x, y);
             }
         }
+    }
+
+    public void drawTile(int x, int y)
+    {
+        Tile tile = active.getTile(x, y);
+        switch(tile)
+        {
+            case DOOR:
+                add(new Door(x - origin.x(), y - origin.y(), tileSize));
+                break;
+
+            case FLOOR:
+                add(new Floor(x - origin.x(), y - origin.y(), tileSize));
+                break;
+
+            case LILY:
+                add(new Lily(x - origin.x(), y - origin.y(), tileSize));
+                break;
+
+            case PILLAR:
+                add(new Pillar(x - origin.x(), y - origin.y(), tileSize));
+                break;
+
+            case WALL:
+                add(new Door(x - origin.x(), y - origin.y(), tileSize));
+                break;
+
+            case WATER:
+                add(new Door(x - origin.x(), y - origin.y(), tileSize));
+                break;
+        }
+    }
+
+    public float getTileSize()
+    {
+        return tileSize;
     }
 }

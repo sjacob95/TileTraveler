@@ -9,8 +9,8 @@ package cs2114.tiletraveler;
  */
 public class Location
 {
-    private float xCoor;
-    private float yCoor;
+    private int xCoor;
+    private int yCoor;
 
     // ----------------------------------------------------------
     /**
@@ -18,7 +18,7 @@ public class Location
      * @param x x coordinate of location
      * @param y y coordinate of location
      */
-    public Location(float x, float y)
+    public Location(int x, int y)
     {
         xCoor = x;
         yCoor = y;
@@ -29,7 +29,7 @@ public class Location
      * Get the x of location
      * @return xCoor x coordinate of location
      */
-    public float x()
+    public int x()
     {
         return xCoor;
     }
@@ -39,7 +39,7 @@ public class Location
      * Get the y of location
      * @return yCoor y coordinate of location
      */
-    public float y()
+    public int y()
     {
         return yCoor;
     }
