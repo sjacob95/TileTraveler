@@ -1,78 +1,142 @@
-Standard coordinate system will be used.
-As y increases in an object, as will the z coordinate for layering purposes.
-For collision based physics, invisible hitbox shapes could be VERY helpful.
-initialize() methods should add the HitBox after the actual Entity or Tile to allow for a showHitBoxes()
-	method... somewhere.
+Lower left origin and an inverted y-axis is used
+For collision based physics, invisible hitbox shapes could be helpful.
 All movement will be done one Tile at a time.
-UTILIZE THE stop() METHOD IN THE ANIMATOR CLASS OFTEN.
-A complex Collection item will be implemented in the MovingPlatform path system. The Moving Platform 
-	constructor will take a series of vertices for the path and fill in the coordinates as needed 
-	to produce a full set of adjacent coordinates that loop back to the first point. I'm feeling 
-	a LinkedList!
-I might create the abstract Loop class or allow objects to inherit one... For looping paths.
+UTILIZE THE stop() METHOD IN THE ANIMATOR CLASS WHEN NECESSARY
+wait() will bet used rather often.
+the Stage class should contain a Map and an EntityMap of Entities to update when necessary
+	- a new class VERY similar to the Map 
+	  class. Probably just copy over (and edit from Tile enums to Entity classes) the set/get/size
+ 	  methods (minus the character based ones and potentially the ones that take individual x/y).
+	  Will take direct int as parameter rather than strings (maze.size())
+
+	  A complex Collection item will be implemented in the MovingPlatform path system. 
+
+	The Moving Platform constructor will take a series of vertices for the path and fill in the
+	coordinates as needed to produce a full set of adjacent coordinates that loop back to the
+	first point. I'm feeling a CircularLinkedList!
+
 idea: When creating entity and tile images, base them off of a pixel length i (with tiles being lengths such 
 	as .5i, i, 2.5i, 2i, etc)
-For tiles and platforms where the side of the platform are visible beneath the actual physical tile,
-	their constructors must take the coordinates of the physical part of the tile but draw the
-	image slightly BELOW the given coordinates in order to compensate for this difference.
 
+***PLEASE recycle code. Consider each substep: Could I make this its own class or method for future recycling? Also, ENUMS ARE YOUR FRIENDS***
 
-Classes:
+Entities should have a notifyObservers that updates their Stage's EntityMap?
 
-public class Location
+Direction enum will be used to store a single input command (NORTH, SOUTH, EAST, WEST) that is translated upon calling move() to jump/move/nudge in that direction. Also stored as instance data as Direction nextAction to determine which directional images will be used. Stored in Entity class and accessed through a getter.
 
-public class HitBox extends RectangleShape
-	//Methods
-	initialize()	//Create a HitBox that is completely transparent, but red for the sake of debugging
+All of the Location getters!
 
-public class Direction extends enum
-	WEST, NORTH, EAST, SOUTH
+Entity will also store a boolean moving to determine whether to add to Direction qeue or move (determined through Player's receive(Direction command))
 
-public abstract class Entity
-	//Data Fields
-	Location	//the Entity's Location
-	HitBox		//the Entity's HitBox
+Each image has a diifferent variation for each direction. 
 
-	//Methods
-	public Location getLocation()		//@return the Entity's Location
-	public void setLocation(Location loc)	//@param the new Location of the Entity
-	public void showHitBox()		//make the HitBox visible
-	public void Move(Direction dir) 	//@param the direction of movement; moves the Entity in a direction
-						//and sets the Entity's image to reflect the change in direction
+Entity parent stores moving platforms that move the object
+
+Where I say "receive input" I mean change nextMove to null
+
+Moving Tiles should use a move method similar to that of entity, minus the image changing.
+
+Moving FROM a parent movingTile will get gross, because Player must intitially move more than one tile. This is why a specific platformJump() method was created.
+
+Entity class setParent behavior
+	- @param MovingPlatform - the Moving Platform to become the parent
+	- edit the parent instance data
+
+Entity class dropParent
+	- clears parent instance data
+	- returns parent
+
+Entity class breakParentalLink
+	- if has parent:
+	- dropParent().dropChild()
+	- return parent for the sake of it?
+
 	
+Player class act pattern
+	- if boolean moving is false, move(direction)
+	- if boolean moving is true, change nextAction to direction
 
-public class Player extends Entity
-	//methods
-	public void budge()		//play the Entity's budge animation to reflect a failed movement attempt
+Player class movement pattern:
+	- nextMove immediately referenced to a local variable that is passed of
+	- ALL OF THE FOLLOWING ONLY IF nextMove != null
+	- nextMove is reset to null
+	- IF PARENT IS NOT NULL AND NEXT MOVE NOT INVALID NOR EMPTY, execute platformWalk(), jumpcount 	  reset
+	- IF PARENT IS NOT NULL AND NEXT MOVE LEADS TO EMPTY, execute platformJump()
+	- ELSE IF MOVEMENT IS NEITHER INVALID NOR EMPTY, execute walk()
+	  jumpcount reset
+	- ELSE IF MOVEMENT LEADS TO EMPTY, execute jump()
+	- Else, execute nudge()
+	- check if alive
+	- if not, stop receiving input, die()
+	- move()
 
-public class Tile
+Player class walk pattern
+	- Full execution takes 400 millis?
+	- Direction param
+	- Distance param (generally 1 tile, unless breaking from a parent)
+	- stop receiving movement input
+	- change image to moving image 1
+	- move 3/8 of tile
+	- change image to standing image
+	- move 1/8 of tile
+	- update entity Location to final Location
+	- move 1/8 of tile
+	- change image to moving image 2
+	- resume receiving input
+	- move 3/8 of tile
+	- change image to standing image
+
+Player class nudge pattern
+	- <= 400 millis?
+	- Direction param
+	- is called by move
+
+Player class jumping pattern:
+	- Direction param
+	- is called by move
+	- IF (instance data) JUMPCOUNT > 2, EXECUTE THE FOLLOWING
+	- stop receiving movement input
+	- IF JUMPCOUNT IS 0 change image to jumping image 1. IF JUMPCOUNT IS 1 change image to jumping 	  image 2
+	- move 1/2 of a tile
+	- update Location to final Location
+	- change image to falling image
+	- move 1/8 of a tile
+	- resume receiving input
+	- move 3/8 of a tile
+	- jumpcount increases by one
+	- IF JUMPCOUNT > 2, return
+
+Player class platformJump()
+	- breakParentalBond()
+	- Direction param
+	- is called by move
+	- IF (instance data) JUMPCOUNT > 2, EXECUTE THE FOLLOWING
+	- stop receiving movement input
+	- IF JUMPCOUNT IS 0 change image to jumping image 1. IF JUMPCOUNT IS 1 change image to jumping 	  image 2
+	- move 1/2 of distance
+	- update Location to final Location
+	- change image to falling image
+	- move 1/8 of distance
+	- resume receiving input
+	- move 3/8 of distance
+	- jumpcount increases by one
+	- IF JUMPCOUNT > 2, return
+	- ELSE move()
+ 
+
+Upon landing on a moving platform enum in the maze's logic, a player is set as the respective platforms's child (check stage's Entity array?)
+
+public class MovingPlatform 
 	//Data Fields
-	Location	//the Tile's Location
-
-	//Methods
-	public Location getLocation()	//@return the Tile's Location
-
-
-
-public abstract class Platform extends Tile
-
-public class MovingPlatform extends Platform
-	//Data Fields
-	Location[]path	//the path to be traveled by the tileset
-	Shape[][] children
+	Path path	//the path to be traveled by the tileset
+	Entity child
 
 	//Methods
 	setChild()	//adds a Shape to an Array of objects that set to follow the movingPlatform
+	dropChild()	//clears child, returns child
+	breakParentalLink()	//dropChild().dropParent()   returns child just because?
 
-public class Wall extends Tile
-	//Data Fields
 
-public class Stage
-	//Data Fields
-	Tile[][] tiles	//stores Tileset
 
-	//Methods
-	public float height()
 
-	public float width()
 	

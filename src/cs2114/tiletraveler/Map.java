@@ -1,14 +1,13 @@
 package cs2114.tiletraveler;
 
-import sofia.graphics.RectangleShape;
-
 // -------------------------------------------------------------------------
 /**
  * Creates 2D array representation of tiletraveler map
  *
  * @author Luciano Biondi (lbiondi)
- * @author Jacob Stenzel (sjacob95)
- * @version 2013.10.22
+ * @author Ezra Richards  (MrZchuck)
+ * @author Jacob Stenzel  (sjacob95)
+ * @version 2013.12.08
  */
 public class Map
 {
@@ -25,6 +24,13 @@ public class Map
     {
         map = new Tile[mapDim][mapDim];
         this.mapDim = mapDim;
+        for(int x = 0; x < mapDim; x++)
+        {
+            for(int y = 0; y < mapDim; y++)
+            {
+                setTile(x, y, Tile.EMPTY);
+            }
+        }
     }
 
 
@@ -41,7 +47,7 @@ public class Map
         {
             for (int x = 0; x < strings[y].length(); x++)
             {
-                setTile(x, mapDim - (y + 1), convertToTile(strings[y].charAt(x)));
+                setTile(x, strings.length - (y + 1), convertToTile(strings[y].charAt(x)));
             }
         }
 
@@ -101,7 +107,7 @@ public class Map
     }
 
     /**
-     * returns the Tile at a given Location
+     * @return the Tile at a given Location
      * @param x - the x coordinate of the Tile to be returned
      * @param y - the y coordinate of the Tile to be returned
      */
@@ -113,7 +119,7 @@ public class Map
     }
 
     /**
-     * returns the Tile at a given Location
+     * @return the Tile at a given Location
      * @param loc - the Location of the Tile to be returned
      */
     public Tile getTile(Location loc)
@@ -173,7 +179,7 @@ public class Map
                 return Tile.WATER;
 
             default:
-                return null;
+                return Tile.EMPTY;
         }
     }
 
@@ -184,9 +190,6 @@ public class Map
      */
     public static char convertToChar(Tile tile)
     {
-        if(tile == null)
-            return ' ';
-
         switch (tile)
         {
 
@@ -208,8 +211,11 @@ public class Map
             case WATER:
                 return '~';
 
-            default:
+            case EMPTY:
                 return ' ';
+
+            default:
+                return '?';
         }
     }
 
@@ -219,6 +225,30 @@ public class Map
     public int getMapDim()
     {
         return mapDim;
+    }
+
+    public boolean equals(Object obj)
+    {
+        if(obj instanceof Map)
+        {
+            Map newMap = (Map)obj;
+            if(newMap.getMapDim() == getMapDim())
+            {
+                for(int x = 0; x < getMapDim(); x++)
+                {
+                    for(int y = 0; y < getMapDim(); y++)
+                    {
+                    if(!getTile(x, y).equals(newMap.getTile(x, y)))
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+
+        }
+        return false;
     }
 
     public String toString()

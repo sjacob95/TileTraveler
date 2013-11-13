@@ -2,21 +2,27 @@ package cs2114.tiletraveler;
 
 // -------------------------------------------------------------------------
 /**
- *  Location class to keep track of grid
+ * Location class to keep track of grid
  *
- *  @author Luciano Biondi (lbiondi)
- *  @version 2013.10.21
+ * @author Luciano Biondi (lbiondi)
+ * @author Ezra Richards  (MrZchuck)
+ * @author Jacob Stenzel  (sjacob95)
+ * @version 2013.12.08
  */
 public class Location
 {
     private int xCoor;
     private int yCoor;
 
+
     // ----------------------------------------------------------
     /**
      * Create a new Location object.
-     * @param x x coordinate of location
-     * @param y y coordinate of location
+     *
+     * @param x
+     *            x coordinate of location
+     * @param y
+     *            y coordinate of location
      */
     public Location(int x, int y)
     {
@@ -24,9 +30,11 @@ public class Location
         yCoor = y;
     }
 
+
     // ----------------------------------------------------------
     /**
      * Get the x of location
+     *
      * @return xCoor x coordinate of location
      */
     public int x()
@@ -34,13 +42,253 @@ public class Location
         return xCoor;
     }
 
+
     // ----------------------------------------------------------
     /**
      * Get the y of location
+     *
      * @return yCoor y coordinate of location
      */
     public int y()
     {
         return yCoor;
     }
+
+    /**
+     * @return the Location's neighbor in a given Direction
+     * @param direction
+     */
+    public Location getNeighbor(Direction direction)
+    {
+        if (direction.equals(Direction.EAST))
+        {
+            return east();
+        }
+        else if (direction.equals(Direction.NORTH))
+        {
+            return north();
+        }
+        else if (direction.equals(Direction.SOUTH))
+        {
+            return south();
+        }
+        else if (direction.equals(Direction.WEST))
+        {
+            return west();
+        }
+        else
+        {
+            return this;
+        }
+    }
+
+
+    /**
+     * @return one unit to the north of the current one
+     */
+    public Location north()
+    {
+        return new Location(xCoor, yCoor + 1);
+    }
+
+
+    /**
+     * @return one unit to the south of the current one
+     */
+    public Location south()
+    {
+        return new Location(xCoor, yCoor - 1);
+    }
+
+
+    /**
+     * @return one unit to the east of the current one
+     */
+    public Location east()
+    {
+        return new Location(xCoor + 1, yCoor);
+    }
+
+
+    /**
+     * @return one unit to the west of the current one
+     */
+    public Location west()
+    {
+        return new Location(xCoor - 1, yCoor);
+    }
+
+
+    /**
+     * Moves the Location north by an increment
+     *
+     * @param inc
+     *            - the increment
+     * @return the new Location
+     */
+    public Location north(int inc)
+    {
+        return         new Location(xCoor, yCoor + inc);
+    }
+
+
+    /**
+     * Moves the Location south by an increment
+     *
+     * @param inc
+     *            - the increment
+     * @return the new Location
+     */
+    public Location south(int inc)
+    {
+        return new Location(xCoor, yCoor - inc);
+    }
+
+
+    /**
+     * Moves the Location east by an increment
+     *
+     * @param inc
+     *            - the increment
+     * @return the new Location
+     */
+    public Location east(int inc)
+    {
+        return new Location(xCoor + inc, yCoor);
+    }
+
+
+    /**
+     * Moves the Location west by an increment
+     *
+     * @param inc
+     *            - the increment
+     * @return the new Location
+     */
+    public Location west(int inc)
+    {
+        return new Location(xCoor - inc, yCoor);
+    }
+
+
+    /**
+     * @return whether or not the provided Location is due North of the current
+     * @param loc
+     *            - the provided Location to be compared
+     */
+    public boolean isDueNorth(Location loc)
+    {
+        if (loc == null)
+        {
+            return false;
+        }
+        return (xCoor == loc.x() && yCoor < loc.y());
+    }
+
+
+    /**
+     * @return whether or not the provided Location is due South of the current
+     * @param loc
+     *            - the provided Location to be compared
+     */
+    public boolean isDueSouth(Location loc)
+    {
+        if (loc == null)
+        {
+            return false;
+        }
+        return (xCoor == loc.x() && yCoor > loc.y());
+    }
+
+
+    /**
+     * @return whether or not the provided Location is due East of the current
+     * @param loc
+     *            - the provided Location to be compared
+     */
+    public boolean isDueEast(Location loc)
+    {
+        if (loc == null)
+        {
+            return false;
+        }
+        return (xCoor < loc.x() && yCoor == loc.y());
+    }
+
+
+    /**
+     * @return whether or not the provided Location is due West of the current
+     * @param loc
+     *            - the provided Location to be compared
+     */
+    public boolean isDueWest(Location loc)
+    {
+        if (loc == null)
+        {
+            return false;
+        }
+        return (xCoor > loc.x() && yCoor == loc.y());
+    }
+
+
+    /**
+     * @return the distance between this and the provided Location
+     * @param loc
+     *            - the second Location
+     */
+    public int getDistance(Location loc)
+    {
+        return (int)Math.sqrt((Math.pow(xCoor, 2) - Math.pow(loc.x(), 2))
+            + (Math.pow(yCoor, 2) - Math.pow(loc.y(), 2)));
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Converts a Direction to a Location representing displacement
+     *
+     * @param direction
+     *            - the Direction to be converted
+     * @return the Location equivalent
+     */
+    public static Location convertToDisplacement(Direction direction)
+    {
+        switch (direction)
+        {
+            case NORTH:
+                return new Location(0, 1);
+
+            case SOUTH:
+                return new Location(0, -1);
+
+            case EAST:
+                return new Location(1, 0);
+
+            case WEST:
+                return new Location(-1, 0);
+
+            default:
+                return new Location(0, 0);
+        }
+    }
+
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj instanceof Location && ((Location)obj).x() == xCoor
+            && ((Location)obj).y() == yCoor)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    @Override
+    public String toString()
+    {
+        return "(" + xCoor + ", " + yCoor + ")";
+    }
+
 }

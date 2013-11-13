@@ -19,6 +19,9 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f060000;
         public static final int activity_vertical_margin=0x7f060001;
+        public static final int smallbutton=0x7f060002;
+        public static final int smaller_button=0x7f060003;
+        public static final int smallish_button7dp=0x7f060004;
     }
     public static final class drawable {
         public static final int door=0x7f020000;
@@ -36,9 +39,11 @@ public final class R {
         public static final int water=0x7f02000c;
     }
     public static final class id {
-        public static final int action_settings=0x7f080007;
+        public static final int action_settings=0x7f080009;
+        public static final int centerScreen=0x7f080008;
         public static final int down=0x7f080004;
         public static final int left=0x7f080003;
+        public static final int reset=0x7f080007;
         public static final int right=0x7f080006;
         public static final int shapeView=0x7f080000;
         public static final int status=0x7f080001;

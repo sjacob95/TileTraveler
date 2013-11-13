@@ -7,8 +7,10 @@ import student.TestCase;
 /**
  *  Tester for the Map class
  *
- *  @author Jacob Stenzel (sjacob95)
- *  @version 2013.10.22
+ * @author Luciano Biondi (lbiondi)
+ * @author Ezra Richards  (MrZchuck)
+ * @author Jacob Stenzel  (sjacob95)
+ * @version 2013.12.08
  */
 public class MapTest
     extends TestCase
@@ -33,6 +35,9 @@ public class MapTest
                        "O   W");
     }
 
+    /**
+     * Tests the getTile() method
+     */
     public void testGetTile()
     {
         assertEquals(map1.getTile(0, 0), Tile.FLOOR);
@@ -41,7 +46,7 @@ public class MapTest
         assertEquals(map1.getTile(3, 1), Tile.LILY);
         assertEquals(map1.getTile(4, 0), Tile.WALL);
         assertEquals(map1.getTile(2, 4), Tile.WATER);
-        assertNull(map1.getTile(0, 2));
+        assertEquals(map1.getTile(0, 2), Tile.EMPTY);
         assertEquals(map1.getTile(42, 42), Tile.INVALID);
 
         assertEquals(map1.getTile(new Location(3, 1)), Tile.LILY);
@@ -50,6 +55,9 @@ public class MapTest
         setUp();
     }
 
+    /**
+     * Tests the secondary constructor
+     */
     public void testSecondaryConstructor()
     {
         assertEquals(map1.getTile(0, 0), Tile.FLOOR);
@@ -58,10 +66,10 @@ public class MapTest
         assertEquals(map1.getTile(3, 1), Tile.LILY);
         assertEquals(map1.getTile(4, 0), Tile.WALL);
         assertEquals(map1.getTile(2, 4), Tile.WATER);
-        assertNull(map1.getTile(0, 2));
+        assertEquals(map1.getTile(0, 2), Tile.EMPTY);
         assertEquals(map1.getTile(42, 42), Tile.INVALID);
 
-        assertEquals(map1.toString(), map2.toString());
+        assertEquals(map1, map2);
     }
 
 }

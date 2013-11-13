@@ -6,8 +6,10 @@ import sofia.graphics.RectangleShape;
 /**
  *  This class will represent a tile that is a door
  *
- *  @author Luciano Biondi (lbiondi)
- *  @version 2013.10.21
+ * @author Luciano Biondi (lbiondi)
+ * @author Ezra Richards  (MrZchuck)
+ * @author Jacob Stenzel  (sjacob95)
+ * @version 2013.12.08
  */
 public class Door extends RectangleShape
 {
