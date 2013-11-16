@@ -39,13 +39,16 @@ public final class R {
         public static final int water=0x7f02000c;
     }
     public static final class id {
-        public static final int action_settings=0x7f080009;
-        public static final int centerScreen=0x7f080008;
+        public static final int centerScreen=0x7f080007;
         public static final int down=0x7f080004;
         public static final int left=0x7f080003;
-        public static final int reset=0x7f080007;
+        public static final int reset=0x7f080008;
         public static final int right=0x7f080006;
         public static final int shapeView=0x7f080000;
+        public static final int stage1=0x7f08000a;
+        public static final int stage2=0x7f08000b;
+        public static final int stage3=0x7f08000c;
+        public static final int stages=0x7f080009;
         public static final int status=0x7f080001;
         public static final int tileMap=0x7f080002;
         public static final int up=0x7f080005;
@@ -60,6 +63,11 @@ public final class R {
         public static final int action_settings=0x7f040001;
         public static final int app_name=0x7f040000;
         public static final int hello_world=0x7f040002;
+        public static final int reset=0x7f040007;
+        public static final int stage1=0x7f040003;
+        public static final int stage2=0x7f040005;
+        public static final int stage3=0x7f040006;
+        public static final int stage_select=0x7f040004;
     }
     public static final class style {
         /** 

@@ -11,11 +11,7 @@ import sofia.graphics.Color;
 
 // -------------------------------------------------------------------------
 /**
- * Screen class to set up the tile traveler game screen CURRENT BUGS - Movement
- * is affected when the game gets laggy - Double jumping near the edge of a Map
- * can get a little gross (screen movement causes the Player to be recreated.
- * Should only redraw when the Player has landed - We admittedly don't need to
- * draw EVERY Tile...
+ * Screen class to set up the tile traveler game screen
  *
  * @author Luciano Biondi (lbiondi)
  * @author Ezra Richards (MrZchuck)
@@ -47,10 +43,46 @@ public class TileTravelerScreen
         getCoordinateSystem().origin(Anchor.BOTTOM_LEFT).flipY();
         tileSize = Math.min(getWidth(), getHeight()) / SCREENDIM;
 
-        currentStage = new DemoStage3();
+        currentStage = new DemoStage1();
 
         reset();
     }
+
+
+    // ------------------------------------------------------------------------
+    // MENU OPTIONS
+    // ------------------------------------------------------------------------
+
+    /**
+     * Loads Stage 1 when the appropriate menu item is clicked
+     */
+    public void stage1Clicked()
+    {
+        currentStage = new DemoStage1();
+        reset();
+    }
+
+    /**
+     * Loads Stage 2 when the appropriate menu item is clicked
+     */
+    public void stage2Clicked()
+    {
+        currentStage = new DemoStage2();
+        reset();
+    }
+
+    /**
+     * Loads Stage 2 when the appropriate menu item is clicked
+     */
+    public void stage3Clicked()
+    {
+        currentStage = new DemoStage3();
+        reset();
+    }
+
+    //-------------------------------------------------------------------------
+    // BUTTONS
+    //-------------------------------------------------------------------------
 
 
     // ----------------------------------------------------------
@@ -118,6 +150,10 @@ public class TileTravelerScreen
         }
     }
 
+    //-------------------------------------------------------------------------
+    // SCREEN METHODS
+    //-------------------------------------------------------------------------
+
 
     // ----------------------------------------------------------
     /**
@@ -135,8 +171,8 @@ public class TileTravelerScreen
                 origin);
         status.setText("Using the arrow buttons, escape the dungeon!");
 
-        draw();
         centerScreenClicked();
+        draw();
     }
 
 
@@ -366,7 +402,7 @@ public class TileTravelerScreen
      * @param methodName
      *            The name of the Player method to be called
      * @param fractionMoveTime
-     *            The fraction of the Player's MoveTime that te method's delay
+     *            The fraction of the Player's MoveTime that the method's delay
      *            will take
      */
     public void changeWasObserved(
@@ -389,17 +425,13 @@ public class TileTravelerScreen
     }
 
 
-    // ----------------------------------------------------------
-    /**
-     * Place a description of your method here.
-     */
     // -------------------------------------------------------------------------
     // PLAYER CALL METHODS
     // -------------------------------------------------------------------------
 
     // ----------------------------------------------------------
     /**
-     * Call's the player's resumeInput() method
+     * Calls the player's resumeInput() method
      */
     public void callResumeInput()
     {
@@ -409,7 +441,7 @@ public class TileTravelerScreen
 
     // ----------------------------------------------------------
     /**
-     * Call's the player's movingStopped() method
+     * Calls the player's movingStopped() method
      */
     public void callMovingStopped()
     {
@@ -419,7 +451,7 @@ public class TileTravelerScreen
 
     // ----------------------------------------------------------
     /**
-     * Call's the player's checkAndMove() method
+     * Calls the player's checkAndMove() method
      */
     public void callCheckAndMove()
     {
@@ -429,7 +461,7 @@ public class TileTravelerScreen
 
     // ----------------------------------------------------------
     /**
-     * Call's the player's incJumpCount() method
+     * Calls the player's incJumpCount() method
      */
     public void callIncJumpCount()
     {
@@ -439,10 +471,37 @@ public class TileTravelerScreen
 
     // ----------------------------------------------------------
     /**
-     * Call's the player's nextMove() method
+     * Calls the player's nextMove() method
      */
     public void callNextMove()
     {
         player.nextMove();
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Calls the player's setRestImage() method
+     */
+    public void callSetRestImage()
+    {
+        player.setRestImage();
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Calls the player's setWalkImage() method
+     */
+    public void callSetWalkImage()
+    {
+        player.setWalkImage();
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Calls the player's setJumpImage() method
+     */
+    public void callSetJumpImage()
+    {
+        player.setJumpImage();
     }
 }

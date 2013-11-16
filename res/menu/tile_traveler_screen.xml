@@ -1,9 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+    <item android:id="@+id/reset" android:title="@string/reset"></item><item android:id="@+id/stages" android:title="@string/stage_select">
+        <menu>
+            <item android:id="@+id/stage1" android:title="@string/stage1"/>
+            <item android:id="@+id/stage2" android:title="@string/stage2"/>
+            <item android:id="@+id/stage3" android:title="@string/stage3"/>
+        </menu>
+    </item>
+    
 
 </menu>

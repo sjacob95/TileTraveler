@@ -16,13 +16,14 @@ import sofia.graphics.Color;
 public class Player
     extends MovingEntity
 {
-    private static final long MOVETIME     = 400;
+    private static final long MOVETIME         = 400;
     private boolean           moving;
-    private boolean           receiveInput = true;
-    private boolean           alive        = true;
-    private boolean           won          = false;
-    private Direction         nextAction   = null;
-    private int               jumpCount    = 0;
+    private boolean           receiveInput     = true;
+    private boolean           alive            = true;
+    private boolean           won              = false;
+    private Direction         nextAction       = null;
+    private int               jumpCount        = 0;
+    private Direction         currentDirection = Direction.SOUTH;
 
 
     /**
@@ -103,7 +104,7 @@ public class Player
     {
         if (direction != null && !moving)
         {
-            // set directional image
+            currentDirection = direction;
             movingStarted();
             nextAction = null;
             Tile newMoveTile =
@@ -174,6 +175,8 @@ public class Player
 
         setLocation(getLocation().getNeighbor(direction));
 
+        // setJumpImage();
+        // notifyObservers("setRestImage", 0.5);
         notifyObservers("movingStopped", 1.0);
         notifyObservers("nextMove", 1.0);
 
@@ -197,6 +200,8 @@ public class Player
 
         setLocation(getLocation().getNeighbor(direction));
 
+        // setWalkImage();
+        // notifyObservers("setRestImage", 0.5);
         notifyObservers("movingStopped", 1.0);
         notifyObservers("checkAndMove", 1.0);
     }
@@ -372,6 +377,37 @@ public class Player
     public boolean isMoving()
     {
         return moving;
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Sets the Player's image to a standing one that is dependent on
+     * currentDirection
+     */
+    public void setRestImage()
+    {
+        // To be implemented
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Sets the Player's image to a walking one that is dependent on
+     * currentDirection
+     */
+    public void setWalkImage()
+    {
+        // To be implemented
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Sets the Player's image to a jumping one that is dependent on
+     * currentDirection
+     */
+    public void setJumpImage()
+    {
+        // To be implemented
     }
 
 }

@@ -1,21 +1,6 @@
-If a redrawPlayer method is not used for general movement, screen movement experiences slight error during times of lag. For this reasong, a redrawPlayer method is implemented in order to correct the on-screen movement's error. However the redrawPlayer method is improperly written and implemented. It currently RECREATES the player, which results in the loss of such things as jumpCount. It should instead contain code like this:
-        player.getShape().setLeft((player.getLocation().x() - origin.x()) * tileSize);
-        player.getShape().setTop((player.getLocation().y() - origin.y()) * tileSize);
-        if (player.isAlive())
-        {
-            checkOrigin();
-        }
-instead of this:
-        if (player.isAlive())
-        {
-            remove(player.getShape());
-            Location playerLoc = player.getLocation();
-            player = new Player(playerLoc, tileSize, currentStage, origin);
-            add(player.getShape());
-            player.addObserver(this);
-            checkOrigin();
-        }
-If implemented, we will experience issues with screen movement occasionally doubling. These need to be dealt with. It may be wise to give the Player a z-index so that it isn't drawn over during drawScreen since the player will be relocated rather than recreated.
+Work with them images. Create walking/jumping images for each direction. Then implement the appropriate mathods.
+
+It may be wise to give the Player a z-index so that it isn't drawn over during drawScreen since the player will be relocated rather than recreated.
 
 There is a large deal of lag experienced through the drawScreen method. The method should instead be rewritten to redraw only the tiles that appear on-screen. This includes those tiles that extend past SCREENDIM, so additional calculations will probably need to be made in the initialize method to get both dimensions.
 
