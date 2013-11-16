@@ -47,7 +47,7 @@ public class TileTravelerScreen
         getCoordinateSystem().origin(Anchor.BOTTOM_LEFT).flipY();
         tileSize = Math.min(getWidth(), getHeight()) / SCREENDIM;
 
-        currentStage = new DemoStage3();
+        currentStage = new DemoStage1();
 
         reset();
     }
@@ -311,6 +311,9 @@ public class TileTravelerScreen
         if (!alive)
         {
             status.setText("You are died!");
+        }
+        else if(alive) {
+            status.setText("You Won!");
         }
     }
 

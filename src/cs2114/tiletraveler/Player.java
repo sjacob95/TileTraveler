@@ -20,6 +20,7 @@ public class Player
     private boolean           moving;
     private boolean           receiveInput = true;
     private boolean           alive        = true;
+    private boolean           won          = false;
     private Direction         nextAction   = null;
     private int               jumpCount    = 0;
 
@@ -174,7 +175,7 @@ public class Player
         setLocation(getLocation().getNeighbor(direction));
 
         notifyObservers("movingStopped", 1.0);
-        //notifyObservers("incJumpCount", 1.0);
+        // notifyObservers("incJumpCount", 1.0);
         notifyObservers("nextMove", 1.0);
 
     }
@@ -215,6 +216,11 @@ public class Player
             die();
             return false;
         }
+        else if (currentTile.equals(Tile.DOOR))
+        {
+            isWon();
+            return false;
+        }
         else
             jumpCount = 0;
         return true;
@@ -231,6 +237,20 @@ public class Player
         alive = false;
         getShape().setColor(Color.red);
         notifyObservers(alive);
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Called when the game is won! Ceases input, and sets the color to green.
+     */
+    public void isWon()
+    {
+        blockInput();
+        nextAction = null;
+        won = true;
+        getShape().setColor(Color.red);
+        notifyObservers(won);
     }
 
 
@@ -326,6 +346,7 @@ public class Player
         return MOVETIME;
     }
 
+
     // ----------------------------------------------------------
     /**
      * @return whether or not the Player is currently jumping
@@ -335,6 +356,7 @@ public class Player
         return jumpCount > 0;
     }
 
+
     // ----------------------------------------------------------
     /**
      * @return whether or not the Player is currently alive
@@ -343,6 +365,7 @@ public class Player
     {
         return alive;
     }
+
 
     /**
      * @return whether or not the Player is currently moving
