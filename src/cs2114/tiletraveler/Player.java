@@ -175,8 +175,8 @@ public class Player
 
         setLocation(getLocation().getNeighbor(direction));
 
-        // setJumpImage();
-        // notifyObservers("setRestImage", 0.5);
+        setJumpImage();
+        notifyObservers("setRestImage", 0.5);
         notifyObservers("movingStopped", 1.0);
         notifyObservers("nextMove", 1.0);
 
@@ -200,8 +200,8 @@ public class Player
 
         setLocation(getLocation().getNeighbor(direction));
 
-        // setWalkImage();
-        // notifyObservers("setRestImage", 0.5);
+        setWalkImage();
+        notifyObservers("setRestImage", 0.5);
         notifyObservers("movingStopped", 1.0);
         notifyObservers("checkAndMove", 1.0);
     }
@@ -379,7 +379,9 @@ public class Player
         return moving;
     }
 
-
+    //-----------------------------------------------------------
+    //When player is redrawn, currentDirection becomes South
+    //doesn't change position correctly and so neither does image
     // ----------------------------------------------------------
     /**
      * Sets the Player's image to a standing one that is dependent on
@@ -387,7 +389,22 @@ public class Player
      */
     public void setRestImage()
     {
-        // To be implemented
+        if (currentDirection == Direction.SOUTH)
+        {
+            getShape().setImage("heroback");
+        }
+        else if (currentDirection == Direction.WEST)
+        {
+            getShape().setImage("heroleft");
+        }
+        else if (currentDirection == Direction.EAST)
+        {
+            getShape().setImage("heroright");
+        }
+        else
+        {
+            getShape().setImage("heroforward");
+        }
     }
 
     // ----------------------------------------------------------
@@ -397,7 +414,22 @@ public class Player
      */
     public void setWalkImage()
     {
-        // To be implemented
+        if (currentDirection == Direction.SOUTH)
+        {
+            getShape().setImage("heroback");
+        }
+        else if (currentDirection == Direction.WEST)
+        {
+            getShape().setImage("heroleft");
+        }
+        else if (currentDirection == Direction.EAST)
+        {
+            getShape().setImage("heroright");
+        }
+        else
+        {
+            getShape().setImage("heroforward");
+        }
     }
 
     // ----------------------------------------------------------
@@ -407,7 +439,22 @@ public class Player
      */
     public void setJumpImage()
     {
-        // To be implemented
+        if (currentDirection == Direction.SOUTH)
+        {
+            getShape().setImage("herobackjump");
+        }
+        else if (currentDirection == Direction.WEST)
+        {
+            getShape().setImage("heroleftjump");
+        }
+        else if (currentDirection == Direction.EAST)
+        {
+            getShape().setImage("herorightjump");
+        }
+        else
+        {
+            getShape().setImage("heroforwardjump");
+        }
     }
 
 }
