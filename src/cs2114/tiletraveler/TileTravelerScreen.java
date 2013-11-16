@@ -1,5 +1,6 @@
 package cs2114.tiletraveler;
 
+import sofia.graphics.Shape;
 import sofia.app.OptionsMenu;
 import sofia.util.Timer;
 import sofia.graphics.Anchor;
@@ -171,13 +172,10 @@ public class TileTravelerScreen
      */
     public void redrawPlayer()
     {
+        player.getShape().setLeft((player.getLocation().x() - origin.x()) * tileSize);
+        player.getShape().setTop((player.getLocation().y() - origin.y()) * tileSize);
         if (player.isAlive())
         {
-            remove(player.getShape());
-            Location playerLoc = player.getLocation();
-            player = new Player(playerLoc, tileSize, currentStage, origin);
-            add(player.getShape());
-            player.addObserver(this);
             checkOrigin();
         }
     }
@@ -337,9 +335,14 @@ public class TileTravelerScreen
         int x,
         int y)
     {
-        player.getShape()
+        Shape.Animator<?> anim = player.getShape()
             .animate(player.getMoveTime() * Math.round(fractionMoveTime))
-            .moveBy(x * getTileSize(), y * getTileSize()).play();
+            .moveBy(x * getTileSize(), y * getTileSize());
+        anim.play();
+        while (anim.isPlaying())
+        {
+        }
+       redrawPlayer();
     }
 
 
@@ -370,11 +373,7 @@ public class TileTravelerScreen
         Timer.callOnce(
             this,
             thisMethodName.toString(),
-            (entity.getMoveTime() * (long)Math.floor(fractionMoveTime)));
-        Timer.callOnce(
-            this,
-            "redrawPlayer",
-            (entity.getMoveTime() * (long)Math.floor(fractionMoveTime)) + 2);
+            (entity.getMoveTime() * (long)Math.floor(fractionMoveTime)) + 4);
         Timer.callOnce(
             this,
             "checkOrigin",
