@@ -47,7 +47,7 @@ public class TileTravelerScreen
         getCoordinateSystem().origin(Anchor.BOTTOM_LEFT).flipY();
         tileSize = Math.min(getWidth(), getHeight()) / SCREENDIM;
 
-        currentStage = new DemoStage1();
+        currentStage = new DemoStage3();
 
         reset();
     }
@@ -172,8 +172,10 @@ public class TileTravelerScreen
      */
     public void redrawPlayer()
     {
-        player.getShape().setLeft((player.getLocation().x() - origin.x()) * tileSize);
-        player.getShape().setTop((player.getLocation().y() - origin.y()) * tileSize);
+        player.getShape().setLeft(
+            (player.getLocation().x() - origin.x()) * tileSize);
+        player.getShape().setTop(
+            (player.getLocation().y() - origin.y()) * tileSize);
         if (player.isAlive())
         {
             checkOrigin();
@@ -312,8 +314,9 @@ public class TileTravelerScreen
         {
             status.setText("You are died!");
         }
-        else if(alive) {
-            status.setText("You Won!");
+        else if (alive)
+        {
+            status.setText("You did the win!");
         }
     }
 
@@ -338,14 +341,16 @@ public class TileTravelerScreen
         int x,
         int y)
     {
-        Shape.Animator<?> anim = player.getShape()
-            .animate(player.getMoveTime() * Math.round(fractionMoveTime))
-            .moveBy(x * getTileSize(), y * getTileSize());
+        Shape.Animator<?> anim =
+            player.getShape()
+                .animate(player.getMoveTime() * Math.round(fractionMoveTime))
+                .moveBy(x * getTileSize(), y * getTileSize());
         anim.play();
         while (anim.isPlaying())
         {
+            // intentionally blank
         }
-       redrawPlayer();
+        redrawPlayer();
     }
 
 

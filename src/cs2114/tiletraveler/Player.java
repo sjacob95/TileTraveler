@@ -175,7 +175,6 @@ public class Player
         setLocation(getLocation().getNeighbor(direction));
 
         notifyObservers("movingStopped", 1.0);
-        // notifyObservers("incJumpCount", 1.0);
         notifyObservers("nextMove", 1.0);
 
     }
@@ -249,7 +248,7 @@ public class Player
         blockInput();
         nextAction = null;
         won = true;
-        getShape().setColor(Color.red);
+        getShape().setColor(Color.green);
         notifyObservers(won);
     }
 
