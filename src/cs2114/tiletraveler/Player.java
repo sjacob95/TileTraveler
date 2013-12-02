@@ -225,6 +225,20 @@ public class Player
         return true;
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Checks whether the Player has collided with an enemy
+     */
+    public void checkEnemyCollision()
+    {
+        Enemy enemy = getStage().getEnemyMap().getEnemy(getLocation());
+        if (enemy != null);
+        {
+            die();
+            getShape().setImage("enemya");
+        }
+    }
+
 
     /**
      * Kills the player, ceasing input and setting its color to red

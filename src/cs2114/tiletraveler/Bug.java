@@ -39,7 +39,6 @@ public class Bug
     {
         getPath().get().next();
         setLocation(getPath().get().getCurrent());
-        notifyObservers(getLocation());
         notifyObservers(1.0, getLocation().x(), getLocation().y());
     }
 

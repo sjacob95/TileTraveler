@@ -436,7 +436,7 @@ public class TileTravelerScreen
     }
 
     /**
-     * Moves all Enemies
+     * Moves all Enemies and then checks whether or not they have killed the Player
      */
     public void moveEnemies()
     {
@@ -457,28 +457,8 @@ public class TileTravelerScreen
         }
         currentStage.setEnemyMap(tempMap);
         currentEnMap = tempMap;
+        player.checkEnemyCollision();
     }
-
-
-    // -------------------------------------------------------------------------
-    // ENEMY OBSERVER METHODS
-    // -------------------------------------------------------------------------
-
-    // ----------------------------------------------------------
-    /**
-     * Checks whether or not the enemy has moved onto the Player and, if so,
-     * kills the Player
-     *
-     * @param enemy
-     *            The enemy
-     * @param loc
-     *            Simply an identification tag
-     */
-    public void changeWasObserved(Enemy enemy, Location loc)
-    {
-        player.checkCurrentStatus();
-    }
-
 
     // -------------------------------------------------------------------------
     // MOVINGENEMY OBSERVER METHODS

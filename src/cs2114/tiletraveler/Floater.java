@@ -39,7 +39,6 @@ public class Floater
     {
         getPath().get().next();
         setLocation(getPath().get().getCurrent());
-        notifyObservers();
         notifyObservers(1.0, getLocation().x(), getLocation().y());
     }
 
