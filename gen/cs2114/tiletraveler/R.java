@@ -29,22 +29,21 @@ public final class R {
         public static final int enemyb=0x7f020002;
         public static final int enemyc=0x7f020003;
         public static final int floor=0x7f020004;
-        public static final int hero=0x7f020005;
-        public static final int heroback=0x7f020006;
-        public static final int herobackjump=0x7f020007;
-        public static final int heroforward=0x7f020008;
-        public static final int heroforwardjump=0x7f020009;
-        public static final int heroleft=0x7f02000a;
-        public static final int heroleftjump=0x7f02000b;
-        public static final int heroright=0x7f02000c;
-        public static final int herorightjump=0x7f02000d;
-        public static final int ic_launcher=0x7f02000e;
-        public static final int ic_launcher_web=0x7f02000f;
-        public static final int icon=0x7f020010;
-        public static final int lily=0x7f020011;
-        public static final int pillar=0x7f020012;
-        public static final int wall=0x7f020013;
-        public static final int water=0x7f020014;
+        public static final int heroback=0x7f020005;
+        public static final int herobackjump=0x7f020006;
+        public static final int heroforward=0x7f020007;
+        public static final int heroforwardjump=0x7f020008;
+        public static final int heroleft=0x7f020009;
+        public static final int heroleftjump=0x7f02000a;
+        public static final int heroright=0x7f02000b;
+        public static final int herorightjump=0x7f02000c;
+        public static final int ic_launcher=0x7f02000d;
+        public static final int ic_launcher_web=0x7f02000e;
+        public static final int icon=0x7f02000f;
+        public static final int lily=0x7f020010;
+        public static final int pillar=0x7f020011;
+        public static final int wall=0x7f020012;
+        public static final int water=0x7f020013;
     }
     public static final class id {
         public static final int centerScreen=0x7f080007;
@@ -56,6 +55,7 @@ public final class R {
         public static final int stage1=0x7f08000a;
         public static final int stage2=0x7f08000b;
         public static final int stage3=0x7f08000c;
+        public static final int stage4=0x7f08000d;
         public static final int stages=0x7f080009;
         public static final int status=0x7f080001;
         public static final int tileMap=0x7f080002;
@@ -75,6 +75,7 @@ public final class R {
         public static final int stage1=0x7f040003;
         public static final int stage2=0x7f040005;
         public static final int stage3=0x7f040006;
+        public static final int stage4=0x7f040008;
         public static final int stage_select=0x7f040004;
     }
     public static final class style {

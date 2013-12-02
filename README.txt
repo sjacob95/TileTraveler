@@ -1,12 +1,29 @@
-We will be creating a Frogger-esque tile-based movement-oriented game. The art style will be a bit Terraria-ish with a fantasty theme of sorts, or as best as we can manage given our time, experience, and artistic ability. The object will be, quite simply, to make it to the goal while avoiding death, which occurs by falling off the stage and getting hit by projectiles/enemies. The camera will likely not cover the whole stage at once, so it will instead be divided into sections that will be loaded as needed (for example, section B is above section A. As the character reaches the upper edge of section A, section B will loaded and the player will be placed on the tile of section B directly above the tile in section A that was just left). Whether or not the size of these chunks are procedurally generated according to the size of the device is to be determined. The camera angle will be ALMOST top-down, but with a slight angle to give the impression of a third dimension. Think any GBA game (Pokemon, Zelda, etc) and you'll get an idea of what this entails.
+We have created a Frogger-esque tile-based movement-oriented game. The art style is a bit Zelda-ish with a fantasty theme of sorts. The object is, quite simply, to make it to the goal while avoiding death, which occurs by falling off the stage and getting hit by projectiles/enemies. The camera does not cover the whole stage at once, so it is instead be divided into sections that will be loaded as needed (for example, section B is above section A. As the character reaches the upper edge of section A, section B will loaded and the player will be placed on the tile of section B directly above the tile in section A that was just left). The size of these chunks are procedurally generated according to the size of the device. Tiles are stored as part of a logic array of sorts. When moving off an edge or onto an unstable or moving object, the player will leap upon moving rather than walk. A double jump functionality exists where if the player leaps and, upon finishing the leaping motion, has another directional key depressed, the player will perform a second leap in the direction specified.
 
-Tiles will be stored as part of a logic array of sorts. Moving platforms will be among the challenges faced, and the paths of these platforms will be stored as part of a complex collection of some sort, likely a linked list of sorts, so that the path coordinates might be accessed in a cyclical manner. I would like to allow moving platforms to have paths that traverse multiple camera "chunks", seeing as the Android screen may not allow for large chunks with intricate moving platform paths. Moving platforms will occupy a changing space in the logic array, but this space will always be null when unoccupied by the platform. Other forms of moving platforms that are not path based or that operate on a finite non-looping path may be implemented as well.
 
-Layers will be used to simulate the planned 2.5D, or 2D with camera tilt perspective. As a player goes behind a wall, the upper half of the wall will obscure the player, although the actual physical "wall" only occupies the lower half of the visible. This will be accomplished by giving each successive y-coordinate in the upward direction a layer with a lower value than the one before it, simulating a character that is moving into the background.
 
-Physics will be accomplished through the use of a HitBox object with an alpha value of 0 that follows the player and any moving hazards or objects that require a moving target. This way, although an object may appear to clip the top of the player, it will not register as a hit until it appears to have made contact behind the character. This will remain a collision based system, however.
+        ***********************************DEVELOPERS ONLY***********************************
+	Stage Creation Guide:
+	
+	- Create Stage# class
+		- private static Map map = new Map(<ASCII map>);
+		- private static Location startLoc = <start location>;
+		- public Stage#()
+			- super(map, startLoc);
+			- <add enemies>
+				- new <enemy type>(tileSize, this, <enemy-specific parameters>);
+		- public Stage reset(float tileSize)
+			- return new Stage#(tileSize);
 
-If possible, a D-Pad will be implemented as the primary source of user input. it will be located in the bottom center area of the screen and will be used quite simply for movement. When moving off an edge or onto an unstable or moving object, the player will leap upon moving rather than walk. A double jump functionality will exist where if the player leaps and, upon finishing the leaping motion, has another directional key depressed, the player will perform a second leap in the direction specified.
+	- Add TileTravelerScreen method
+		- public void stage#Clicked()
+			- currentStage = new Stage#(tileSize);
+			- reset();
 
-As time permits, additional stages, moving objects, and enemies may be implemented.
+	- Modify the menu (res, menu, tile_traveler_screen.xml)
+		- Stages > Sub-Menu, click last stage, add, Item, click item
+			- Title, click String, New String
+				- String: Stage #
+				- New R.string: stage#
+			- Id: @+id/stage#
 
