@@ -89,4 +89,13 @@ public class CircularLinkedList<E>
     {
         return firstItem.data();
     }
+
+    // ----------------------------------------------------------
+    /**
+     * @return the size of the path
+     */
+    public int size()
+    {
+        return size;
+    }
 }
