@@ -1,13 +1,14 @@
 package cs2114.tiletraveler;
 
+import sofia.graphics.Image;
 import sofia.graphics.RectangleShape;
 
 /**
  * This class is the parent class for all of the Entities on the game board.
  *
  * @author Luciano Biondi (lbiondi)
- * @author Ezra Richards  (MrZchuck)
- * @author Jacob Stenzel  (sjacob95)
+ * @author Ezra Richards (MrZchuck)
+ * @author Jacob Stenzel (sjacob95)
  * @version 2013.12.08
  */
 public abstract class Entity
@@ -31,18 +32,15 @@ public abstract class Entity
      *            The size of one Tile in pixels.
      * @param stage
      *            The stage the entity resides in
-     * @param origin
-     *            The Location of the Tile currently at the bottom-left of the
-     *            screen
      */
-    public Entity(float x, float y, float tileSize, Stage stage, Location origin)
+    public Entity(float x, float y, float tileSize, Stage stage)
     {
         entityShape =
             new RectangleShape(
-                (x - origin.x()) * tileSize,
-                (y - origin.y()) * tileSize,
-                ((x + 1) - origin.x()) * tileSize,
-                ((y + 1) - origin.y()) * tileSize);
+                x * tileSize,
+                y * tileSize,
+                (x + 1) * tileSize,
+                (y + 1) * tileSize);
         direction = Direction.NORTH;
         location = new Location((int)x, (int)y);
         this.tileSize = tileSize;
@@ -59,21 +57,40 @@ public abstract class Entity
      *            The size of one Tile in pixels.
      * @param stage
      *            The stage the Entity resides in
-     * @param origin
-     *            The Location of the Tile currently at the bottom-left of the
-     *            screen
      */
-    public Entity(Location loc, float tileSize, Stage stage, Location origin)
+    public Entity(Location loc, float tileSize, Stage stage)
     {
         entityShape =
             new RectangleShape(
-                (loc.x() - origin.x()) * tileSize,
-                (loc.y() - origin.y()) * tileSize,
-                ((loc.x() + 1) - origin.x()) * tileSize,
-                ((loc.y() + 1) - origin.y()) * tileSize);
+                loc.x() * tileSize,
+                loc.y() * tileSize,
+                (loc.x() + 1) * tileSize,
+                (loc.y() + 1) * tileSize);
         direction = Direction.NORTH;
         location = loc;
+        this.tileSize = tileSize;
         this.stage = stage;
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Redraws a shape according to a new origin
+     *
+     * @param origin
+     *            The point at the bottom left of the Screen
+     */
+    public void redrawShape(Location origin)
+    {
+        Image tempImage = entityShape.getImage();
+        entityShape =
+            new RectangleShape(
+                (location.x() - origin.x()) * tileSize,
+                (location.y() - origin.y()) * tileSize,
+                ((location.x() + 1) - origin.x()) * tileSize,
+                ((location.y() + 1) - origin.y()) * tileSize);
+        entityShape.setImage(tempImage);
+
     }
 
 

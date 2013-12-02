@@ -14,7 +14,7 @@ import sofia.graphics.Color;
  * @version 2013.12.08
  */
 public class Player
-    extends MovingEntity
+    extends Entity
 {
     private static final long MOVETIME         = 400;
     private boolean           moving;
@@ -38,14 +38,11 @@ public class Player
      *            The size of one Tile in pixels.
      * @param stage
      *            The stage the Player resides in
-     * @param origin
-     *            The Location of the tile currently at the bottom-left of the
-     *            screen
      */
-    public Player(float x, float y, float tileSize, Stage stage, Location origin)
+    public Player(float x, float y, float tileSize, Stage stage)
     {
-        super(x, y, tileSize, stage, origin);
-        getShape().setImage("hero");
+        super(x, y, tileSize, stage);
+        getShape().setImage("heroback");
         movingStopped();
     }
 
@@ -60,14 +57,11 @@ public class Player
      *            The size of one Tile in pixels.
      * @param stage
      *            The stage the Player resides in
-     * @param origin
-     *            The Location of the Tile currently at the bottom-left of the
-     *            screen
      */
-    public Player(Location loc, float tileSize, Stage stage, Location origin)
+    public Player(Location loc, float tileSize, Stage stage)
     {
-        super(loc, tileSize, stage, origin);
-        getShape().setImage("hero");
+        super(loc, tileSize, stage);
+        getShape().setImage("heroback");
         movingStopped();
     }
 
@@ -179,7 +173,6 @@ public class Player
         notifyObservers("setRestImage", 0.5);
         notifyObservers("movingStopped", 1.0);
         notifyObservers("nextMove", 1.0);
-
     }
 
 
@@ -215,7 +208,9 @@ public class Player
     public boolean checkCurrentStatus()
     {
         Tile currentTile = getStage().getMap().getTile(getLocation());
-        if (currentTile.equals(Tile.EMPTY) || currentTile.equals(Tile.WATER))
+        Enemy enemy = getStage().getEnemyMap().getEnemy(getLocation());
+        if ((currentTile.equals(Tile.EMPTY) || currentTile.equals(Tile.WATER))
+            || enemy != null)
         {
             die();
             return false;
@@ -379,9 +374,10 @@ public class Player
         return moving;
     }
 
-    //-----------------------------------------------------------
-    //When player is redrawn, currentDirection becomes South
-    //doesn't change position correctly and so neither does image
+
+    // -----------------------------------------------------------
+    // When player is redrawn, currentDirection becomes South
+    // doesn't change position correctly and so neither does image
     // ----------------------------------------------------------
     /**
      * Sets the Player's image to a standing one that is dependent on
@@ -407,6 +403,7 @@ public class Player
         }
     }
 
+
     // ----------------------------------------------------------
     /**
      * Sets the Player's image to a walking one that is dependent on
@@ -431,6 +428,7 @@ public class Player
             getShape().setImage("heroforward");
         }
     }
+
 
     // ----------------------------------------------------------
     /**

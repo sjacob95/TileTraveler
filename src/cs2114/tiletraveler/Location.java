@@ -5,8 +5,8 @@ package cs2114.tiletraveler;
  * Location class to keep track of grid
  *
  * @author Luciano Biondi (lbiondi)
- * @author Ezra Richards  (MrZchuck)
- * @author Jacob Stenzel  (sjacob95)
+ * @author Ezra Richards (MrZchuck)
+ * @author Jacob Stenzel (sjacob95)
  * @version 2013.12.08
  */
 public class Location
@@ -53,6 +53,7 @@ public class Location
     {
         return yCoor;
     }
+
 
     /**
      * @return the Location's neighbor in a given Direction
@@ -128,7 +129,7 @@ public class Location
      */
     public Location north(int inc)
     {
-        return         new Location(xCoor, yCoor + inc);
+        return new Location(xCoor, yCoor + inc);
     }
 
 
@@ -232,14 +233,34 @@ public class Location
 
 
     /**
-     * @return the distance between this and the provided Location
+     * @return the distance between this and the provided Location (assuming the
+     *         two points share an x or y coordinate)
      * @param loc
      *            - the second Location
      */
     public int getDistance(Location loc)
     {
-        return (int)Math.sqrt((Math.pow(xCoor, 2) - Math.pow(loc.x(), 2))
-            + (Math.pow(yCoor, 2) - Math.pow(loc.y(), 2)));
+        if (!(xCoor == loc.x() && yCoor == loc.y()))
+        {
+            if (xCoor == loc.x())
+            {
+                return Math.abs(yCoor - loc.y());
+            }
+            else if (yCoor == loc.y())
+            {
+                return Math.abs(xCoor - loc.x());
+            }
+            else
+            {
+                throw new UnsupportedOperationException(
+                    "This method cannot be called on points that do not share a y or x coordinate");
+            }
+        }
+        else
+        {
+            return 0;
+        }
+
     }
 
 
@@ -288,7 +309,13 @@ public class Location
     @Override
     public String toString()
     {
-        return "(" + xCoor + ", " + yCoor + ")";
+        StringBuilder builder = new StringBuilder();
+        builder.append("(");
+        builder.append(xCoor);
+        builder.append(", ");
+        builder.append(yCoor);
+        builder.append(")");
+        return builder.toString();
     }
 
 }

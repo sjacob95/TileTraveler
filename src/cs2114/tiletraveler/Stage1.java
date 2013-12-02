@@ -9,7 +9,7 @@ package cs2114.tiletraveler;
  * @author Jacob Stenzel  (sjacob95)
  * @version 2013.12.08
  */
-public class DemoStage1
+public class Stage1
     extends Stage
 {
 
@@ -30,10 +30,19 @@ public class DemoStage1
 
     // ----------------------------------------------------------
     /**
-     * Create a new DemoStage1 object.
+     * Create a new Stage1 object.
+     * @param tileSize
+     *            The size of one Tile in pixels.
      */
-    public DemoStage1()
+    public Stage1(float tileSize)
     {
         super(map, startLoc);
+        getEnemyMap().addEnemy(new Bug(tileSize, this, new Location(1, 5), new Location(9, 5)));
+        getEnemyMap().addEnemy(new Bug(tileSize, this, new Location(7, 7), new Location(9, 7)));
+    }
+
+    public Stage reset(float tileSize)
+    {
+        return new Stage1(tileSize);
     }
 }

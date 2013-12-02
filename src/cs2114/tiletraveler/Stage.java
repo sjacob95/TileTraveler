@@ -5,16 +5,16 @@ package cs2114.tiletraveler;
  * A Stage that contains a Map, an array of Entities, and a starting Location
  *
  * @author Luciano Biondi (lbiondi)
- * @author Ezra Richards  (MrZchuck)
- * @author Jacob Stenzel  (sjacob95)
+ * @author Ezra Richards (MrZchuck)
+ * @author Jacob Stenzel (sjacob95)
  * @version 2013.12.08
  */
-public class Stage
+public abstract class Stage
 {
 
-    private Map       map;
-    private EntityMap entityMap;
+    private Map      map;
     private Location startLoc;
+    private EnemyMap enemyMap;
 
 
     // ----------------------------------------------------------
@@ -23,15 +23,24 @@ public class Stage
      *
      * @param map
      *            - the map for the stage to contain
-     * @param startLoc - the Location at which the player starts
-     *
+     * @param startLoc
+     *            - the Location at which the player starts
      */
     public Stage(Map map, Location startLoc)
     {
         this.map = map;
-        entityMap = new EntityMap(map.getMapDim());
         this.startLoc = startLoc;
+        this.enemyMap = new EnemyMap(map.getMapDim());
     }
+
+
+    // ----------------------------------------------------------
+    /**
+     * @param tileSize
+     *            The size of a Tile in pixels
+     * @return The reset Stage
+     */
+    public abstract Stage reset(float tileSize);
 
 
     /**
@@ -54,13 +63,28 @@ public class Stage
         this.map = map;
     }
 
+
     /**
-     * @return the EntityMap
+     * @return the EnemyMap
      */
-    public EntityMap getEntityMap()
+    public EnemyMap getEnemyMap()
     {
-        return entityMap;
+        return enemyMap;
     }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Changes the EnemyMap to the provided EnemyMap
+     *
+     * @param enMap
+     *            The EnemyMap to be used
+     */
+    public void setEnemyMap(EnemyMap enMap)
+    {
+        enemyMap = enMap;
+    }
+
 
     /**
      * @return the Player's starting Location
@@ -69,4 +93,5 @@ public class Stage
     {
         return startLoc;
     }
+
 }

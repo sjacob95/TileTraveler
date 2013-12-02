@@ -1,5 +1,6 @@
 package cs2114.tiletraveler;
 
+import java.util.Locale;
 import sofia.graphics.Shape;
 import sofia.app.OptionsMenu;
 import sofia.util.Timer;
@@ -24,13 +25,16 @@ public class TileTravelerScreen
 {
     private float            tileSize;
     private Map              currentMap;
+    private EnemyMap         currentEnMap;
     private Stage            currentStage;
     private static final int SCREENDIM = 15;                // tile size of one
 // side in a single view
     private int              mapDim;
     private Player           player;
+    private Timer enemyTimer;
 
     private TextView         status;
+
 
     /**
      * the map location currently at the bottom left of the screen
@@ -43,7 +47,7 @@ public class TileTravelerScreen
         getCoordinateSystem().origin(Anchor.BOTTOM_LEFT).flipY();
         tileSize = Math.min(getWidth(), getHeight()) / SCREENDIM;
 
-        currentStage = new DemoStage1();
+        currentStage = new Stage1(tileSize);
 
         reset();
     }
@@ -58,32 +62,34 @@ public class TileTravelerScreen
      */
     public void stage1Clicked()
     {
-        currentStage = new DemoStage1();
+        currentStage = new Stage1(tileSize);
         reset();
     }
+
 
     /**
      * Loads Stage 2 when the appropriate menu item is clicked
      */
     public void stage2Clicked()
     {
-        currentStage = new DemoStage2();
+        currentStage = new Stage2(tileSize);
         reset();
     }
+
 
     /**
      * Loads Stage 2 when the appropriate menu item is clicked
      */
     public void stage3Clicked()
     {
-        currentStage = new DemoStage3();
+        currentStage = new Stage3(tileSize);
         reset();
     }
 
-    //-------------------------------------------------------------------------
-    // BUTTONS
-    //-------------------------------------------------------------------------
 
+    // -------------------------------------------------------------------------
+    // BUTTONS
+    // -------------------------------------------------------------------------
 
     // ----------------------------------------------------------
     /**
@@ -150,10 +156,10 @@ public class TileTravelerScreen
         }
     }
 
-    //-------------------------------------------------------------------------
-    // SCREEN METHODS
-    //-------------------------------------------------------------------------
 
+    // -------------------------------------------------------------------------
+    // SCREEN METHODS
+    // -------------------------------------------------------------------------
 
     // ----------------------------------------------------------
     /**
@@ -161,18 +167,20 @@ public class TileTravelerScreen
      */
     public void reset()
     {
+        if (enemyTimer != null)
+        {
+            enemyTimer.stop();
+        }
+        currentStage = currentStage.reset(tileSize);
         currentMap = currentStage.getMap();
+        currentEnMap = currentStage.getEnemyMap();
         mapDim = currentMap.getMapDim();
-        player =
-            new Player(
-                currentStage.getStartLoc(),
-                tileSize,
-                currentStage,
-                origin);
+        player = new Player(currentStage.getStartLoc(), tileSize, currentStage);
         status.setText("Using the arrow buttons, escape the dungeon!");
 
         centerScreenClicked();
-        draw();
+        redraw();
+        enemyTimer = Timer.callRepeatedly(this, "moveEnemies", 0, MovingEnemy.getMoveTime());
     }
 
 
@@ -186,7 +194,69 @@ public class TileTravelerScreen
         drawScreen();
         add(player.getShape());
         player.addObserver(this);
+        addEnemies();
         checkOrigin();
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Adds all Enemies to the screen
+     */
+    public void addEnemies()
+    {
+        for (int x = 0; x < currentEnMap.getMapDim(); x++)
+        {
+            for (int y = 0; y < currentEnMap.getMapDim(); y++)
+            {
+                Enemy tempEnemy = currentEnMap.getEnemy(x, y);
+                if (tempEnemy != null)
+                {
+                    add(tempEnemy.getShape());
+                    tempEnemy.addObserver(this);
+                }
+            }
+        }
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Redraws all Enemies (Does not add to screen; consult drawEnemies)
+     */
+    public void redrawEnemies()
+    {
+        for (int x = 0; x < currentEnMap.getMapDim(); x++)
+        {
+            for (int y = 0; y < currentEnMap.getMapDim(); y++)
+            {
+                Enemy tempEnemy = currentEnMap.getEnemy(x, y);
+                if (tempEnemy != null)
+                {
+                    remove(tempEnemy.getShape());
+                    tempEnemy.redrawShape(origin);
+                }
+            }
+        }
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Redraws all Enemies (Does not add to screen; consult drawEnemies)
+     */
+    public void adjustEnemies()
+    {
+        for (int x = 0; x < currentEnMap.getMapDim(); x++)
+        {
+            for (int y = 0; y < currentEnMap.getMapDim(); y++)
+            {
+                Enemy tempEnemy = currentEnMap.getEnemy(x, y);
+                if (tempEnemy != null)
+                {
+                    adjustEntity(tempEnemy);
+                }
+            }
+        }
     }
 
 
@@ -197,16 +267,32 @@ public class TileTravelerScreen
     public void redraw()
     {
         remove(player.getShape());
-        Location playerLoc = player.getLocation();
-        player = new Player(playerLoc, tileSize, currentStage, origin);
+        player.redrawShape(origin);
+        redrawEnemies();
         draw();
     }
 
 
     /**
-     * Redraws the Player
+     * Adjusts the Entity's position to correct timing/lag related problems
+     *
+     * @param entity
+     *            The Entity
      */
-    public void redrawPlayer()
+    public void adjustEntity(Entity entity)
+    {
+        entity.getShape().setLeft(
+            (entity.getLocation().x() - origin.x()) * tileSize);
+        entity.getShape().setTop(
+            (entity.getLocation().y() - origin.y()) * tileSize);
+
+    }
+
+
+    /**
+     * Adjusts the Player's position to correct timing/lag related problems
+     */
+    public void adjustPlayer()
     {
         player.getShape().setLeft(
             (player.getLocation().x() - origin.x()) * tileSize);
@@ -216,6 +302,21 @@ public class TileTravelerScreen
         {
             checkOrigin();
         }
+    }
+
+
+    /**
+     * Redraws an Entity
+     *
+     * @param entity
+     *            The Entity to be redrawn
+     */
+    public void redrawEntity(Entity entity)
+    {
+        entity.getShape().setLeft(
+            (entity.getLocation().x() - origin.x()) * tileSize);
+        entity.getShape().setTop(
+            (entity.getLocation().y() - origin.y()) * tileSize);
     }
 
 
@@ -334,6 +435,89 @@ public class TileTravelerScreen
         }
     }
 
+    /**
+     * Moves all Enemies
+     */
+    public void moveEnemies()
+    {
+        EnemyMap tempMap = new EnemyMap(mapDim);
+        MovingEnemy lastMovingEnemy = null;
+        for (int x = 0; x < currentEnMap.getMapDim(); x++)
+        {
+            for (int y = 0; y < currentEnMap.getMapDim(); y++)
+            {
+                Enemy tempEnemy = currentEnMap.getEnemy(x, y);
+                if (tempEnemy instanceof MovingEnemy)
+                {
+                    lastMovingEnemy = (MovingEnemy)tempEnemy;
+                    lastMovingEnemy.move();
+                    tempMap.addEnemy(lastMovingEnemy);
+                }
+            }
+        }
+        currentStage.setEnemyMap(tempMap);
+        currentEnMap = tempMap;
+    }
+
+
+    // -------------------------------------------------------------------------
+    // ENEMY OBSERVER METHODS
+    // -------------------------------------------------------------------------
+
+    // ----------------------------------------------------------
+    /**
+     * Checks whether or not the enemy has moved onto the Player and, if so,
+     * kills the Player
+     *
+     * @param enemy
+     *            The enemy
+     * @param loc
+     *            Simply an identification tag
+     */
+    public void changeWasObserved(Enemy enemy, Location loc)
+    {
+        player.checkCurrentStatus();
+    }
+
+
+    // -------------------------------------------------------------------------
+    // MOVINGENEMY OBSERVER METHODS
+    // -------------------------------------------------------------------------
+
+    // ----------------------------------------------------------
+    /**
+     * Moves a MovingEnemy
+     *
+     * @param entity
+     *            The MovingEnemy to be moved
+     * @param fractionMoveTime
+     *            The fraction of the MovingEnemy's MoveTime that this move will take
+     *            to execute
+     * @param x
+     *            The x coordinate to be moved to
+     * @param y
+     *            The y coordinate to be moved to
+     */
+    public void changeWasObserved(
+        MovingEnemy entity,
+        double fractionMoveTime,
+        int x,
+        int y)
+    {
+        Shape.Animator<?> anim =
+            entity
+                .getShape()
+                .animate(MovingEnemy.getMoveTime() * Math.round(fractionMoveTime))
+                .position(
+                    (float)((x - origin.x() +.5) * tileSize),
+                    (float)((y - origin.y() + .5) * tileSize));
+        anim.play();
+        entity.setLastAnimation(anim);
+    }
+
+    // -------------------------------------------------------------------------
+    // PLAYER OBSERVER METHODS
+    // -------------------------------------------------------------------------
 
     // ----------------------------------------------------------
     /**
@@ -359,7 +543,7 @@ public class TileTravelerScreen
 
     // ----------------------------------------------------------
     /**
-     * Place a description of your method here.
+     * Moves the Player
      *
      * @param entity
      *            The player
@@ -367,9 +551,9 @@ public class TileTravelerScreen
      *            The fraction of the player's MoveTime that this move will take
      *            to execute
      * @param x
-     *            The x coordinate to be moved to
+     *            The x distance to be traveled
      * @param y
-     *            The y coordinate to be moved to
+     *            The y distance to be traveled
      */
     public void changeWasObserved(
         Player entity,
@@ -386,14 +570,14 @@ public class TileTravelerScreen
         {
             // intentionally blank
         }
-        redrawPlayer();
+        adjustPlayer();
     }
 
 
     // ----------------------------------------------------------
     /**
      * Calls the screen method associated with the Player method specified by
-     * methodName after a delay, calls the redrawPlayer() method to fix any
+     * methodName after a delay, calls the adjustPlayer() method to fix any
      * offset to lag, and then calls the checkOrigin() method to make sure the
      * Player stays within the screen's bounds
      *
@@ -411,8 +595,8 @@ public class TileTravelerScreen
         double fractionMoveTime)
     {
         StringBuilder thisMethodName = new StringBuilder();
-        thisMethodName.append("call");
-        thisMethodName.append(methodName.substring(0, 1).toUpperCase());
+        thisMethodName.append("callPlayer");
+        thisMethodName.append(methodName.substring(0, 1).toUpperCase(Locale.US));
         thisMethodName.append(methodName.substring(1, methodName.length()));
         Timer.callOnce(
             this,
@@ -433,7 +617,7 @@ public class TileTravelerScreen
     /**
      * Calls the player's resumeInput() method
      */
-    public void callResumeInput()
+    public void callPlayerResumeInput()
     {
         player.resumeInput();
     }
@@ -443,7 +627,7 @@ public class TileTravelerScreen
     /**
      * Calls the player's movingStopped() method
      */
-    public void callMovingStopped()
+    public void callPlayerMovingStopped()
     {
         player.movingStopped();
     }
@@ -453,7 +637,7 @@ public class TileTravelerScreen
     /**
      * Calls the player's checkAndMove() method
      */
-    public void callCheckAndMove()
+    public void callPlayerCheckAndMove()
     {
         player.checkAndMove();
     }
@@ -463,7 +647,7 @@ public class TileTravelerScreen
     /**
      * Calls the player's incJumpCount() method
      */
-    public void callIncJumpCount()
+    public void callPlayerIncJumpCount()
     {
         player.incJumpCount();
     }
@@ -473,34 +657,37 @@ public class TileTravelerScreen
     /**
      * Calls the player's nextMove() method
      */
-    public void callNextMove()
+    public void callPlayerNextMove()
     {
         player.nextMove();
     }
+
 
     // ----------------------------------------------------------
     /**
      * Calls the player's setRestImage() method
      */
-    public void callSetRestImage()
+    public void callPlayerSetRestImage()
     {
         player.setRestImage();
     }
+
 
     // ----------------------------------------------------------
     /**
      * Calls the player's setWalkImage() method
      */
-    public void callSetWalkImage()
+    public void callPlayerSetWalkImage()
     {
         player.setWalkImage();
     }
+
 
     // ----------------------------------------------------------
     /**
      * Calls the player's setJumpImage() method
      */
-    public void callSetJumpImage()
+    public void callPlayerSetJumpImage()
     {
         player.setJumpImage();
     }

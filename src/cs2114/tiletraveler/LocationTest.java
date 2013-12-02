@@ -7,8 +7,8 @@ import student.TestCase;
  * /** Tests the Location class
  *
  * @author Luciano Biondi (lbiondi)
- * @author Ezra Richards  (MrZchuck)
- * @author Jacob Stenzel  (sjacob95)
+ * @author Ezra Richards (MrZchuck)
+ * @author Jacob Stenzel (sjacob95)
  * @version 2013.12.08
  */
 public class LocationTest
@@ -136,6 +136,7 @@ public class LocationTest
 
     }
 
+
     /**
      * Tests the isDueNorth() method
      */
@@ -146,6 +147,7 @@ public class LocationTest
         assertFalse(loc1.isDueNorth(south));
         assertTrue(loc1.isDueNorth(north));
     }
+
 
     /**
      * Tests the isDueNorth() method
@@ -158,6 +160,7 @@ public class LocationTest
         assertTrue(loc1.isDueSouth(south));
     }
 
+
     /**
      * Tests the isDueNorth() method
      */
@@ -168,6 +171,7 @@ public class LocationTest
         assertFalse(loc1.isDueEast(west));
         assertTrue(loc1.isDueEast(east));
     }
+
 
     /**
      * Tests the isDueNorth() method
@@ -180,4 +184,41 @@ public class LocationTest
         assertTrue(loc1.isDueWest(west));
     }
 
+
+    // ----------------------------------------------------------
+    /**
+     * Tests the getDistance() method
+     */
+    public void testGetDistance()
+    {
+        assertEquals(loc1.getDistance(north), 3);
+        assertEquals(loc1.getDistance(south), 3);
+        assertEquals(loc1.getDistance(east), 3);
+        assertEquals(loc1.getDistance(west), 3);
+        assertEquals(loc1.getDistance(loc1), 0);
+        Exception thrown = null;
+        try
+        {
+            loc1.getDistance(loc2);
+        }
+        catch (Exception e)
+        {
+            thrown = e;
+        }
+        assertTrue(thrown instanceof UnsupportedOperationException);
+        assertEquals(
+            thrown.getMessage(),
+            "This method cannot be called on points that do not share a y or x coordinate");
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Tests the equals method
+     */
+    public void testEquals()
+    {
+        assertFalse(loc1.equals(loc2));
+        assertTrue(loc1.equals(new Location(2, 3)));
+        assertFalse(loc1.equals(2));
+    }
 }
