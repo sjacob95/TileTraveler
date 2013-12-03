@@ -101,6 +101,7 @@ public class Player
             currentDirection = direction;
             movingStarted();
             nextAction = null;
+            Tile currentTile = getStage().getMap().getTile(getLocation());
             Tile newMoveTile =
                 getStage().getMap().getTile(
                     getLocation().getNeighbor(direction));
@@ -111,8 +112,9 @@ public class Player
                 nudge(direction);
             }
 
-            else if ((newMoveTile.equals(Tile.EMPTY) || newMoveTile
-                .equals(Tile.WATER)) && jumpCount < 2)
+            else if (((newMoveTile.equals(Tile.EMPTY) || newMoveTile
+                .equals(Tile.WATER)) && jumpCount < 2) || ((currentTile.equals(Tile.EMPTY) || currentTile
+                    .equals(Tile.WATER)) && jumpCount < 2))
             {
                 jump(direction);
             }
@@ -194,7 +196,7 @@ public class Player
         setLocation(getLocation().getNeighbor(direction));
 
         setWalkImage();
-        notifyObservers("setRestImage", 0.5);
+        notifyObservers("setRestImage", 0.7);
         notifyObservers("movingStopped", 1.0);
         notifyObservers("checkAndMove", 1.0);
     }
@@ -228,14 +230,17 @@ public class Player
     // ----------------------------------------------------------
     /**
      * Checks whether the Player has collided with an enemy
+     * @return whether or not the Player has collided with an enemy
      */
-    public void checkEnemyCollision()
+    public boolean checkEnemyCollision()
     {
         Enemy enemy = getStage().getEnemyMap().getEnemy(getLocation());
         if (enemy != null)
         {
             die();
+            return false;
         }
+        return true;
     }
 
 
@@ -325,17 +330,14 @@ public class Player
 
     // ----------------------------------------------------------
     /**
-     * Carries out the next move in the queue and resets the jumpCount if solid
-     * land is reached
+     * Carries out the next move in the queue
      */
     public void nextMove()
     {
-        Tile currentTile = getStage().getMap().getTile(getLocation());
-        if (currentTile.equals(Tile.EMPTY) && currentTile.equals(Tile.WATER))
+        if (checkEnemyCollision())
         {
-            jumpCount = 0;
+            move(nextAction);
         }
-        move(nextAction);
     }
 
 
@@ -467,5 +469,4 @@ public class Player
             getShape().setImage("heroforwardjump");
         }
     }
-
 }

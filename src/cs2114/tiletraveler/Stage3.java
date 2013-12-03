@@ -116,6 +116,33 @@ public class Stage3
             new Floater(
                 tileSize,
                 this,
+                new Location(24, 33),
+                new Location(20, 33),
+                new Location(20, 35),
+                new Location(24, 35),
+                new Location(24, 33)));
+        getEnemyMap().addEnemy(
+            new Floater(
+                tileSize,
+                this,
+                new Location(34, 25),
+                new Location(34, 21),
+                new Location(36, 21),
+                new Location(36, 25),
+                new Location(34, 25)));
+        getEnemyMap().addEnemy(
+            new Floater(
+                tileSize,
+                this,
+                new Location(32, 25),
+                new Location(32, 21),
+                new Location(34, 21),
+                new Location(34, 25),
+                new Location(32, 25)));
+        getEnemyMap().addEnemy(
+            new Floater(
+                tileSize,
+                this,
                 new Location(24, 9),
                 new Location(20, 9),
                 new Location(20, 11),
