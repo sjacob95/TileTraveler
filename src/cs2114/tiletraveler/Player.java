@@ -170,7 +170,7 @@ public class Player
         setLocation(getLocation().getNeighbor(direction));
 
         setJumpImage();
-        notifyObservers("setRestImage", 0.5);
+        notifyObservers("setRestImage", 0.7);
         notifyObservers("movingStopped", 1.0);
         notifyObservers("nextMove", 1.0);
     }
@@ -232,10 +232,9 @@ public class Player
     public void checkEnemyCollision()
     {
         Enemy enemy = getStage().getEnemyMap().getEnemy(getLocation());
-        if (enemy != null);
+        if (enemy != null)
         {
             die();
-            getShape().setImage("enemya");
         }
     }
 

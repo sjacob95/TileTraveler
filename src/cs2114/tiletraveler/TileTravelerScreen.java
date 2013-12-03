@@ -543,7 +543,7 @@ public class TileTravelerScreen
     {
         Shape.Animator<?> anim =
             player.getShape()
-                .animate(player.getMoveTime() * Math.round(fractionMoveTime))
+                .animate((long)(player.getMoveTime() * (fractionMoveTime)))
                 .moveBy(x * getTileSize(), y * getTileSize());
         anim.play();
         while (anim.isPlaying())
@@ -581,11 +581,11 @@ public class TileTravelerScreen
         Timer.callOnce(
             this,
             thisMethodName.toString(),
-            (entity.getMoveTime() * (long)Math.floor(fractionMoveTime)) + 4);
+            ((long)(entity.getMoveTime() * (fractionMoveTime))));
         Timer.callOnce(
             this,
             "checkOrigin",
-            (entity.getMoveTime() * (long)Math.floor(fractionMoveTime)) + 4);
+            ((long)(entity.getMoveTime() * (fractionMoveTime))));
     }
 
 
@@ -670,5 +670,6 @@ public class TileTravelerScreen
     public void callPlayerSetJumpImage()
     {
         player.setJumpImage();
+
     }
 }
