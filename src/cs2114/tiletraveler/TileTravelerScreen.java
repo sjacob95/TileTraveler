@@ -407,29 +407,31 @@ public class TileTravelerScreen
     {
         if (player.isAlive())
         {
+            Location tempOrigin = origin;
             boolean changed = false;
             if (player.getLocation().y() - origin.y() < 0)
             {
-                origin = origin.south(SCREENDIM);
+                tempOrigin = origin.south(SCREENDIM);
                 changed = true;
             }
             else if (player.getLocation().x() - origin.x() < 0)
             {
-                origin = origin.west(SCREENDIM);
+                tempOrigin = origin.west(SCREENDIM);
                 changed = true;
             }
             else if (player.getLocation().y() - origin.y() >= SCREENDIM)
             {
-                origin = origin.north(SCREENDIM);
+                tempOrigin = origin.north(SCREENDIM);
                 changed = true;
             }
             else if (player.getLocation().x() - origin.x() >= SCREENDIM)
             {
-                origin = origin.east(SCREENDIM);
+                tempOrigin = origin.east(SCREENDIM);
                 changed = true;
             }
             if (changed && !player.isJumping())
             {
+                origin = tempOrigin;
                 redraw();
             }
         }
