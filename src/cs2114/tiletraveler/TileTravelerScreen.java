@@ -78,11 +78,38 @@ public class TileTravelerScreen
 
 
     /**
-     * Loads Stage 2 when the appropriate menu item is clicked
+     * Loads Stage 3 when the appropriate menu item is clicked
      */
     public void stage3Clicked()
     {
         currentStage = new Stage3(tileSize);
+        reset();
+    }
+
+    /**
+     * Loads Stage 4 when the appropriate menu item is clicked
+     */
+    public void stage4Clicked()
+    {
+        currentStage = new Stage4(tileSize);
+        reset();
+    }
+
+    /**
+     * Loads Stage 5 when the appropriate menu item is clicked
+     */
+    public void stage5Clicked()
+    {
+        currentStage = new Stage5(tileSize);
+        reset();
+    }
+
+    /**
+     * Loads Stage 6 when the appropriate menu item is clicked
+     */
+    public void stage6Clicked()
+    {
+        currentStage = new Stage6(tileSize);
         reset();
     }
 
