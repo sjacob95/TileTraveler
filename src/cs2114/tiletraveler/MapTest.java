@@ -17,7 +17,9 @@ public class MapTest
 {
     private Map map1;
     private Map map2;
-
+/**
+ * Sets up the map for testing.
+ */
     public void setUp()
     {
         map1 = new Map(5);

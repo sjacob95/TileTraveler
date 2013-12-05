@@ -208,8 +208,10 @@ public class LocationTest
         assertTrue(thrown instanceof UnsupportedOperationException);
         assertEquals(
             thrown.getMessage(),
-            "This method cannot be called on points that do not share a y or x coordinate");
+            "This method cannot be called on points that "
+                + "do not share a y or x coordinate");
     }
+
 
     // ----------------------------------------------------------
     /**

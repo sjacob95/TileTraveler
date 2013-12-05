@@ -6,16 +6,16 @@ import sofia.graphics.Shape.Animator;
  * The parent class for all moving enemies
  *
  * @author Luciano Biondi (lbiondi)
- * @author Ezra Richards  (MrZchuck)
- * @author Jacob Stenzel  (sjacob95)
+ * @author Ezra Richards (MrZchuck)
+ * @author Jacob Stenzel (sjacob95)
  * @version 2013.12.08
  */
 public abstract class MovingEnemy
     extends Enemy
 {
-    private static final long MOVETIME = 800;
+    private static final long MOVETIME      = 800;
     private Path              path;
-    private Animator<?> lastAnimation = null;
+    private Animator<?>       lastAnimation = null;
 
 
     /**
@@ -41,14 +41,19 @@ public abstract class MovingEnemy
         Location[] locations)
     {
         super(locations[0], tileSize, stage);
-        this.path = new Path(pathSetting, pathConditions, stage.getMap(), locations);
+        this.path =
+            new Path(pathSetting, pathConditions, stage.getMap(), locations);
     }
 
 
+    /**
+     * Calls the MovinEnemy's act() method.
+     */
     public void act()
     {
         move();
     }
+
 
     // ----------------------------------------------------------
     /**
@@ -59,6 +64,7 @@ public abstract class MovingEnemy
         return path;
     }
 
+
     // ----------------------------------------------------------
     /**
      * @return the MovingEnemy's MOVETIME in milliseconds
@@ -67,6 +73,7 @@ public abstract class MovingEnemy
     {
         return MOVETIME;
     }
+
 
     // ----------------------------------------------------------
     /**
@@ -77,10 +84,13 @@ public abstract class MovingEnemy
         return lastAnimation;
     }
 
+
     // ----------------------------------------------------------
     /**
      * sets the most recent animation
-     * @param animation The most recent animation
+     *
+     * @param animation
+     *            The most recent animation
      */
     public void setLastAnimation(Animator<?> animation)
     {
@@ -90,7 +100,8 @@ public abstract class MovingEnemy
 
     // ----------------------------------------------------------
     /**
-     * Place a description of your method here.
+     * A placeholder for a method that needs to be implemented in the
+     * subclasses.
      */
     public abstract void move();
 }

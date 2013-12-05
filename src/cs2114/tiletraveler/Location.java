@@ -58,6 +58,7 @@ public class Location
     /**
      * @return the Location's neighbor in a given Direction
      * @param direction
+     *            is the direction desired
      */
     public Location getNeighbor(Direction direction)
     {
@@ -253,7 +254,8 @@ public class Location
             else
             {
                 throw new UnsupportedOperationException(
-                    "This method cannot be called on points that do not share a y or x coordinate");
+                    "This method cannot be called on points that do not share"
+                        + " a y or x coordinate");
             }
         }
         else

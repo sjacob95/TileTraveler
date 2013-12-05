@@ -54,8 +54,9 @@ public class EnemyMap
      */
     public Enemy getEnemy(int x, int y)
     {
-        if(x >= mapDim || x < 0 || y >= mapDim || y < 0)
+        if(x >= mapDim || x < 0 || y >= mapDim || y < 0) {
             return null;
+        }
         return enemyMap[y][x];
     }
 
@@ -67,8 +68,9 @@ public class EnemyMap
     {
         int x = loc.x();
         int y = loc.y();
-        if(x >= mapDim || x < 0 || y >= mapDim || y < 0)
+        if(x >= mapDim || x < 0 || y >= mapDim || y < 0) {
             return null;
+        }
         return enemyMap[y][x];
     }
 
