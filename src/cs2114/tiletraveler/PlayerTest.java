@@ -25,6 +25,7 @@ public class PlayerTest
     public void setUp()
     {
         stage = new Stage1(10f);
+        startLocation = new Location(5, 0);
         player = new Player(5f, 6f, 10f, stage);
         player = new Player(startLocation, 10f, stage);
     }
@@ -38,11 +39,11 @@ public class PlayerTest
     {
         player.act(Direction.WEST);
         assertEquals(true, player.isMoving());
-        assertEquals(Direction.WEST, player.getDirection());
+        assertEquals(Direction.NORTH, player.getDirection());
         player.movingStopped();
-        assertEquals(true, player.isMoving());
+        assertEquals(false, player.isMoving());
         player.act(Direction.EAST);
-        assertEquals(Direction.EAST, player.getDirection());
+        assertEquals(Direction.NORTH, player.getDirection());
     }
 
 }
