@@ -1,5 +1,7 @@
 package cs2114.tiletraveler;
 
+import android.os.Looper;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.app.Instrumentation.ActivityMonitor;
 import android.app.Activity;
@@ -68,8 +70,8 @@ public class TileTravelerScreenTest
 // assertTrue(getScreen().getCurrentStage() instanceof Stage6);
 // getInstrumentation().invokeMenuActionSync(activity, R.id.stage7, 0);
 // assertTrue(getScreen().getCurrentStage() instanceof Stage7);
-
-        new Runnable() {
+        Handler refresh = new Handler(Looper.getMainLooper());
+        refresh.post(new Runnable() {
             public void run()
             {
                 activity.stage1Clicked();
@@ -80,7 +82,7 @@ public class TileTravelerScreenTest
                 activity.stage6Clicked();
                 activity.stage7Clicked();
             }
-        };
+        });
 
     }
 
