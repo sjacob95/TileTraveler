@@ -46,6 +46,7 @@ public class PlayerTest
         assertEquals(Direction.NORTH, player.getDirection());
     }
 
+
     /**
      * Tests the move() method in the Player class to ensure that it functions
      * as expected.
@@ -57,16 +58,34 @@ public class PlayerTest
         player.move(Direction.SOUTH);
     }
 
-    public void testNudge() {
+
+    /**
+     * Tests the nudge() method in the Player class to ensure that it functions
+     * as expected.
+     */
+    public void testNudge()
+    {
         player.nudge(Direction.SOUTH);
 
     }
 
-    public void testJump() {
+
+    /**
+     * Tests the jump() method in the Player class to ensure that it functions
+     * as expected.
+     */
+    public void testJump()
+    {
         player.jump(Direction.SOUTH);
     }
 
-    public void testWalk() {
+
+    /**
+     * Tests the walk() method in the Player class to ensure that it functions
+     * as expected.
+     */
+    public void testWalk()
+    {
         player.walk(Direction.SOUTH);
     }
 
