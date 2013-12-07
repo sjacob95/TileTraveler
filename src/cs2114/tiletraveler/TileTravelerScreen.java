@@ -120,7 +120,7 @@ public class TileTravelerScreen
      */
     public void stage7Clicked()
     {
-        currentStage = new Stage4(tileSize);
+        currentStage = new Stage7(tileSize);
         reset();
     }
 

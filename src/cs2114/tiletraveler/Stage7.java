@@ -39,7 +39,7 @@ public class Stage7
     {
         super(map, startLoc);
         getEnemyMap().addEnemy(
-            new Bug(tileSize, this, new Location(3, 7), new Location(12, 7)));
+            new Bug(tileSize, this, new Location(3, 6), new Location(12, 6)));
     }
 
     /**
