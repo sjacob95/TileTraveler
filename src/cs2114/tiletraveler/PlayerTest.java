@@ -32,8 +32,7 @@ public class PlayerTest
             new Bug(
                 10f,
                 stage,
-                new Location(5, 2),
-                new Location(5, 1),
+                new Location(5, 0),
                 new Location(5, 2)));
         player = new Player(5f, 6f, 10f, stage);
         player = new Player(startLocation, 10f, stage);
@@ -216,9 +215,12 @@ public class PlayerTest
      */
     public void testEnemyCollision()
     {
-        player.act(Direction.NORTH);
-        player.nextMove();
-        //assertFalse(player.checkEnemyCollision());
+        player.checkEnemyCollision();
+        assertFalse(player.isAlive());
+        setUp();
+        player.setLocation(new Location(5, 3));
+        player.checkEnemyCollision();
+        assertTrue(player.isAlive());
     }
 
     /**
