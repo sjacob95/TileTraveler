@@ -234,8 +234,8 @@ public class Location
 
 
     /**
-     * @return the distance between this and the provided Location (assuming the
-     *         two points share an x or y coordinate)
+     * @return the distance between this and the provided Location (assuming
+     *          the two points share an x or y coordinate)
      * @param loc
      *            - the second Location
      */

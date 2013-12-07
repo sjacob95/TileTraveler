@@ -12,6 +12,8 @@ package cs2114.tiletraveler;
  * @param <E>
  *            the element type stored in the node
  * @author Luciano Biondi (lbiondi)
+ * @author Ezra Richards (MrZchuck)
+ * @author Jacob Stenzel (sjacob95)
  * @version 2013.10.04
  */
 public class Node<E>

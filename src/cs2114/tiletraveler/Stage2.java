@@ -16,11 +16,16 @@ public class Stage2
 
     private static Map      map      =
                                          new Map(
-                                             "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-                                             "WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOW",
-                                             "WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOD",
-                                             "WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOW",
-                                             "WOOOWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+                                             "WWWWWWWWWWWWWWWWWWWWWWWW" +
+                                             "WWWWWWWWWWWWWWWWWWWWWWWW",
+                                             "WOOOOOOOOOOOOOOOOOOOOOOO" +
+                                             "OOOOOOOOOOOOOOOOOOOOOOOW",
+                                             "WOOOOOOOOOOOOOOOOOOOOOOO" +
+                                             "OOOOOOOOOOOOOOOOOOOOOOOD",
+                                             "WOOOOOOOOOOOOOOOOOOOOOOO" +
+                                             "OOOOOOOOOOOOOOOOOOOOOOOW",
+                                             "WOOOWWWWWWWWWWWWWWWWWWWW" +
+                                             "WWWWWWWWWWWWWWWWWWWWWWWW",
                                              "WOOOW",
                                              "WOOOW",
                                              "WOOOW",

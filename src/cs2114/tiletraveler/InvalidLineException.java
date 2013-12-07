@@ -2,8 +2,8 @@ package cs2114.tiletraveler;
 
 // -------------------------------------------------------------------------
 /**
- * An Exception thrown one attempts to create a line between two points that are
- * not directly north, south, east, or west of each other
+ * An Exception thrown one attempts to create a line between two points that
+ * are not directly north, south, east, or west of each other
  *
  * @author Luciano Biondi (lbiondi)
  * @author Ezra Richards (MrZchuck)
