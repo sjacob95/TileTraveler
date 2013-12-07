@@ -93,13 +93,17 @@ public class TileTravelerScreenTest
         view.callPlayerSetJumpImage();
         view.adjustEnemies();
         view.adjustEntity(view.getPlayer());
+        assertEquals(true, view.getPlayer().isAlive());
         view.adjustPlayer();
+        assertEquals(true, view.getPlayer().isAlive());
         view.redrawEntity(view.getPlayer());
         view.checkOrigin();
 //        view.changeWasObserved(view.getPlayer(), true);
 //        view.changeWasObserved(view.getPlayer(), false);
         view.callPlayerResumeInput();
+        assertEquals(true, view.getPlayer().isAlive());
         view.callPlayerMovingStopped();
+        assertEquals(false, view.getPlayer().isMoving());
         view.callPlayerCheckAndMove();
         view.callPlayerIncJumpCount();
         view.callPlayerNextMove();
