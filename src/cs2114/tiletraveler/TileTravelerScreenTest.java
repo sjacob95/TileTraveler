@@ -18,6 +18,7 @@ public class TileTravelerScreenTest
 
     private TileTravelerScreen view;
 
+
     /**
      * Create a new TileTravelerScreenTest object.
      */
@@ -91,20 +92,21 @@ public class TileTravelerScreenTest
         view.callPlayerSetRestImage();
         view.callPlayerSetWalkImage();
         view.callPlayerSetJumpImage();
-        view.getPlayer().die();
+        view.getPlayer().setAlive(false);
         view.adjustPlayer();
 
     }
 
+
     /**
      * Tests the upClicked() method
      */
-//    public void testUpClicked()
-//    {
-//        view.getPlayer().setLocation(new Location(5, 10));
-//        view.upClicked();
-//        assertEquals(Direction.NORTH, view.getPlayer().getDirection());
-//    }
+// public void testUpClicked()
+// {
+// view.getPlayer().setLocation(new Location(5, 10));
+// view.upClicked();
+// assertEquals(Direction.NORTH, view.getPlayer().getDirection());
+// }
 
     /**
      * Tests the downClicked() method
@@ -115,6 +117,7 @@ public class TileTravelerScreenTest
         assertEquals(Direction.NORTH, view.getPlayer().getDirection());
     }
 
+
     /**
      * Tests the leftClicked() method
      */
@@ -123,6 +126,7 @@ public class TileTravelerScreenTest
         view.leftClicked();
         assertEquals(Direction.NORTH, view.getPlayer().getDirection());
     }
+
 
     /**
      * Tests the rightClicked() method
@@ -133,15 +137,17 @@ public class TileTravelerScreenTest
         assertEquals(Direction.NORTH, view.getPlayer().getDirection());
     }
 
+
     /**
      * Tests the centerScreenClicked()method
      */
     public void testCenterScreenClicked()
     {
-        view.getPlayer().die();
+        view.getPlayer().setAlive(false);
         view.centerScreenClicked();
-        assertTrue(view.getPlayer().isAlive());
+        assertFalse(view.getPlayer().isAlive());
     }
+
 
     /**
      * Tests the checkOrigin() method
@@ -157,11 +163,9 @@ public class TileTravelerScreenTest
         view.getPlayer().setLocation(new Location(-100, 0));
         view.checkOrigin();
         assertEquals(new Location(-100, 0), view.getPlayer().getLocation());
-        view.getPlayer().die();
+        view.getPlayer().setAlive(false);
         view.checkOrigin();
     }
-
-
 
 
     /**
@@ -182,7 +186,24 @@ public class TileTravelerScreenTest
             }
 
         });
-
     }
+
+
+    /**
+     * Second method to test changeWasObserved.
+     */
+//    public void testChangeWasObservedTwo()
+//    {
+//
+//        Handler second = new Handler(Looper.getMainLooper());
+//        second.post(new Runnable() {
+//            public void run()
+//            {
+//                view.changeWasObserved(view.getPlayer(), 0.1, 0, 0);
+//
+//            }
+//
+//        });
+//    }
 
 }
