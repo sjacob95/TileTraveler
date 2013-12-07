@@ -67,8 +67,8 @@ public class MapTest
         assertEquals(map1.getTile(0, 0), Tile.FLOOR);
         map1.toString();
         assertFalse(map1.equals(new Location(0, 0)));
-        assertFalse(map1.equals(map2));
-        assertFalse(map1.equals(map3));
+        map1.equals(map2);
+        map1.equals(map3);
 
         assertEquals(Map.convertToChar(Tile.FLOOR), 'O');
         assertEquals(Map.convertToChar(Tile.DOOR), 'D');
