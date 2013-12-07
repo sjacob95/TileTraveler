@@ -76,7 +76,13 @@ public class PlayerTest
         {
             player.move(Direction.NORTH);
         }
+        player.checkAndMove();
+        assertFalse(player.isJumping());
         assertEquals(true, player.checkCurrentStatus());
+        assertEquals(new Location(5, 1), player.getLocation());
+        player.isWon();
+        player.resumeInput();
+        player.blockInput();
         assertEquals(new Location(5, 1), player.getLocation());
     }
 
@@ -90,6 +96,8 @@ public class PlayerTest
         assertEquals(true, player.checkCurrentStatus());
         player.move(Direction.WEST);
         assertEquals(true, player.checkCurrentStatus());
+        player.die();
+        assertEquals(false, player.checkCurrentStatus());
     }
 
     /**
@@ -125,4 +133,33 @@ public class PlayerTest
         assertEquals(new Location(5, -1), player.getLocation());
     }
 
+    /**
+     * tests to set image
+     */
+    public void testSetImage()
+    {
+        player.setRestImage();
+        player.setWalkImage();
+        player.setJumpImage();
+        assertEquals(new Location(5, 0), player.getLocation());
+        player.move(Direction.NORTH);
+        player.setRestImage();
+        player.setWalkImage();
+        player.setJumpImage();
+        assertEquals(new Location(5, 1), player.getLocation());
+        for (int x = 0; x < 4; x++)
+        {
+            player.move(Direction.NORTH);
+        }
+        player.move(Direction.WEST);
+        player.setRestImage();
+        player.setWalkImage();
+        player.setJumpImage();
+        assertEquals(new Location(4, 5), player.getLocation());
+        player.move(Direction.EAST);
+        player.setRestImage();
+        player.setWalkImage();
+        player.setJumpImage();
+        assertEquals(new Location(5, 5), player.getLocation());
+    }
 }
