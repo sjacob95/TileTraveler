@@ -25,28 +25,28 @@ public class PathTest
     private Tile[]   conditions = { Tile.FLOOR, Tile.EMPTY };
     private Map      map1       = new Map(
                                     "WWWWWWWWWWW",
-                                    "WFFFFFFFFFW",
-                                    "WFFFFFFFFFW",
-                                    "WFF     FFW",
-                                    "WFF     FFW",
-                                    "WFF     FFW",
-                                    "WFF     FFW",
-                                    "WFF     FFW",
-                                    "WFF     FFW",
-                                    "WFFFFFFFFFW",
-                                    "WFFFFFFFFFW");
+                                    "WOOOOOOOOOW",
+                                    "WOOOOOOOOOW",
+                                    "WOO     OOW",
+                                    "WOO     OOW",
+                                    "WOO     OOW",
+                                    "WOO     OOW",
+                                    "WOO     OOW",
+                                    "WOO     OOW",
+                                    "WOOOOOOOOOW",
+                                    "WOOOOOOOOOW");
 
     private Map      map2       = new Map(
                                     "WWWWWWWWWWW",
-                                    "WFFFFFFFWFW",
-                                    "WFFFFFFFWFW",
-                                    "WFF     WFW",
-                                    "WFF     WFW",
-                                    "WFF     WFW",
-                                    "WFF     WFW",
-                                    "WFF     WFW",
-                                    "WFF     WFW",
-                                    "WFFFFFFFWFW");
+                                    "WOOOOOOOWOW",
+                                    "WOOOOOOOWOW",
+                                    "WOO     WOW",
+                                    "WOO     WOW",
+                                    "WOO     WOW",
+                                    "WOO     WOW",
+                                    "WOO     WOW",
+                                    "WOO     WOW",
+                                    "WOOOOOOOWOW");
 
 
     /**
