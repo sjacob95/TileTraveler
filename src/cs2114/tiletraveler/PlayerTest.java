@@ -160,13 +160,13 @@ public class PlayerTest
         player.setRestImage();
         player.setJumpImage();
         player.setWalkImage();
-        player.walk(Direction.WEST);
         player.movingStopped();
+        player.walk(Direction.WEST);
         player.setRestImage();
         player.setJumpImage();
         player.setWalkImage();
-        player.walk(Direction.EAST);
         player.movingStopped();
+        player.walk(Direction.EAST);
         player.setRestImage();
         player.setJumpImage();
         player.setWalkImage();
