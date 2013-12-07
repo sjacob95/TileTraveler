@@ -28,6 +28,13 @@ public class PlayerTest
     {
         Stage stage = new Stage1(10f);
         Location startLocation = new Location(5, 0);
+        stage.getEnemyMap().addEnemy(
+            new Bug(
+                10f,
+                stage,
+                new Location(5, 2),
+                new Location(5, 1),
+                new Location(5, 2)));
         player = new Player(5f, 6f, 10f, stage);
         player = new Player(startLocation, 10f, stage);
         testMap = new Map(10);
