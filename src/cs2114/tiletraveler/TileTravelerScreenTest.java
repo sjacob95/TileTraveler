@@ -113,6 +113,8 @@ public class TileTravelerScreenTest
             {
                 view.changeWasObserved(view.getPlayer(), true);
                 view.changeWasObserved(view.getPlayer(), false);
+                view.changeWasObserved(view.getPlayer(), "nextMove", 0);
+                // view.changeWasObserved(view.getPlayer(), 0, 0, 0);
 
             }
 
