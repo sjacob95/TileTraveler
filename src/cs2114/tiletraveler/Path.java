@@ -263,7 +263,8 @@ public class Path
 
     // ----------------------------------------------------------
     /**
-     * Place a description of your method here.
+     * Takes in an ArrayList containing the Location objects that makes up the
+     * path, and returns a Circular Linked List of those objects.
      *
      * @param locs
      *            The Locations to be made into a path

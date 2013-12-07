@@ -113,7 +113,8 @@ public class Player
             }
 
             else if (((newMoveTile.equals(Tile.EMPTY) || newMoveTile
-                .equals(Tile.WATER)) && jumpCount < 2) || ((currentTile.equals(Tile.EMPTY) || currentTile
+                .equals(Tile.WATER)) && jumpCount < 2)
+                || ((currentTile.equals(Tile.EMPTY) || currentTile
                     .equals(Tile.WATER)) && jumpCount < 2))
             {
                 jump(direction);
@@ -227,9 +228,11 @@ public class Player
         return true;
     }
 
+
     // ----------------------------------------------------------
     /**
      * Checks whether the Player has collided with an enemy
+     *
      * @return whether or not the Player has collided with an enemy
      */
     public boolean checkEnemyCollision()

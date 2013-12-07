@@ -49,6 +49,9 @@ public class PathTest
                                     "WFFFFFFFWFW");
 
 
+    /**
+     * Sets up the Path for testing.
+     */
     public void setUp()
     {
         loc1 = new Location(5, 5);

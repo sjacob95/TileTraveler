@@ -31,10 +31,9 @@ public class TileTravelerScreen
 // side in a single view
     private int              mapDim;
     private Player           player;
-    private Timer enemyTimer;
+    private Timer            enemyTimer;
 
     private TextView         status;
-
 
     /**
      * the map location currently at the bottom left of the screen
@@ -42,6 +41,10 @@ public class TileTravelerScreen
     private Location         origin    = new Location(0, 0);
 
 
+    /**
+     * Intializes the screen by flipping the coordinate system, setting the tile
+     * size, and setting the current stage.
+     */
     public void initialize()
     {
         getCoordinateSystem().origin(Anchor.BOTTOM_LEFT).flipY();
@@ -85,7 +88,6 @@ public class TileTravelerScreen
         currentStage = new Stage3(tileSize);
         reset();
     }
-
     /**
      * Loads Stage 4 when the appropriate menu item is clicked
      */
@@ -110,6 +112,15 @@ public class TileTravelerScreen
     public void stage6Clicked()
     {
         currentStage = new Stage6(tileSize);
+        reset();
+    }
+
+    /**
+     * Loads Stage 7 when the appropriate menu item is clicked
+     */
+    public void stage7Clicked()
+    {
+        currentStage = new Stage4(tileSize);
         reset();
     }
 
@@ -207,7 +218,12 @@ public class TileTravelerScreen
 
         centerScreenClicked();
         redraw();
-        enemyTimer = Timer.callRepeatedly(this, "moveEnemies", 0, MovingEnemy.getMoveTime());
+        enemyTimer =
+            Timer.callRepeatedly(
+                this,
+                "moveEnemies",
+                0,
+                MovingEnemy.getMoveTime());
     }
 
 
@@ -266,6 +282,7 @@ public class TileTravelerScreen
             }
         }
     }
+
 
     // ----------------------------------------------------------
     /**
@@ -464,8 +481,10 @@ public class TileTravelerScreen
         }
     }
 
+
     /**
-     * Moves all Enemies and then checks whether or not they have killed the Player
+     * Moves all Enemies and then checks whether or not they have killed the
+     * Player
      */
     public void moveEnemies()
     {
@@ -489,6 +508,7 @@ public class TileTravelerScreen
         player.checkEnemyCollision();
     }
 
+
     // -------------------------------------------------------------------------
     // MOVINGENEMY OBSERVER METHODS
     // -------------------------------------------------------------------------
@@ -500,8 +520,8 @@ public class TileTravelerScreen
      * @param entity
      *            The MovingEnemy to be moved
      * @param fractionMoveTime
-     *            The fraction of the MovingEnemy's MoveTime that this move will take
-     *            to execute
+     *            The fraction of the MovingEnemy's MoveTime that this move will
+     *            take to execute
      * @param x
      *            The x coordinate to be moved to
      * @param y
@@ -516,13 +536,15 @@ public class TileTravelerScreen
         Shape.Animator<?> anim =
             entity
                 .getShape()
-                .animate(MovingEnemy.getMoveTime() * Math.round(fractionMoveTime))
+                .animate(
+                    MovingEnemy.getMoveTime() * Math.round(fractionMoveTime))
                 .position(
-                    (float)((x - origin.x() +.5) * tileSize),
+                    (float)((x - origin.x() + .5) * tileSize),
                     (float)((y - origin.y() + .5) * tileSize));
         anim.play();
         entity.setLastAnimation(anim);
     }
+
 
     // -------------------------------------------------------------------------
     // PLAYER OBSERVER METHODS
@@ -605,7 +627,8 @@ public class TileTravelerScreen
     {
         StringBuilder thisMethodName = new StringBuilder();
         thisMethodName.append("callPlayer");
-        thisMethodName.append(methodName.substring(0, 1).toUpperCase(Locale.US));
+        thisMethodName
+            .append(methodName.substring(0, 1).toUpperCase(Locale.US));
         thisMethodName.append(methodName.substring(1, methodName.length()));
         Timer.callOnce(
             this,

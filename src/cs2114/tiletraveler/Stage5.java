@@ -34,7 +34,7 @@ public class Stage5
 
     // ----------------------------------------------------------
     /**
-     * Create a new Stage1 object.
+     * Create a new Stage5 object.
      * @param tileSize
      *            The size of one Tile in pixels.
      */
@@ -46,6 +46,11 @@ public class Stage5
         getEnemyMap().addEnemy(new Floater(tileSize, this, new Location(12, 6), new Location(7, 6)));
     }
 
+    /**
+     * reset the stage
+     * @param tileSize
+     *          The size of one Tile in pixels
+     */
     public Stage reset(float tileSize)
     {
         return new Stage5(tileSize);

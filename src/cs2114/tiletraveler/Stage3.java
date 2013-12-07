@@ -80,7 +80,8 @@ public class Stage3
     /**
      * Create a new Stage3 object.
      *
-     * @param tileSize The size of one Tile in pixels
+     * @param tileSize
+     *            The size of one Tile in pixels
      */
     public Stage3(float tileSize)
     {
@@ -95,50 +96,35 @@ public class Stage3
                 new Location(10, 25),
                 new Location(8, 25)));
         getEnemyMap().addEnemy(
-            new Floater(
-                tileSize,
-                this,
-                new Location(10, 25),
-                new Location(10, 21),
-                new Location(12, 21),
-                new Location(12, 25),
-                new Location(10, 25)));
+            new Floater(tileSize, this, new Location(10, 25), new Location(
+                10,
+                21), new Location(12, 21), new Location(12, 25), new Location(
+                10,
+                25)));
         getEnemyMap().addEnemy(
-            new Floater(
-                tileSize,
-                this,
-                new Location(24, 35),
-                new Location(20, 35),
-                new Location(20, 37),
-                new Location(24, 37),
-                new Location(24, 35)));
+            new Floater(tileSize, this, new Location(24, 35), new Location(
+                20,
+                35), new Location(20, 37), new Location(24, 37), new Location(
+                24,
+                35)));
         getEnemyMap().addEnemy(
-            new Floater(
-                tileSize,
-                this,
-                new Location(24, 33),
-                new Location(20, 33),
-                new Location(20, 35),
-                new Location(24, 35),
-                new Location(24, 33)));
+            new Floater(tileSize, this, new Location(24, 33), new Location(
+                20,
+                33), new Location(20, 35), new Location(24, 35), new Location(
+                24,
+                33)));
         getEnemyMap().addEnemy(
-            new Floater(
-                tileSize,
-                this,
-                new Location(34, 25),
-                new Location(34, 21),
-                new Location(36, 21),
-                new Location(36, 25),
-                new Location(34, 25)));
+            new Floater(tileSize, this, new Location(34, 25), new Location(
+                34,
+                21), new Location(36, 21), new Location(36, 25), new Location(
+                34,
+                25)));
         getEnemyMap().addEnemy(
-            new Floater(
-                tileSize,
-                this,
-                new Location(32, 25),
-                new Location(32, 21),
-                new Location(34, 21),
-                new Location(34, 25),
-                new Location(32, 25)));
+            new Floater(tileSize, this, new Location(32, 25), new Location(
+                32,
+                21), new Location(34, 21), new Location(34, 25), new Location(
+                32,
+                25)));
         getEnemyMap().addEnemy(
             new Floater(
                 tileSize,
@@ -149,26 +135,23 @@ public class Stage3
                 new Location(24, 11),
                 new Location(24, 9)));
         getEnemyMap().addEnemy(
-            new Floater(
-                tileSize,
-                this,
-                new Location(24, 11),
-                new Location(20, 11),
-                new Location(20, 13),
-                new Location(24, 13),
-                new Location(24, 11)));
+            new Floater(tileSize, this, new Location(24, 11), new Location(
+                20,
+                11), new Location(20, 13), new Location(24, 13), new Location(
+                24,
+                11)));
         getEnemyMap().addEnemy(
-            new Floater(
-                tileSize,
-                this,
-                new Location(24, 35),
-                new Location(20, 35),
-                new Location(20, 37),
-                new Location(24, 37),
-                new Location(24, 35)));
+            new Floater(tileSize, this, new Location(24, 35), new Location(
+                20,
+                35), new Location(20, 37), new Location(24, 37), new Location(
+                24,
+                35)));
     }
 
 
+    /**
+     * Resets the stage to its original layout.
+     */
     public Stage reset(float tileSize)
     {
         return new Stage3(tileSize);

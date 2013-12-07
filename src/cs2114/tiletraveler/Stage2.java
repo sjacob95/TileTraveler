@@ -78,8 +78,11 @@ public class Stage2
                 new Location(10, 20),
                 new Location(10, 18),
                 new Location(10, 19)));
-        getEnemyMap().addEnemy(
-            new Bug(tileSize, this, new Location(12, 20), new Location(12, 18)));
+        getEnemyMap()
+            .addEnemy(
+                new Bug(tileSize, this, new Location(12, 20), new Location(
+                    12,
+                    18)));
         getEnemyMap().addEnemy(
             new Bug(
                 tileSize,
@@ -88,12 +91,18 @@ public class Stage2
                 new Location(14, 18),
                 new Location(14, 20),
                 new Location(14, 19)));
-        getEnemyMap().addEnemy(
-            new Bug(tileSize, this, new Location(16, 18), new Location(16, 20)));
+        getEnemyMap()
+            .addEnemy(
+                new Bug(tileSize, this, new Location(16, 18), new Location(
+                    16,
+                    20)));
 
     }
 
 
+    /**
+     * Resets the stage to its original layout.
+     */
     public Stage reset(float tileSize)
     {
         return new Stage2(tileSize);
