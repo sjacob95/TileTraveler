@@ -10,6 +10,7 @@ public class CircularLinkedListTest
     extends student.TestCase
 {
     private CircularLinkedList<String> list;
+    private Node<String> noder;
 
     /**
      * Creates a brand new, empty CircularLinkedList for each test method.
@@ -17,6 +18,7 @@ public class CircularLinkedListTest
     public void setUp()
     {
         list = new CircularLinkedList<String>();
+        noder = new Node<String>("hi");
     }
 
     /**
@@ -36,5 +38,6 @@ public class CircularLinkedListTest
         list.next();
         assertEquals(list.getCurrent(), "hi");
         assertEquals(list.getFirst(), "hi");
+        noder.previous();
     }
 }

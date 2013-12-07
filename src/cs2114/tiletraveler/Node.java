@@ -84,6 +84,16 @@ public class Node<E>
         return next;
     }
 
+    /**
+     * Gets the previous node
+     *
+     * @return the previous node
+     */
+    public Node<E> previous()
+    {
+        return previous;
+    }
+
 
     // ----------------------------------------------------------
     /**
