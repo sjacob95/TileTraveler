@@ -188,10 +188,6 @@ public class Path
                     }
                 }
             }
-            else
-            {
-                break;
-            }
         }
         return tempPath;
     }
