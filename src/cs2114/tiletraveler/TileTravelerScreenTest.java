@@ -20,11 +20,13 @@ public class TileTravelerScreenTest
     extends student.AndroidTestCase<TileTravelerScreen>
 {
 
-    private Button up;
-    private Button down;
-    private Button left;
-    private Button right;
-    private Button centerScreen;
+    private Button   up;
+    private Button   down;
+    private Button   left;
+    private Button   right;
+    private Button   centerScreen;
+
+    private MenuItem stage1;
 
 
     /**
@@ -51,21 +53,34 @@ public class TileTravelerScreenTest
     public void testStage1Clicked()
     {
 
-//        TileTravelerScreen activity = getActivity();
-//        getInstrumentation().invokeMenuActionSync(activity, R.id.stage1, 0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage1);
-//        getInstrumentation().invokeMenuActionSync(activity, R.id.stage2, 0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage2);
-//        getInstrumentation().invokeMenuActionSync(activity, R.id.stage3, 0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage3);
-//        getInstrumentation().invokeMenuActionSync(activity, R.id.stage4, 0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage4);
-//        getInstrumentation().invokeMenuActionSync(activity, R.id.stage5, 0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage5);
-//        getInstrumentation().invokeMenuActionSync(activity, R.id.stage6, 0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage6);
-//        getInstrumentation().invokeMenuActionSync(activity, R.id.stage7, 0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage7);
+        final TileTravelerScreen activity = getActivity();
+// getInstrumentation().invokeMenuActionSync(activity, R.id.stage1, 0);
+// assertTrue(getScreen().getCurrentStage() instanceof Stage1);
+// getInstrumentation().invokeMenuActionSync(activity, R.id.stage2, 0);
+// assertTrue(getScreen().getCurrentStage() instanceof Stage2);
+// getInstrumentation().invokeMenuActionSync(activity, R.id.stage3, 0);
+// assertTrue(getScreen().getCurrentStage() instanceof Stage3);
+// getInstrumentation().invokeMenuActionSync(activity, R.id.stage4, 0);
+// assertTrue(getScreen().getCurrentStage() instanceof Stage4);
+// getInstrumentation().invokeMenuActionSync(activity, R.id.stage5, 0);
+// assertTrue(getScreen().getCurrentStage() instanceof Stage5);
+// getInstrumentation().invokeMenuActionSync(activity, R.id.stage6, 0);
+// assertTrue(getScreen().getCurrentStage() instanceof Stage6);
+// getInstrumentation().invokeMenuActionSync(activity, R.id.stage7, 0);
+// assertTrue(getScreen().getCurrentStage() instanceof Stage7);
+
+        new Runnable() {
+            public void run()
+            {
+                activity.stage1Clicked();
+                activity.stage2Clicked();
+                activity.stage3Clicked();
+                activity.stage4Clicked();
+                activity.stage5Clicked();
+                activity.stage6Clicked();
+                activity.stage7Clicked();
+            }
+        };
 
     }
 
