@@ -77,11 +77,11 @@ public class TileTravelerScreenTest
     /**
      * Testing buttons like up.
      */
-    public void testUp() {
-        //TimerClass(click(up));
-        //assert(something, view.getSomething())
-
-    }
+//    public void testUp() {
+//        //TimerClass(click(up));
+//        //assert(something, view.getSomething())
+//
+//    }
 
 
 
@@ -91,8 +91,24 @@ public class TileTravelerScreenTest
     public void testAct()
     {
         view.callPlayerSetJumpImage();
-        assertEquals("sofia.graphics.Image@529d5f00", view.getPlayer()
-            .getShape().getImage());
+        view.adjustEnemies();
+        view.adjustEntity(view.getPlayer());
+        view.adjustPlayer();
+        view.redrawEntity(view.getPlayer());
+        view.checkOrigin();
+//        view.changeWasObserved(view.getPlayer(), true);
+//        view.changeWasObserved(view.getPlayer(), false);
+        view.callPlayerResumeInput();
+        view.callPlayerMovingStopped();
+        view.callPlayerCheckAndMove();
+        view.callPlayerIncJumpCount();
+        view.callPlayerNextMove();
+        view.callPlayerSetRestImage();
+        view.callPlayerSetWalkImage();
+        view.callPlayerSetJumpImage();
+
+//        assertEquals("sofia.graphics.Image@529d5f00", view.getPlayer()
+//            .getShape().getImage());
 
     }
 
