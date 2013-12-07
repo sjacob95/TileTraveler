@@ -18,6 +18,7 @@ public class MapTest
     private Map map1;
     private Map map2;
     private Map map3;
+    private Map map4;
 /**
  * Sets up the map for testing.
  */
@@ -40,6 +41,12 @@ public class MapTest
         map3 = new Map("  ",
                        "~~",
                        "OO");
+
+        map4 = new Map("  ~  ",
+                       "     ",
+                       "  I  ",
+                       " W Q ",
+                       "W   W");
     }
 
     /**
@@ -69,6 +76,7 @@ public class MapTest
         assertFalse(map1.equals(new Location(0, 0)));
         map1.equals(map2);
         map1.equals(map3);
+        map1.equals(map4);
 
         assertEquals(Map.convertToChar(Tile.FLOOR), 'O');
         assertEquals(Map.convertToChar(Tile.DOOR), 'D');

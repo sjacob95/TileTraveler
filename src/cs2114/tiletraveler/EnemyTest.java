@@ -15,6 +15,7 @@ public class EnemyTest
     extends TestCase
 {
     private EnemyMap enemi;
+    private Bug bugger;
 
     /**
      * set up for testing
@@ -22,6 +23,8 @@ public class EnemyTest
     public void setUp()
     {
         enemi = new EnemyMap(5);
+        bugger = new Bug(10f, new Stage1(10f),
+            new Location(1, 1), new Location(1, 3));
     }
 
     /**
@@ -30,7 +33,9 @@ public class EnemyTest
     public void testEnemy()
     {
         Enemy[][] test = enemi.get();
-        assertEquals(0, test.length);
+        bugger.act();
+        bugger.getLastAnimation();
+        assertEquals(5, test.length);
         assertNull(enemi.getEnemy(new Location(7, 7)));
         assertNull(enemi.getEnemy(7, 7));
     }
