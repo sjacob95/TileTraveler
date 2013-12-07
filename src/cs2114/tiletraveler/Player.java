@@ -117,7 +117,7 @@ public class Player
                 || ((currentTile.equals(Tile.EMPTY) || currentTile
                     .equals(Tile.WATER))))
             {
-                if(jumpCount < 2)
+                if (jumpCount < 2)
                 {
                     jump(direction);
                 }
