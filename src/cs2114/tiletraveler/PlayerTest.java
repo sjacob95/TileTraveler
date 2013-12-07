@@ -14,11 +14,12 @@ public class PlayerTest
     extends TestCase
 {
 
-    private Player   player;
-    private Map      testMap;
-    //private Stage    stage;
-    //private Location startLocation;
+    private Player player;
+    private Map    testMap;
 
+
+    // private Stage stage;
+    // private Location startLocation;
 
     /**
      * Sets up the test area using Stage 1 to test.
@@ -39,13 +40,15 @@ public class PlayerTest
      */
     public void testAct()
     {
+        player.setDirection(Direction.EAST);
+        assertEquals(Direction.EAST, player.getDirection());
         player.act(Direction.WEST);
         assertEquals(true, player.isMoving());
-        assertEquals(Direction.NORTH, player.getDirection());
+        assertEquals(Direction.EAST, player.getDirection());
         player.movingStopped();
         assertEquals(false, player.isMoving());
         player.act(Direction.EAST);
-        assertEquals(Direction.NORTH, player.getDirection());
+        assertEquals(Direction.EAST, player.getDirection());
     }
 
 
@@ -67,17 +70,18 @@ public class PlayerTest
         player.move(Direction.WEST);
         player.move(Direction.EAST);
         assertEquals(new Location(5, 0), player.getLocation());
-        InvalidLineException e = new
-            InvalidLineException(new Location(1, 0), new Location(5, 7));
-        assertEquals("cs2114.tiletraveler.InvalidLineException:" +
-        		" (1, 0) and (5, 7) do not form a valid line", e);
-        OutsideMapException t = new
-            OutsideMapException(new Location(10, 20), testMap);
-        assertEquals("cs2114.tiletraveler.OutsideMapException: " +
-        		"The point(10, 20) does" +
-        		" not lie entirely on the map of size 10 + 10", t);
+        InvalidLineException e =
+            new InvalidLineException(new Location(1, 0), new Location(5, 7));
+        assertEquals(
+            "(1, 0) and (5, 7) do not form a valid line",
+            e.getMessage());
+        OutsideMapException t =
+            new OutsideMapException(new Location(10, 20), testMap);
+        assertEquals("The point(10, 20) does"
+            + " not lie entirely on the map of size 10 + 10", t.getMessage());
 
     }
+
 
     /**
      * Test the player winning
@@ -98,6 +102,7 @@ public class PlayerTest
         assertEquals(new Location(5, 1), player.getLocation());
     }
 
+
     /**
      * Test if the player is dead or not
      */
@@ -111,6 +116,7 @@ public class PlayerTest
         player.die();
         assertEquals(true, player.checkCurrentStatus());
     }
+
 
     /**
      * Tests the nudge() method in the Player class to ensure that it functions
@@ -161,6 +167,7 @@ public class PlayerTest
         player.setWalkImage();
         assertEquals(new Location(5, 0), player.getLocation());
     }
+
 
     /**
      * tests to set image
