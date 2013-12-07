@@ -107,16 +107,16 @@ public class TileTravelerScreenTest
     public void testUpClicked()
     {
         view.upClicked();
-        assertEquals(view.getPlayer().getDirection(), Direction.NORTH);
+        assertEquals(Direction.NORTH, view.getPlayer().getDirection());
     }
 
     /**
-     * Tests the upClicked() method
+     * Tests the downClicked() method
      */
     public void testDownClicked()
     {
         view.downClicked();
-        assertEquals(view.getPlayer().getDirection(), Direction.SOUTH);
+        assertEquals(Direction.SOUTH, view.getPlayer().getDirection());
     }
 
     /**
@@ -125,7 +125,7 @@ public class TileTravelerScreenTest
     public void testLeftClicked()
     {
         view.leftClicked();
-        assertEquals(view.getPlayer().getDirection(), Direction.WEST);
+        assertEquals(Direction.WEST, view.getPlayer().getDirection());
     }
 
     /**
@@ -134,7 +134,7 @@ public class TileTravelerScreenTest
     public void testRightClicked()
     {
         view.rightClicked();
-        assertEquals(view.getPlayer().getDirection(), Direction.WEST);
+        assertEquals(Direction.EAST, view.getPlayer().getDirection());
     }
 
 
