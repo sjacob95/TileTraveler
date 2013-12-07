@@ -49,6 +49,8 @@ public class PlayerTest
         assertEquals(false, player.isMoving());
         player.act(Direction.EAST);
         assertEquals(Direction.EAST, player.getDirection());
+        player.blockInput();
+        player.act(Direction.NORTH);
     }
 
 
@@ -159,10 +161,12 @@ public class PlayerTest
         player.setJumpImage();
         player.setWalkImage();
         player.walk(Direction.WEST);
+        player.movingStopped();
         player.setRestImage();
         player.setJumpImage();
         player.setWalkImage();
         player.walk(Direction.EAST);
+        player.movingStopped();
         player.setRestImage();
         player.setJumpImage();
         player.setWalkImage();
