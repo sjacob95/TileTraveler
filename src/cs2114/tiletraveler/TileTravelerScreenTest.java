@@ -2,7 +2,6 @@ package cs2114.tiletraveler;
 
 import android.os.Looper;
 import android.os.Handler;
-import android.widget.Button;
 
 /**
  * Class to tests the methods in TileTravlerScreen.
