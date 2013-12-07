@@ -48,6 +48,10 @@ public class Stage1
 
     /**
      * Resets the stage to its original layout.
+     *
+     * @param tileSize
+     *          The size of one tile in pixels
+     * @return original stage
      */
     public Stage reset(float tileSize)
     {

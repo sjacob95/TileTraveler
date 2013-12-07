@@ -6,6 +6,7 @@ package cs2114.tiletraveler;
  * @author Luciano Biondi (lbiondi)
  * @author Ezra Richards (MrZchuck)
  * @author Jacob Stenzel (sjacob95)
+ * @version 2013.12.08
  */
 public class Stage7
     extends Stage
@@ -43,9 +44,11 @@ public class Stage7
     }
 
     /**
-     * reset the stage
+     * Resets the stage to its original layout.
+     *
      * @param tileSize
-     *          The size of one Tile in pixels
+     *          The size of one tile in pixels
+     * @return original stage
      */
     public Stage reset(float tileSize)
     {

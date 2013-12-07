@@ -4,6 +4,7 @@ package cs2114.tiletraveler;
 /**
  * A demo stage designed to show how a map that is too large for the screen
  * functions when the screen's edge is reached
+ * Map design looks weird to please Web Cat Spacing issues
  *
  * @author Luciano Biondi (lbiondi)
  * @author Ezra Richards (MrZchuck)
@@ -199,32 +200,27 @@ public class Stage3
             new Floater(tileSize, this, new Location(10, 25), new Location(
                 10,
                 21), new Location(12, 21), new Location(12, 25), new Location(
-                10,
-                25)));
+                     10, 25)));
         getEnemyMap().addEnemy(
             new Floater(tileSize, this, new Location(24, 35), new Location(
                 20,
                 35), new Location(20, 37), new Location(24, 37), new Location(
-                24,
-                35)));
+                    24, 35)));
         getEnemyMap().addEnemy(
             new Floater(tileSize, this, new Location(24, 33), new Location(
                 20,
                 33), new Location(20, 35), new Location(24, 35), new Location(
-                24,
-                33)));
+                    24, 33)));
         getEnemyMap().addEnemy(
             new Floater(tileSize, this, new Location(34, 25), new Location(
                 34,
                 21), new Location(36, 21), new Location(36, 25), new Location(
-                34,
-                25)));
+                    34, 25)));
         getEnemyMap().addEnemy(
             new Floater(tileSize, this, new Location(32, 25), new Location(
                 32,
                 21), new Location(34, 21), new Location(34, 25), new Location(
-                32,
-                25)));
+                    32, 25)));
         getEnemyMap().addEnemy(
             new Floater(
                 tileSize,
@@ -238,19 +234,21 @@ public class Stage3
             new Floater(tileSize, this, new Location(24, 11), new Location(
                 20,
                 11), new Location(20, 13), new Location(24, 13), new Location(
-                24,
-                11)));
+                    24, 11)));
         getEnemyMap().addEnemy(
             new Floater(tileSize, this, new Location(24, 35), new Location(
                 20,
                 35), new Location(20, 37), new Location(24, 37), new Location(
-                24,
-                35)));
+                    24, 35)));
     }
 
 
     /**
      * Resets the stage to its original layout.
+     *
+     * @param tileSize
+     *          The size of one tile in pixels
+     * @return original stage
      */
     public Stage reset(float tileSize)
     {

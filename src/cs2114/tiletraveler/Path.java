@@ -23,7 +23,7 @@ public class Path
     private Tile[]                       conditions;
 
     // the final path
-    private CircularLinkedList<Location> path;
+    private CircularLinkedList<Location> tpath;
 
 
     /**
@@ -72,7 +72,7 @@ public class Path
 
         checkWithinBounds(locations);
 
-        path = finalizePath(interpolatePath(locations));
+        tpath = finalizePath(interpolatePath(locations));
 
     }
 
@@ -299,6 +299,6 @@ public class Path
      */
     public CircularLinkedList<Location> get()
     {
-        return path;
+        return tpath;
     }
 }

@@ -15,8 +15,8 @@ public class PlayerTest
 {
 
     private Player   player;
-    private Stage    stage;
-    private Location startLocation;
+    //private Stage    stage;
+    //private Location startLocation;
 
 
     /**
@@ -24,8 +24,8 @@ public class PlayerTest
      */
     public void setUp()
     {
-        stage = new Stage1(10f);
-        startLocation = new Location(5, 0);
+        Stage stage = new Stage1(10f);
+        Location startLocation = new Location(5, 0);
         player = new Player(5f, 6f, 10f, stage);
         player = new Player(startLocation, 10f, stage);
     }

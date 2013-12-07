@@ -11,7 +11,7 @@ package cs2114.tiletraveler;
  */
 public class Map
 {
-    private Tile[][] map;
+    private Tile[][] tmap;
     private int      mapDim;
 
 
@@ -23,7 +23,7 @@ public class Map
      */
     public Map(int mapDim)
     {
-        map = new Tile[mapDim][mapDim];
+        tmap = new Tile[mapDim][mapDim];
         this.mapDim = mapDim;
         for (int x = 0; x < mapDim; x++)
         {
@@ -66,7 +66,7 @@ public class Map
      */
     public Tile[][] get()
     {
-        return map;
+        return tmap;
     }
 
 
@@ -82,7 +82,7 @@ public class Map
      */
     public void setTile(int x, int y, Tile tile)
     {
-        map[y][x] = tile;
+        tmap[y][x] = tile;
     }
 
 
@@ -96,7 +96,7 @@ public class Map
      */
     public void setTile(Location loc, Tile tile)
     {
-        map[loc.y()][loc.x()] = tile;
+        tmap[loc.y()][loc.x()] = tile;
     }
 
 
@@ -112,7 +112,7 @@ public class Map
      */
     public void setTile(int x, int y, char symbol)
     {
-        map[y][x] = convertToTile(symbol);
+        tmap[y][x] = convertToTile(symbol);
     }
 
 
@@ -126,7 +126,7 @@ public class Map
      */
     public void setTile(Location loc, char symbol)
     {
-        map[loc.y()][loc.x()] = convertToTile(symbol);
+        tmap[loc.y()][loc.x()] = convertToTile(symbol);
     }
 
 
@@ -143,7 +143,7 @@ public class Map
         {
             return Tile.INVALID;
         }
-        return map[y][x];
+        return tmap[y][x];
     }
 
 
@@ -160,7 +160,7 @@ public class Map
         {
             return Tile.INVALID;
         }
-        return map[y][x];
+        return tmap[y][x];
     }
 
 
@@ -273,6 +273,7 @@ public class Map
     /**
      * Checks to make sure two maps are equal.
      *
+     * @param obj to be compared to
      * @return true if they are equal, and false if not
      */
     public boolean equals(Object obj)

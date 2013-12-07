@@ -4,6 +4,7 @@ package cs2114.tiletraveler;
 /**
  * A demo stage designed to show how a map that is too large for the screen
  * functions when the screen's edge is reached
+ * Map design looks weird to please Web Cat Spacing issues
  *
  * @author Luciano Biondi (lbiondi)
  * @author Ezra Richards (MrZchuck)
@@ -107,6 +108,10 @@ public class Stage2
 
     /**
      * Resets the stage to its original layout.
+     *
+     * @param tileSize
+     *          The size of one tile in pixels
+     * @return original stage
      */
     public Stage reset(float tileSize)
     {

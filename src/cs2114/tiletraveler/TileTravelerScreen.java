@@ -401,7 +401,9 @@ public class TileTravelerScreen
     {
         Tile tile = currentMap.getTile(x, y);
         if (tile == null)
+        {
             return;
+        }
         switch (tile)
         {
             case DOOR:

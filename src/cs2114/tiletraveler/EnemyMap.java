@@ -12,7 +12,7 @@ package cs2114.tiletraveler;
  */
 public class EnemyMap
 {
-    private Enemy[][] enemyMap;
+    private Enemy[][] enemiesMap;
     private int      mapDim;
 
 
@@ -23,7 +23,7 @@ public class EnemyMap
      */
     public EnemyMap(int mapDim)
     {
-        enemyMap = new Enemy[mapDim][mapDim];
+        enemiesMap = new Enemy[mapDim][mapDim];
         this.mapDim = mapDim;
     }
 
@@ -35,7 +35,7 @@ public class EnemyMap
      */
     public Enemy[][] get()
     {
-        return enemyMap;
+        return enemiesMap;
     }
 
     /**
@@ -44,7 +44,7 @@ public class EnemyMap
      */
     public void addEnemy(Enemy enemy)
     {
-        enemyMap[enemy.getLocation().y()][enemy.getLocation().x()] = enemy;
+        enemiesMap[enemy.getLocation().y()][enemy.getLocation().x()] = enemy;
     }
 
     /**
@@ -54,10 +54,10 @@ public class EnemyMap
      */
     public Enemy getEnemy(int x, int y)
     {
-        if(x >= mapDim || x < 0 || y >= mapDim || y < 0) {
+        if (x >= mapDim || x < 0 || y >= mapDim || y < 0) {
             return null;
         }
-        return enemyMap[y][x];
+        return enemiesMap[y][x];
     }
 
     /**
@@ -68,10 +68,10 @@ public class EnemyMap
     {
         int x = loc.x();
         int y = loc.y();
-        if(x >= mapDim || x < 0 || y >= mapDim || y < 0) {
+        if (x >= mapDim || x < 0 || y >= mapDim || y < 0) {
             return null;
         }
-        return enemyMap[y][x];
+        return enemiesMap[y][x];
     }
 
     /**

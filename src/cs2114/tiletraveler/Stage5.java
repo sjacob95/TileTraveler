@@ -41,15 +41,20 @@ public class Stage5
     public Stage5(float tileSize)
     {
         super(map, startLoc);
-        getEnemyMap().addEnemy(new Floater(tileSize, this, new Location(5, 1), new Location(5, 13)));
-        getEnemyMap().addEnemy(new Floater(tileSize, this, new Location(7, 13), new Location(7, 1)));
-        getEnemyMap().addEnemy(new Floater(tileSize, this, new Location(12, 6), new Location(7, 6)));
+        getEnemyMap().addEnemy(new Floater(tileSize, this,
+            new Location(5, 1), new Location(5, 13)));
+        getEnemyMap().addEnemy(new Floater(tileSize, this,
+            new Location(7, 13), new Location(7, 1)));
+        getEnemyMap().addEnemy(new Floater(tileSize, this,
+            new Location(12, 6), new Location(7, 6)));
     }
 
     /**
-     * reset the stage
+     * Resets the stage to its original layout.
+     *
      * @param tileSize
-     *          The size of one Tile in pixels
+     *          The size of one tile in pixels
+     * @return original stage
      */
     public Stage reset(float tileSize)
     {

@@ -22,7 +22,8 @@ public class Pillar extends RectangleShape
      */
     public Pillar(float x, float y, float cellSize)
     {
-        super(x*cellSize, y*cellSize, (x+1)*cellSize, (y+1)*cellSize);
+        super(x * cellSize, y * cellSize,
+            (x + 1) * cellSize, (y + 1) * cellSize);
         setImage("pillar.png");
     }
 
@@ -33,8 +34,8 @@ public class Pillar extends RectangleShape
      */
     public Pillar(Location loc, float cellSize)
     {
-        super(loc.x()*cellSize, loc.y()*cellSize,
-            (loc.x()+1)*cellSize, (loc.y()+1)*cellSize);
+        super(loc.x() * cellSize, loc.y() * cellSize,
+            (loc.x() + 1) * cellSize, (loc.y() + 1) * cellSize);
         setImage("pillar.png");
     }
 }
