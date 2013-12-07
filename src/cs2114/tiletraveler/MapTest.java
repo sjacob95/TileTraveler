@@ -90,6 +90,8 @@ public class MapTest
         assertEquals(Map.convertToChar(Tile.WALL), 'W');
         assertEquals(Map.convertToChar(Tile.WATER), '~');
         assertEquals(Map.convertToChar(Tile.EMPTY), ' ');
+        map3.setTile(new Location(0, 0), Tile.INVALID);
+        assertEquals(Map.convertToChar(map3.getTile(new Location(0, 0))), '?');
 
         setUp();
     }
