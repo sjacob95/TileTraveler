@@ -64,7 +64,7 @@ public class PlayerTest
         player.move(Direction.SOUTH);
         player.move(Direction.WEST);
         player.move(Direction.EAST);
-        assertEquals(player.getLocation(), new Location(3, 1));
+        assertEquals(new Location(5, 0), player.getLocation());
     }
 
     /**
@@ -76,8 +76,8 @@ public class PlayerTest
         {
             player.move(Direction.NORTH);
         }
-        assertEquals(player.checkCurrentStatus(), false);
-        assertEquals(player.getLocation(), new Location(5, 9));
+        assertEquals(true, player.checkCurrentStatus());
+        assertEquals(new Location(5, 1), player.getLocation());
     }
 
     /**
@@ -87,9 +87,9 @@ public class PlayerTest
     {
         player.move(Direction.NORTH);
         player.checkEnemyCollision();
-        assertEquals(player.checkCurrentStatus(), false);
+        assertEquals(true, player.checkCurrentStatus());
         player.move(Direction.WEST);
-        assertEquals(player.checkCurrentStatus(), true);
+        assertEquals(true, player.checkCurrentStatus());
     }
 
     /**
@@ -111,7 +111,7 @@ public class PlayerTest
     public void testJump()
     {
         player.jump(Direction.SOUTH);
-        assertEquals(player.getLocation(), new Location(5, 0));
+        assertEquals(new Location(5, -1), player.getLocation());
     }
 
 
@@ -122,7 +122,7 @@ public class PlayerTest
     public void testWalk()
     {
         player.walk(Direction.SOUTH);
-        assertEquals(player.getLocation(), new Location(5, 0));
+        assertEquals(new Location(5, -1), player.getLocation());
     }
 
 }
