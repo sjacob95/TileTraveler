@@ -16,7 +16,7 @@ import sofia.graphics.Color;
 public class Player
     extends Entity
 {
-    //private static final long MOVETIME         = 400;
+    //private static final long MOVETIME         = 250;
     private boolean           moving;
     private boolean           receiveInput     = true;
     private boolean           alive            = true;
@@ -362,7 +362,7 @@ public class Player
      */
     public long getMoveTime()
     {
-        return 400;
+        return 250;
         //return MOVETIME;
     }
 
