@@ -2,7 +2,7 @@ package cs2114.tiletraveler;
 
 import android.os.Looper;
 import android.os.Handler;
-//import android.widget.Button;
+import android.widget.Button;
 
 /**
  * Class to tests the methods in TileTravlerScreen.
@@ -16,11 +16,13 @@ public class TileTravelerScreenTest
     extends student.AndroidTestCase<TileTravelerScreen>
 {
 
-//    private Button up;
-//    private Button down;
-//    private Button left;
-//    private Button right;
-//    private Button centerScreen;
+    private TileTravelerScreen view;
+
+    private Button up;
+    private Button down;
+    private Button left;
+    private Button right;
+    private Button centerScreen;
 
 
     /**
@@ -38,6 +40,7 @@ public class TileTravelerScreenTest
     public void setUp()
     {
         // intentionally empty set up methods
+        view = getScreen();
     }
 
 
@@ -77,6 +80,9 @@ public class TileTravelerScreenTest
     public void testAct()
     {
         // click(up);
+        view.callPlayerSetJumpImage();
+
+
 
     }
 
