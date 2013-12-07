@@ -157,6 +157,17 @@ public class PathTest
         assertEquals(
             path1.interpolatePath(input).toString(),
             arrayToString(output5));
+
+        Exception thrown = null;
+        try
+        {
+            path1.interpolatePath(new Location(0, 0), new Location(1, 2));
+        }
+        catch (Exception e)
+        {
+            thrown = e;
+        }
+        assertTrue(thrown instanceof InvalidLineException);
     }
 
 
