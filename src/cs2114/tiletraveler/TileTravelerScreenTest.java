@@ -65,6 +65,7 @@ public class TileTravelerScreenTest
                 view.stage3Clicked();
                 view.stage2Clicked();
                 view.stage1Clicked();
+                view.resetClicked();
 
             }
 
@@ -100,6 +101,44 @@ public class TileTravelerScreenTest
 
     }
 
+    /**
+     * Tests the upClicked() method
+     */
+    public void testUpClicked()
+    {
+        view.upClicked();
+        assertEquals(view.getPlayer().getDirection(), Direction.NORTH);
+    }
+
+    /**
+     * Tests the upClicked() method
+     */
+    public void testDownClicked()
+    {
+        view.downClicked();
+        assertEquals(view.getPlayer().getDirection(), Direction.SOUTH);
+    }
+
+    /**
+     * Tests the leftClicked() method
+     */
+    public void testLeftClicked()
+    {
+        view.leftClicked();
+        assertEquals(view.getPlayer().getDirection(), Direction.WEST);
+    }
+
+    /**
+     * Tests the rightClicked() method
+     */
+    public void testRightClicked()
+    {
+        view.rightClicked();
+        assertEquals(view.getPlayer().getDirection(), Direction.WEST);
+    }
+
+
+
 
     /**
      * Tests to ensure the changeWasObserved() method was executed properly.
@@ -113,6 +152,8 @@ public class TileTravelerScreenTest
             {
                 view.changeWasObserved(view.getPlayer(), true);
                 view.changeWasObserved(view.getPlayer(), false);
+                view.changeWasObserved(view.getPlayer(), "nextMove", 0);
+                // view.changeWasObserved(view.getPlayer(), 0, 0, 0);
 
             }
 
