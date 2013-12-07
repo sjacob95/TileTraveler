@@ -46,4 +46,28 @@ public class PlayerTest
         assertEquals(Direction.NORTH, player.getDirection());
     }
 
+    /**
+     * Tests the move() method in the Player class to ensure that it functions
+     * as expected.
+     */
+    public void testMove()
+    {
+        player.move(null);
+        player.movingStopped();
+        player.move(Direction.SOUTH);
+    }
+
+    public void testNudge() {
+        player.nudge(Direction.SOUTH);
+
+    }
+
+    public void testJump() {
+        player.jump(Direction.SOUTH);
+    }
+
+    public void testWalk() {
+        player.walk(Direction.SOUTH);
+    }
+
 }
