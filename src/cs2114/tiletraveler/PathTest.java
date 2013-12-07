@@ -127,13 +127,13 @@ public class PathTest
     public void testInterpolatePath()
     {
         Location[] output1 =
-        { loc1, new Location(4, 5), new Location(3, 5), loc2 };
+            { loc1, new Location(4, 5), new Location(3, 5), loc2 };
         Location[] output2 =
-        { loc1, new Location(6, 5), new Location(7, 5), loc3 };
+            { loc1, new Location(6, 5), new Location(7, 5), loc3 };
         Location[] output3 =
-        { loc1, new Location(5, 4), new Location(5, 3), loc4 };
+            { loc1, new Location(5, 4), new Location(5, 3), loc4 };
         Location[] output4 =
-        { loc1, new Location(5, 6), new Location(5, 7), loc5 };
+            { loc1, new Location(5, 6), new Location(5, 7), loc5 };
         assertEquals(
             arrayToString(path1.interpolatePath(loc1, loc2)),
             arrayToString(output1));
@@ -151,8 +151,8 @@ public class PathTest
 
         Location[] input = { loc5, loc1, loc2 };
         Location[] output5 =
-        { loc5, new Location(5, 7), new Location(5, 6), loc1,
-            new Location(4, 5), new Location(3, 5), loc2 };
+            { loc5, new Location(5, 7), new Location(5, 6), loc1,
+                new Location(4, 5), new Location(3, 5), loc2 };
 
         assertEquals(
             path1.interpolatePath(input).toString(),
@@ -178,8 +178,8 @@ public class PathTest
         }
         assertTrue(thrown instanceof PathObstructionException);
         assertEquals(
-            thrown.getMessage(),
-            "An obstruction of type WALL was encountered at location (0, 0)");
+            "An obstruction of type WALL was encountered at location (0, 0)",
+            thrown.getMessage());
         path2.checkObstruction(loc6);
         thrown = null;
         try
@@ -192,8 +192,8 @@ public class PathTest
         }
         assertTrue(thrown instanceof PathObstructionException);
         assertEquals(
-            thrown.getMessage(),
-            "An obstruction of type EMPTY was encountered at location (5, 5)");
+            "An obstruction of type EMPTY was encountered at location (5, 5)",
+            thrown.getMessage());
         path1.checkValidPath(new Location[] { loc1, loc2 });
         thrown = null;
         try
@@ -206,8 +206,8 @@ public class PathTest
         }
         assertTrue(thrown instanceof IncompletePathException);
         assertEquals(
-            thrown.getMessage(),
-            "The path contains fewer than two points");
+            "The path contains fewer than two points",
+            thrown.getMessage());
 
     }
 
@@ -230,10 +230,8 @@ public class PathTest
             builder.append(array[i].toString());
             builder.append(", ");
         }
-        if (array.length > 0)
-        {
-            builder.append(array[array.length - 1]);
-        }
+
+        builder.append(array[array.length - 1]);
         builder.append("]");
         return builder.toString();
     }
