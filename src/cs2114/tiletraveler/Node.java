@@ -1,4 +1,5 @@
 package cs2114.tiletraveler;
+
 // -------------------------------------------------------------------------
 /**
  * A "node" represents a single element in a sequence. Think of it like a link
@@ -81,18 +82,6 @@ public class Node<E>
     public Node<E> next()
     {
         return next;
-    }
-
-
-    // ----------------------------------------------------------
-    /**
-     * Gets the node that precedes this one in the sequence.
-     *
-     * @return the node that precedes this one in the sequence
-     */
-    public Node<E> previous()
-    {
-        return previous;
     }
 
 
