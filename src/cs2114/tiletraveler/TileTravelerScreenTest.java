@@ -52,19 +52,19 @@ public class TileTravelerScreenTest
     public void testStage1Clicked()
     {
 
-        final TileTravelerScreen activity = getActivity();
+        // final TileTravelerScreen activity = getActivity();
         Handler refresh = new Handler(Looper.getMainLooper());
         refresh.post(new Runnable() {
             public void run()
             {
-                activity.stage8Clicked();
-                activity.stage7Clicked();
-                activity.stage6Clicked();
-                activity.stage5Clicked();
-                activity.stage4Clicked();
-                activity.stage3Clicked();
-                activity.stage2Clicked();
-                activity.stage1Clicked();
+                view.stage8Clicked();
+                view.stage7Clicked();
+                view.stage6Clicked();
+                view.stage5Clicked();
+                view.stage4Clicked();
+                view.stage3Clicked();
+                view.stage2Clicked();
+                view.stage1Clicked();
 
             }
 
@@ -75,31 +75,18 @@ public class TileTravelerScreenTest
 
 
     /**
-     * Testing buttons like up.
-     */
-//    public void testUp() {
-//        //TimerClass(click(up));
-//        //assert(something, view.getSomething())
-//
-//    }
-
-
-
-    /**
      * Tests the act() method to ensure that it functions properly.
      */
     public void testAct()
     {
+        view.adjustPlayer();
+        assertEquals(true, view.getPlayer().isAlive());
         view.callPlayerSetJumpImage();
         view.adjustEnemies();
         view.adjustEntity(view.getPlayer());
         assertEquals(true, view.getPlayer().isAlive());
-        view.adjustPlayer();
-        assertEquals(true, view.getPlayer().isAlive());
         view.redrawEntity(view.getPlayer());
         view.checkOrigin();
-//        view.changeWasObserved(view.getPlayer(), true);
-//        view.changeWasObserved(view.getPlayer(), false);
         view.callPlayerResumeInput();
         assertEquals(true, view.getPlayer().isAlive());
         view.callPlayerMovingStopped();
@@ -111,8 +98,25 @@ public class TileTravelerScreenTest
         view.callPlayerSetWalkImage();
         view.callPlayerSetJumpImage();
 
-//        assertEquals("sofia.graphics.Image@529d5f00", view.getPlayer()
-//            .getShape().getImage());
+    }
+
+
+    /**
+     * Tests to ensure the changeWasObserved() method was executed properly.
+     */
+    public void testChangeWasObserved()
+    {
+
+        Handler refresh = new Handler(Looper.getMainLooper());
+        refresh.post(new Runnable() {
+            public void run()
+            {
+                view.changeWasObserved(view.getPlayer(), true);
+                view.changeWasObserved(view.getPlayer(), false);
+
+            }
+
+        });
 
     }
 
