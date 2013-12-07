@@ -88,6 +88,8 @@ public class TileTravelerScreen
         currentStage = new Stage3(tileSize);
         reset();
     }
+
+
     /**
      * Loads Stage 4 when the appropriate menu item is clicked
      */
@@ -96,6 +98,7 @@ public class TileTravelerScreen
         currentStage = new Stage4(tileSize);
         reset();
     }
+
 
     /**
      * Loads Stage 5 when the appropriate menu item is clicked
@@ -106,6 +109,7 @@ public class TileTravelerScreen
         reset();
     }
 
+
     /**
      * Loads Stage 6 when the appropriate menu item is clicked
      */
@@ -114,6 +118,7 @@ public class TileTravelerScreen
         currentStage = new Stage6(tileSize);
         reset();
     }
+
 
     /**
      * Loads Stage 7 when the appropriate menu item is clicked
