@@ -48,9 +48,9 @@ public class Stage6
     public Stage6(float tileSize)
     {
         super(map, startLoc);
-        getEnemyMap().addEnemy(new Bug(tileSize, this, new Location(1, 7), new Location(1, 18)));
-        getEnemyMap().addEnemy(new Bug(tileSize, this, new Location(2, 13), new Location(2, 26)));
-        getEnemyMap().addEnemy(new Bug(tileSize, this, new Location(3, 21), new Location(3, 30)));
+        getEnemyMap().addEnemy(new Bug(tileSize, this, new Location(7, 1), new Location(18, 1)));
+        getEnemyMap().addEnemy(new Bug(tileSize, this, new Location(13, 2), new Location(26, 2)));
+        getEnemyMap().addEnemy(new Bug(tileSize, this, new Location(21, 3), new Location(30, 3)));
     }
 
     public Stage reset(float tileSize)
