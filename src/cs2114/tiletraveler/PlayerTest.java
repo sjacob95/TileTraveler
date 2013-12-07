@@ -120,6 +120,10 @@ public class PlayerTest
     {
         player.jump(Direction.SOUTH);
         assertEquals(new Location(5, -1), player.getLocation());
+        player.jump(Direction.NORTH);
+        player.jump(Direction.WEST);
+        player.jump(Direction.EAST);
+        assertEquals(new Location(5, 0), player.getLocation());
     }
 
 
@@ -131,6 +135,19 @@ public class PlayerTest
     {
         player.walk(Direction.SOUTH);
         assertEquals(new Location(5, -1), player.getLocation());
+        player.walk(Direction.NORTH);
+        player.setRestImage();
+        player.setJumpImage();
+        player.setWalkImage();
+        player.walk(Direction.WEST);
+        player.setRestImage();
+        player.setJumpImage();
+        player.setWalkImage();
+        player.walk(Direction.EAST);
+        player.setRestImage();
+        player.setJumpImage();
+        player.setWalkImage();
+        assertEquals(new Location(5, 0), player.getLocation());
     }
 
     /**
