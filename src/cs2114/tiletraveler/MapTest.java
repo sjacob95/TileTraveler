@@ -64,7 +64,7 @@ public class MapTest
         map1.setTile(0, 0, 'Q');
         assertEquals(map1.getTile(0, 0), Tile.LILY);
         map1.setTile(new Location(0, 0), 'O');
-        assertEquals(map1.getTile(0, 0), Tile.DOOR);
+        assertEquals(map1.getTile(0, 0), Tile.FLOOR);
         map1.toString();
         assertFalse(map1.equals(new Location(0, 0)));
         assertFalse(map1.equals(map2));
