@@ -113,11 +113,18 @@ public class Player
             }
 
             else if (((newMoveTile.equals(Tile.EMPTY) || newMoveTile
-                .equals(Tile.WATER)) && jumpCount < 2)
+                .equals(Tile.WATER)))
                 || ((currentTile.equals(Tile.EMPTY) || currentTile
-                    .equals(Tile.WATER)) && jumpCount < 2))
+                    .equals(Tile.WATER))))
             {
-                jump(direction);
+                if(jumpCount < 2)
+                {
+                    jump(direction);
+                }
+                else
+                {
+                    checkCurrentStatus();
+                }
             }
 
             else if ((newMoveTile.equals(Tile.EMPTY) || newMoveTile
