@@ -18,11 +18,11 @@ public class TileTravelerScreenTest
 
     private TileTravelerScreen view;
 
-    private Button up;
-    private Button down;
-    private Button left;
-    private Button right;
-    private Button centerScreen;
+    private Button             up;
+    private Button             down;
+    private Button             left;
+    private Button             right;
+    private Button             centerScreen;
 
 
     /**
@@ -75,14 +75,24 @@ public class TileTravelerScreenTest
 
 
     /**
+     * Testing buttons like up.
+     */
+    public void testUp() {
+        //TimerClass(click(up));
+        //assert(something, view.getSomething())
+
+    }
+
+
+
+    /**
      * Tests the act() method to ensure that it functions properly.
      */
     public void testAct()
     {
-        // click(up);
         view.callPlayerSetJumpImage();
-
-
+        assertEquals("sofia.graphics.Image@529d5f00", view.getPlayer()
+            .getShape().getImage());
 
     }
 
