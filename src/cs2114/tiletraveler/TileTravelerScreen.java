@@ -409,10 +409,6 @@ public class TileTravelerScreen
     public void drawTile(int x, int y)
     {
         Tile tile = currentMap.getTile(x, y);
-        if (tile == null)
-        {
-            return;
-        }
         switch (tile)
         {
             case DOOR:
@@ -760,5 +756,16 @@ public class TileTravelerScreen
     public String getWebCat()
     {
         return pacifier;
+    }
+
+    // ----------------------------------------------------------
+    /**
+     * Returns the player
+     *
+     * @return the Player
+     */
+    public Player getPlayer()
+    {
+        return this.player;
     }
 }

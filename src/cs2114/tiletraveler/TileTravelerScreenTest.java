@@ -2,7 +2,7 @@ package cs2114.tiletraveler;
 
 import android.os.Looper;
 import android.os.Handler;
-//import android.widget.Button;
+import android.widget.Button;
 
 /**
  * Class to tests the methods in TileTravlerScreen.
@@ -16,11 +16,13 @@ public class TileTravelerScreenTest
     extends student.AndroidTestCase<TileTravelerScreen>
 {
 
-//    private Button up;
-//    private Button down;
-//    private Button left;
-//    private Button right;
-//    private Button centerScreen;
+    private TileTravelerScreen view;
+
+    private Button             up;
+    private Button             down;
+    private Button             left;
+    private Button             right;
+    private Button             centerScreen;
 
 
     /**
@@ -38,6 +40,7 @@ public class TileTravelerScreenTest
     public void setUp()
     {
         // intentionally empty set up methods
+        view = getScreen();
     }
 
 
@@ -49,19 +52,19 @@ public class TileTravelerScreenTest
     public void testStage1Clicked()
     {
 
-        final TileTravelerScreen activity = getActivity();
+        // final TileTravelerScreen activity = getActivity();
         Handler refresh = new Handler(Looper.getMainLooper());
         refresh.post(new Runnable() {
             public void run()
             {
-                activity.stage8Clicked();
-                activity.stage7Clicked();
-                activity.stage6Clicked();
-                activity.stage5Clicked();
-                activity.stage4Clicked();
-                activity.stage3Clicked();
-                activity.stage2Clicked();
-                activity.stage1Clicked();
+                view.stage8Clicked();
+                view.stage7Clicked();
+                view.stage6Clicked();
+                view.stage5Clicked();
+                view.stage4Clicked();
+                view.stage3Clicked();
+                view.stage2Clicked();
+                view.stage1Clicked();
 
             }
 
@@ -76,7 +79,44 @@ public class TileTravelerScreenTest
      */
     public void testAct()
     {
-        // click(up);
+        view.adjustPlayer();
+        assertEquals(true, view.getPlayer().isAlive());
+        view.callPlayerSetJumpImage();
+        view.adjustEnemies();
+        view.adjustEntity(view.getPlayer());
+        assertEquals(true, view.getPlayer().isAlive());
+        view.redrawEntity(view.getPlayer());
+        view.checkOrigin();
+        view.callPlayerResumeInput();
+        assertEquals(true, view.getPlayer().isAlive());
+        view.callPlayerMovingStopped();
+        assertEquals(false, view.getPlayer().isMoving());
+        view.callPlayerCheckAndMove();
+        view.callPlayerIncJumpCount();
+        view.callPlayerNextMove();
+        view.callPlayerSetRestImage();
+        view.callPlayerSetWalkImage();
+        view.callPlayerSetJumpImage();
+
+    }
+
+
+    /**
+     * Tests to ensure the changeWasObserved() method was executed properly.
+     */
+    public void testChangeWasObserved()
+    {
+
+        Handler refresh = new Handler(Looper.getMainLooper());
+        refresh.post(new Runnable() {
+            public void run()
+            {
+                view.changeWasObserved(view.getPlayer(), true);
+                view.changeWasObserved(view.getPlayer(), false);
+
+            }
+
+        });
 
     }
 
