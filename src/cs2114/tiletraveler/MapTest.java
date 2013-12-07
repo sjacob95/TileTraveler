@@ -19,11 +19,15 @@ public class MapTest
     private Map map2;
     private Map map3;
     private Map map4;
+    private Stage1 stager;
+
 /**
  * Sets up the map for testing.
  */
     public void setUp()
     {
+        stager = new Stage1(10f);
+
         map1 = new Map(5);
         map1.setTile(0, 0, Tile.FLOOR);
         map1.setTile(1, 1, Tile.WALL);
@@ -77,6 +81,7 @@ public class MapTest
         map1.equals(map2);
         map1.equals(map3);
         map1.equals(map4);
+        stager.setMap(map1);
 
         assertEquals(Map.convertToChar(Tile.FLOOR), 'O');
         assertEquals(Map.convertToChar(Tile.DOOR), 'D');
