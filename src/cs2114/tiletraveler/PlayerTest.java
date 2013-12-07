@@ -68,14 +68,14 @@ public class PlayerTest
         player.move(Direction.EAST);
         assertEquals(new Location(5, 0), player.getLocation());
         InvalidLineException e = new
-            InvalidLineException(new Location(1,0), new Location(5, 7));
+            InvalidLineException(new Location(1, 0), new Location(5, 7));
         assertEquals("cs2114.tiletraveler.InvalidLineException:" +
         		" (1, 0) and (5, 7) do not form a valid line", e);
         OutsideMapException t = new
-            OutsideMapException(new Location(10,20), testMap);
+            OutsideMapException(new Location(10, 20), testMap);
         assertEquals("cs2114.tiletraveler.OutsideMapException: " +
-        		"The point(10, 20) " +
-        		"does not lie entirely on the map of size 10 + 10", t);
+        		"The point(10, 20) does" +
+        		" not lie entirely on the map of size 10 + 10", t);
 
     }
 
