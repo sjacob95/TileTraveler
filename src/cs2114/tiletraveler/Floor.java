@@ -30,23 +30,4 @@ public class Floor
             * cellSize);
         setImage("floor.png");
     }
-
-
-    /**
-     * Create a new Floor object.
-     *
-     * @param loc
-     *            location of tile
-     * @param cellSize
-     *            size of tile
-     */
-    public Floor(Location loc, float cellSize)
-    {
-        super(
-            loc.x() * cellSize,
-            loc.y() * cellSize,
-            (loc.x() + 1) * cellSize,
-            (loc.y() + 1) * cellSize);
-        setImage("floor.png");
-    }
 }

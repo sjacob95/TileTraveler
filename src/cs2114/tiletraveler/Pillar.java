@@ -26,16 +26,4 @@ public class Pillar extends RectangleShape
             (x + 1) * cellSize, (y + 1) * cellSize);
         setImage("pillar.png");
     }
-
-    /**
-     * Create a new Pit object.
-     * @param loc location of tile
-     * @param cellSize size of tile
-     */
-    public Pillar(Location loc, float cellSize)
-    {
-        super(loc.x() * cellSize, loc.y() * cellSize,
-            (loc.x() + 1) * cellSize, (loc.y() + 1) * cellSize);
-        setImage("pillar.png");
-    }
 }

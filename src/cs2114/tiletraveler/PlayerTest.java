@@ -15,6 +15,7 @@ public class PlayerTest
 {
 
     private Player   player;
+    private Map      testMap;
     //private Stage    stage;
     //private Location startLocation;
 
@@ -28,6 +29,7 @@ public class PlayerTest
         Location startLocation = new Location(5, 0);
         player = new Player(5f, 6f, 10f, stage);
         player = new Player(startLocation, 10f, stage);
+        testMap = new Map(10);
     }
 
 
@@ -65,6 +67,14 @@ public class PlayerTest
         player.move(Direction.WEST);
         player.move(Direction.EAST);
         assertEquals(new Location(5, 0), player.getLocation());
+        InvalidLineException e = new
+            InvalidLineException(new Location(1,0), new Location(5, 7));
+        assertEquals("(1, 0) and (5, 7) do not form a valid line", e);
+        OutsideMapException t = new
+            OutsideMapException(new Location(10,20), testMap);
+        assertEquals("The point(10,20) " +
+        		"does not lie entirely on the map of size 10 + 10", t);
+
     }
 
     /**

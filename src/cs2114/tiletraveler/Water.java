@@ -30,23 +30,4 @@ public class Water
             * cellSize);
         setImage("water.png");
     }
-
-
-    /**
-     * Create a new Wall object.
-     *
-     * @param loc
-     *            location of tile
-     * @param cellSize
-     *            size of tile
-     */
-    public Water(Location loc, float cellSize)
-    {
-        super(
-            loc.x() * cellSize,
-            loc.y() * cellSize,
-            (loc.x() + 1) * cellSize,
-            (loc.y() + 1) * cellSize);
-        setImage("water.png");
-    }
 }
