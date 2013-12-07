@@ -576,7 +576,7 @@ public class TileTravelerScreen
         {
             status.setText("You are died!");
         }
-        else if (alive)
+        else
         {
             status.setText("You did the win!");
         }
@@ -768,4 +768,5 @@ public class TileTravelerScreen
     {
         return this.player;
     }
+
 }

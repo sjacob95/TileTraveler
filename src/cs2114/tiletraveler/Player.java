@@ -16,14 +16,14 @@ import sofia.graphics.Color;
 public class Player
     extends Entity
 {
-    //private static final long MOVETIME         = 250;
-    private boolean           moving;
-    private boolean           receiveInput     = true;
-    private boolean           alive            = true;
-    private boolean           won              = false;
-    private Direction         nextAction       = null;
-    private int               jumpCount        = 0;
-    private Direction         currentDirection = Direction.SOUTH;
+    // private static final long MOVETIME = 250;
+    private boolean   moving;
+    private boolean   receiveInput     = true;
+    private boolean   alive            = true;
+    private boolean   won              = false;
+    private Direction nextAction       = null;
+    private int       jumpCount        = 0;
+    private Direction currentDirection = Direction.SOUTH;
 
 
     /**
@@ -282,6 +282,7 @@ public class Player
         notifyObservers(won);
     }
 
+
     /**
      * returns the value of won
      *
@@ -291,6 +292,7 @@ public class Player
     {
         return won;
     }
+
 
     // ----------------------------------------------------------
     /**
@@ -379,7 +381,7 @@ public class Player
     public long getMoveTime()
     {
         return 250;
-        //return MOVETIME;
+        // return MOVETIME;
     }
 
 
@@ -491,4 +493,133 @@ public class Player
             getShape().setImage("heroforwardjump");
         }
     }
+
+
+    /**
+     * Returns the recieveInput variable for testing.
+     *
+     * @return boolean if true
+     */
+    public boolean setReceiveInput()
+    {
+        return receiveInput;
+    }
+
+
+    /**
+     * Sets the recieveInput variable for testing.
+     *
+     * @param receiveInput
+     *            a boolean representing whether the player can recieve input
+     */
+    public void setReceiveInput(boolean receiveInput)
+    {
+        this.receiveInput = receiveInput;
+    }
+
+
+    /**
+     * Returns the current Direction for testing.
+     *
+     * @return Direction the direction the player is moving.
+     */
+    public Direction getNextAction()
+    {
+        return nextAction;
+    }
+
+
+    /**
+     * Sets the nextAction for testing.
+     *
+     * @param nextAction
+     *            the nextAction acted on by the player.
+     */
+    public void setNextAction(Direction nextAction)
+    {
+        this.nextAction = nextAction;
+    }
+
+
+    /**
+     * Returns the jump count for testing.
+     *
+     * @return int the jumpCount.
+     */
+    public int getJumpCount()
+    {
+        return jumpCount;
+    }
+
+
+    /**
+     * Sets the jumpCount for testing.
+     *
+     * @param jumpCount
+     *            an int representing the jumpCount.
+     */
+    public void setJumpCount(int jumpCount)
+    {
+        this.jumpCount = jumpCount;
+    }
+
+
+    /**
+     * Returns the current Direction for testing.
+     *
+     * @return Direction the current direction.
+     */
+    public Direction getCurrentDirection()
+    {
+        return currentDirection;
+    }
+
+
+    /**
+     * Sets the currentDirection variable for testing.
+     *
+     * @param currentDirection
+     *            the direction currently moving.
+     */
+    public void setCurrentDirection(Direction currentDirection)
+    {
+        this.currentDirection = currentDirection;
+    }
+
+
+    /**
+     * Sets the moving variable for testing.
+     *
+     * @param moving
+     *            whether or not the player is moving.
+     */
+    public void setMoving(boolean moving)
+    {
+        this.moving = moving;
+    }
+
+
+    /**
+     * Sets the alive variable for testing.
+     *
+     * @param alive
+     *            whether or not Player is alive.
+     */
+    public void setAlive(boolean alive)
+    {
+        this.alive = alive;
+    }
+
+
+    /**
+     * Sets the won variable for testing.
+     *
+     * @param won
+     *            whether or not Player is alive.
+     */
+    public void setWon(boolean won)
+    {
+        this.won = won;
+    }
+
 }

@@ -174,17 +174,14 @@ public class Path
         {
             Location[] pointSequence = interpolatePath(locs[i - 1], locs[i]);
 
-            if (pointSequence[pointSequence.length - 1] != null)
+            for (int j = 0; j < pointSequence.length; j++)
             {
-                for (int j = 0; j < pointSequence.length; j++)
+                // checks for adjacent repeated points
+                if (tempPath.isEmpty()
+                    || !tempPath.get(tempPath.size() - 1).equals(
+                        pointSequence[j]))
                 {
-                    // checks for adjacent repeated points
-                    if (tempPath.isEmpty()
-                        || !tempPath.get(tempPath.size() - 1).equals(
-                            pointSequence[j]))
-                    {
-                        tempPath.add(pointSequence[j]);
-                    }
+                    tempPath.add(pointSequence[j]);
                 }
             }
         }
