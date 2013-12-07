@@ -174,8 +174,7 @@ public class Path
         {
             Location[] pointSequence = interpolatePath(locs[i - 1], locs[i]);
 
-            if (pointSequence.length == 0
-                || pointSequence[pointSequence.length - 1] != null)
+            if (pointSequence[pointSequence.length - 1] != null)
             {
                 for (int j = 0; j < pointSequence.length; j++)
                 {
