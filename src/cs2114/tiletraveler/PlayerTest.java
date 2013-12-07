@@ -210,4 +210,25 @@ public class PlayerTest
         player.setJumpImage();
         assertEquals(new Location(5, 1), player.getLocation());
     }
+
+    /**
+     * test enemy collsion
+     */
+    public void testEnemyCollision()
+    {
+        player.act(Direction.NORTH);
+        player.nextMove();
+        assertFalse(player.checkEnemyCollision());
+    }
+
+    /**
+     * test not on normal tile
+     */
+    public void testEmptyTile()
+    {
+        player.act(Direction.SOUTH);
+        player.act(Direction.EAST);
+        assertFalse(player.checkCurrentStatus());
+        player.move(Direction.SOUTH);
+    }
 }
