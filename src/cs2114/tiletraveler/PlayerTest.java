@@ -39,13 +39,15 @@ public class PlayerTest
      */
     public void testAct()
     {
+        player.setDirection(Direction.EAST);
+        assertEquals(Direction.EAST, player.getDirection());
         player.act(Direction.WEST);
         assertEquals(true, player.isMoving());
-        assertEquals(Direction.NORTH, player.getDirection());
+        assertEquals(Direction.EAST, player.getDirection());
         player.movingStopped();
         assertEquals(false, player.isMoving());
         player.act(Direction.EAST);
-        assertEquals(Direction.NORTH, player.getDirection());
+        assertEquals(Direction.EAST, player.getDirection());
     }
 
 
