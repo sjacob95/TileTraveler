@@ -74,13 +74,10 @@ public class Location
         {
             return south();
         }
-        else if (direction.equals(Direction.WEST))
+        else
+        // if (direction.equals(Direction.WEST))
         {
             return west();
-        }
-        else
-        {
-            return this;
         }
     }
 
@@ -234,8 +231,8 @@ public class Location
 
 
     /**
-     * @return the distance between this and the provided Location (assuming
-     *          the two points share an x or y coordinate)
+     * @return the distance between this and the provided Location (assuming the
+     *         two points share an x or y coordinate)
      * @param loc
      *            - the second Location
      */
@@ -287,11 +284,8 @@ public class Location
             case EAST:
                 return new Location(1, 0);
 
-            case WEST:
+            default: // WEST:
                 return new Location(-1, 0);
-
-            default:
-                return new Location(0, 0);
         }
     }
 
