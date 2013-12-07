@@ -88,6 +88,7 @@ public class PlayerTest
      */
     public void testWon()
     {
+        assertFalse(player.getWon());
         for (int x = 0; x < 10; x++)
         {
             player.move(Direction.NORTH);

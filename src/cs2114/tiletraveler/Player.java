@@ -282,6 +282,15 @@ public class Player
         notifyObservers(won);
     }
 
+    /**
+     * returns the value of won
+     *
+     * @return boolean if won or not
+     */
+    public boolean getWon()
+    {
+        return won;
+    }
 
     // ----------------------------------------------------------
     /**
