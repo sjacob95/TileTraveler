@@ -2,12 +2,6 @@ package cs2114.tiletraveler;
 
 import android.os.Looper;
 import android.os.Handler;
-import android.view.KeyEvent;
-import android.app.Instrumentation.ActivityMonitor;
-import android.app.Activity;
-import android.view.Menu;
-import android.view.View;
-import android.view.MenuItem;
 import android.widget.Button;
 
 /**
@@ -22,13 +16,11 @@ public class TileTravelerScreenTest
     extends student.AndroidTestCase<TileTravelerScreen>
 {
 
-    private Button   up;
-    private Button   down;
-    private Button   left;
-    private Button   right;
-    private Button   centerScreen;
-
-    private MenuItem stage1;
+    private Button up;
+    private Button down;
+    private Button left;
+    private Button right;
+    private Button centerScreen;
 
 
     /**
@@ -50,7 +42,9 @@ public class TileTravelerScreenTest
 
 
     /**
-     * Ensures that the stage1Clicked() method functions as expected.
+     * Ensures that the stage1Clicked() method functions as expected. Calls the
+     * stage#Clicked() methods on another thread to execute them. This is the
+     * only way we could get Web-Cat to execute our menu items!
      */
     public void testStage1Clicked()
     {
@@ -77,6 +71,9 @@ public class TileTravelerScreenTest
     }
 
 
+    /**
+     * Tests the act() method to ensure that it functions properly.
+     */
     public void testAct()
     {
         // click(up);
