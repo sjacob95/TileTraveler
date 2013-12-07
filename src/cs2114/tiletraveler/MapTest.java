@@ -17,6 +17,7 @@ public class MapTest
 {
     private Map map1;
     private Map map2;
+    private Map map3;
 /**
  * Sets up the map for testing.
  */
@@ -35,6 +36,10 @@ public class MapTest
                        "  I  ",
                        " W Q ",
                        "O   W");
+
+        map3 = new Map("  ",
+                       "~~",
+                       "OO");
     }
 
     /**
@@ -50,9 +55,28 @@ public class MapTest
         assertEquals(map1.getTile(2, 4), Tile.WATER);
         assertEquals(map1.getTile(0, 2), Tile.EMPTY);
         assertEquals(map1.getTile(42, 42), Tile.INVALID);
-
+        Tile[][] tiles = map1.get();
+        assertEquals(tiles[0][0], Tile.FLOOR);
         assertEquals(map1.getTile(new Location(3, 1)), Tile.LILY);
         assertEquals(map1.getTile(new Location(2, 143)), Tile.INVALID);
+        map1.setTile(new Location(0, 0), Tile.DOOR);
+        assertEquals(map1.getTile(0, 0), Tile.DOOR);
+        map1.setTile(0, 0, 'Q');
+        assertEquals(map1.getTile(0, 0), Tile.LILY);
+        map1.setTile(new Location(0, 0), 'O');
+        assertEquals(map1.getTile(0, 0), Tile.DOOR);
+        map1.toString();
+        assertFalse(map1.equals(new Location(0, 0)));
+        assertFalse(map1.equals(map2));
+        assertFalse(map1.equals(map3));
+
+        assertEquals(Map.convertToChar(Tile.FLOOR), 'O');
+        assertEquals(Map.convertToChar(Tile.DOOR), 'D');
+        assertEquals(Map.convertToChar(Tile.PILLAR), 'I');
+        assertEquals(Map.convertToChar(Tile.LILY), 'Q');
+        assertEquals(Map.convertToChar(Tile.WALL), 'W');
+        assertEquals(Map.convertToChar(Tile.WATER), '~');
+        assertEquals(Map.convertToChar(Tile.EMPTY), ' ');
 
         setUp();
     }
