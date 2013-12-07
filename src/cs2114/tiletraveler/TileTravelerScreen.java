@@ -761,4 +761,15 @@ public class TileTravelerScreen
     {
         return pacifier;
     }
+
+    // ----------------------------------------------------------
+    /**
+     * Returns the player
+     *
+     * @return the Player
+     */
+    public Player getPlayer()
+    {
+        return this.player;
+    }
 }
