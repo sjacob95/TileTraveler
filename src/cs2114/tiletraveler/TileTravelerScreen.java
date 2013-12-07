@@ -19,7 +19,7 @@ import sofia.graphics.Color;
  * @author Jacob Stenzel (sjacob95)
  * @version 2013.12.08
  */
-@OptionsMenu
+@OptionsMenu("tile_traveler_screen")
 public class TileTravelerScreen
     extends ShapeScreen
 {
