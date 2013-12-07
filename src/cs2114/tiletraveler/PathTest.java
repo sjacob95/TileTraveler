@@ -208,6 +208,18 @@ public class PathTest
         assertEquals(
             "The path contains fewer than two points",
             thrown.getMessage());
+        thrown = null;
+        try
+        {
+            path2.checkWithinBounds(new Location(-1, -1));
+        }
+        catch (Exception e)
+        {
+            thrown = e;
+        }
+        assertTrue(thrown instanceof OutsideMapException);
+        assertEquals("The point(-1, -1) does not lie entirely "
+            + "on the map of size 11 + 11", thrown.getMessage());
 
     }
 
