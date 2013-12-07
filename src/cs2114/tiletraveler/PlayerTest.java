@@ -53,11 +53,44 @@ public class PlayerTest
      */
     public void testMove()
     {
+        assertEquals(player.getMoveTime(), 400, 0.01);
         player.move(null);
         player.movingStopped();
         player.move(Direction.SOUTH);
+        player.move(Direction.NORTH);
+        player.move(Direction.NORTH);
+        player.move(Direction.WEST);
+        player.move(Direction.WEST);
+        player.move(Direction.SOUTH);
+        player.move(Direction.WEST);
+        player.move(Direction.EAST);
+        assertEquals(player.getLocation(), new Location(3, 1));
     }
 
+    /**
+     * Test the player winning
+     */
+    public void testWon()
+    {
+        for (int x = 0; x < 10; x++)
+        {
+            player.move(Direction.NORTH);
+        }
+        assertEquals(player.checkCurrentStatus(), false);
+        assertEquals(player.getLocation(), new Location(5, 9));
+    }
+
+    /**
+     * Test if the player is dead or not
+     */
+    public void testDie()
+    {
+        player.move(Direction.NORTH);
+        player.checkEnemyCollision();
+        assertEquals(player.checkCurrentStatus(), false);
+        player.move(Direction.WEST);
+        assertEquals(player.checkCurrentStatus(), true);
+    }
 
     /**
      * Tests the nudge() method in the Player class to ensure that it functions
@@ -66,6 +99,7 @@ public class PlayerTest
     public void testNudge()
     {
         player.nudge(Direction.SOUTH);
+        assertEquals(player.getLocation(), new Location(5, 0));
 
     }
 
@@ -77,6 +111,7 @@ public class PlayerTest
     public void testJump()
     {
         player.jump(Direction.SOUTH);
+        assertEquals(player.getLocation(), new Location(5, 0));
     }
 
 
@@ -87,6 +122,7 @@ public class PlayerTest
     public void testWalk()
     {
         player.walk(Direction.SOUTH);
+        assertEquals(player.getLocation(), new Location(5, 0));
     }
 
 }
