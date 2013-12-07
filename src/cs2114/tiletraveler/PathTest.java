@@ -230,7 +230,6 @@ public class PathTest
             builder.append(array[i].toString());
             builder.append(", ");
         }
-
         builder.append(array[array.length - 1]);
         builder.append("]");
         return builder.toString();
