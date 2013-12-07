@@ -415,7 +415,6 @@ public class TileTravelerScreen
                 break;
 
             case LILY:
-                add(new Water((x - origin.x()), (y - origin.y()), tileSize));
                 add(new Lily((x - origin.x()), (y - origin.y()), tileSize));
                 break;
 
@@ -731,4 +730,17 @@ public class TileTravelerScreen
         player.setJumpImage();
 
     }
+
+
+    /**
+     * Returns the current Stage.
+     *
+     * @return currentStage is the current stage being used by the screen.
+     */
+    public Stage getCurrentStage()
+    {
+        return currentStage;
+
+    }
+
 }
