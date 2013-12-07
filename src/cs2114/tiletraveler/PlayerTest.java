@@ -58,7 +58,7 @@ public class PlayerTest
      */
     public void testMove()
     {
-        assertEquals(player.getMoveTime(), 400, 0.01);
+        assertEquals(player.getMoveTime(), 250, 0.01);
         player.move(null);
         player.movingStopped();
         player.move(Direction.SOUTH);

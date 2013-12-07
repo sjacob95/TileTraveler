@@ -129,16 +129,6 @@ public class Node<E>
      */
     public Node<E> join(Node<E> newNext)
     {
-        if (newNext == null && this.next == null)
-        {
-            return this;
-        }
-        else if (this.next != null || newNext.previous() != null)
-        {
-            throw new IllegalStateException(
-                "Can't join node if this has a next "
-                    + "and the new next has a previous");
-        }
         newNext.previous = this;
         this.next = newNext;
         return this;
@@ -163,16 +153,9 @@ public class Node<E>
      */
     public Node<E> split()
     {
-        if (this.next == null)
-        {
-            return null;
-        }
-        else
-        {
-            Node<E> temp = this.next;
-            this.next.previous = null;
-            this.next = null;
-            return temp;
-        }
+        Node<E> temp = this.next;
+        this.next.previous = null;
+        this.next = null;
+        return temp;
     }
 }
