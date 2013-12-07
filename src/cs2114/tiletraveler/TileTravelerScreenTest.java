@@ -99,43 +99,27 @@ public class TileTravelerScreenTest
 //
 // }
 // });
-//        TileTravelerScreen activity = getActivity();
+        TileTravelerScreen activity = getActivity();
 //
-//        this.getInstrumentation().invokeMenuActionSync(
-//            activity,
-//            cs2114.tiletraveler.R.id.stage1,
-//            0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage1);
-//        this.getInstrumentation().invokeMenuActionSync(
-//            activity,
-//            cs2114.tiletraveler.R.id.stage2,
-//            0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage2);
-//        this.getInstrumentation().invokeMenuActionSync(
-//            activity,
-//            cs2114.tiletraveler.R.id.stage3,
-//            0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage3);
-//        this.getInstrumentation().invokeMenuActionSync(
-//            activity,
-//            cs2114.tiletraveler.R.id.stage4,
-//            0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage4);
-//        this.getInstrumentation().invokeMenuActionSync(
-//            activity,
-//            cs2114.tiletraveler.R.id.stage5,
-//            0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage5);
-//        this.getInstrumentation().invokeMenuActionSync(
-//            activity,
-//            cs2114.tiletraveler.R.id.stage6,
-//            0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage6);
-//        this.getInstrumentation().invokeMenuActionSync(
-//            activity,
-//            cs2114.tiletraveler.R.id.stage7,
-//            0);
-//        assertTrue(getScreen().getCurrentStage() instanceof Stage7);
+// View view1 = activity.findViewById(cs2114.tiletraveler.R.id.stage1);
+// getInstrumentation().invokeMenuActionSync(activity, view1, 0);
+// assertTrue(activity.getCurrentStage() instanceof Stage1);
+
+//
+        getInstrumentation().invokeMenuActionSync(activity, R.id.stage1, 0);
+        assertTrue(getScreen().getCurrentStage() instanceof Stage1);
+        getInstrumentation().invokeMenuActionSync(activity, R.id.stage2, 0);
+        assertTrue(getScreen().getCurrentStage() instanceof Stage2);
+        getInstrumentation().invokeMenuActionSync(activity, R.id.stage3, 0);
+        assertTrue(getScreen().getCurrentStage() instanceof Stage3);
+        getInstrumentation().invokeMenuActionSync(activity, R.id.stage4, 0);
+        assertTrue(getScreen().getCurrentStage() instanceof Stage4);
+        getInstrumentation().invokeMenuActionSync(activity, R.id.stage5, 0);
+        assertTrue(getScreen().getCurrentStage() instanceof Stage5);
+        getInstrumentation().invokeMenuActionSync(activity, R.id.stage6, 0);
+        assertTrue(getScreen().getCurrentStage() instanceof Stage6);
+        getInstrumentation().invokeMenuActionSync(activity, R.id.stage7, 0);
+        assertTrue(getScreen().getCurrentStage() instanceof Stage7);
 // getInstrumentation().invokeMenuActionSync(activity,
 // cs2114.tiletraveler.R.id.stage8, 0);
 // assertTrue(getScreen().getCurrentStage() instanceof Stage8);
