@@ -171,7 +171,7 @@ public class Map
      */
     public static int calculateMapDim(String... strings)
     {
-        int tempDim = Math.max(strings.length - 1, strings[0].length());
+        int tempDim = Math.max(strings.length, strings[0].length());
         // sets tempDim to the the largest value between the array height and
 // the first row's length
         for (int i = 1; i < strings.length; i++)

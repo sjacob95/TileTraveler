@@ -8,6 +8,7 @@
             <item android:id="@+id/stage5" android:title="@string/stage5"/>
             <item android:id="@+id/stage6" android:title="@string/stage6"/>
             <item android:id="@+id/stage7" android:title="@string/stage7"/>
+            <item android:id="@+id/stage8" android:title="@string/stage8"/>
         </menu>
     </item>
     

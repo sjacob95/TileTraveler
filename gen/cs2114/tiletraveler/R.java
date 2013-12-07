@@ -59,6 +59,7 @@ public final class R {
         public static final int stage5=0x7f08000e;
         public static final int stage6=0x7f08000f;
         public static final int stage7=0x7f080010;
+        public static final int stage8=0x7f080011;
         public static final int stages=0x7f080009;
         public static final int status=0x7f080001;
         public static final int tileMap=0x7f080002;
@@ -82,6 +83,7 @@ public final class R {
         public static final int stage5=0x7f040009;
         public static final int stage6=0x7f04000a;
         public static final int stage7=0x7f04000b;
+        public static final int stage8=0x7f04000c;
         public static final int stage_select=0x7f040004;
     }
     public static final class style {

@@ -60,6 +60,7 @@ public class TileTravelerScreenTest
         refresh.post(new Runnable() {
             public void run()
             {
+                activity.stage8Clicked();
                 activity.stage7Clicked();
                 activity.stage6Clicked();
                 activity.stage5Clicked();

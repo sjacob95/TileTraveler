@@ -129,6 +129,15 @@ public class TileTravelerScreen
         reset();
     }
 
+    /**
+     * Loads Stage 8 when the appropriate menu item is clicked
+     */
+    public void stage8Clicked()
+    {
+        currentStage = new Stage8(tileSize);
+        reset();
+    }
+
 
     // -------------------------------------------------------------------------
     // BUTTONS
