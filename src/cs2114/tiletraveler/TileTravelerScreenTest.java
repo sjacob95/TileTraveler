@@ -18,13 +18,6 @@ public class TileTravelerScreenTest
 
     private TileTravelerScreen view;
 
-    private Button             up;
-    private Button             down;
-    private Button             left;
-    private Button             right;
-    private Button             centerScreen;
-
-
     /**
      * Create a new TileTravelerScreenTest object.
      */
@@ -98,6 +91,8 @@ public class TileTravelerScreenTest
         view.callPlayerSetRestImage();
         view.callPlayerSetWalkImage();
         view.callPlayerSetJumpImage();
+        view.getPlayer().die();
+        view.adjustPlayer();
 
     }
 
@@ -138,6 +133,19 @@ public class TileTravelerScreenTest
         assertEquals(Direction.NORTH, view.getPlayer().getDirection());
     }
 
+    /**
+     * Tests the centerScreenClicked()method
+     */
+    public void testCenterScreenClicked()
+    {
+        view.getPlayer().die();
+        view.centerScreenClicked();
+        assertTrue(view.getPlayer().isAlive());
+    }
+
+    /**
+     * Tests the checkOrigin() method
+     */
     public void testCheckOrigin()
     {
         view.getPlayer().setLocation(new Location(0, 100));
@@ -149,6 +157,8 @@ public class TileTravelerScreenTest
         view.getPlayer().setLocation(new Location(-100, 0));
         view.checkOrigin();
         assertEquals(new Location(-100, 0), view.getPlayer().getLocation());
+        view.getPlayer().die();
+        view.checkOrigin();
     }
 
 
