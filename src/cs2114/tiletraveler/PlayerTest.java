@@ -29,11 +29,7 @@ public class PlayerTest
         Stage stage = new Stage1(10f);
         Location startLocation = new Location(5, 0);
         stage.getEnemyMap().addEnemy(
-            new Bug(
-                10f,
-                stage,
-                new Location(5, 0),
-                new Location(5, 2)));
+            new Bug(10f, stage, new Location(5, 0), new Location(5, 2)));
         player = new Player(5f, 6f, 10f, stage);
         player = new Player(startLocation, 10f, stage);
         testMap = new Map(10);
@@ -70,9 +66,11 @@ public class PlayerTest
         player.move(null);
         player.movingStopped();
         player.move(Direction.SOUTH);
+        assertEquals(new Location(5, 0), player.getLocation());
         player.move(Direction.NORTH);
         player.move(Direction.NORTH);
         player.move(Direction.WEST);
+        assertEquals(new Location(5, 0), player.getLocation());
         player.move(Direction.WEST);
         player.move(Direction.SOUTH);
         player.move(Direction.WEST);
@@ -87,6 +85,14 @@ public class PlayerTest
             new OutsideMapException(new Location(10, 20), testMap);
         assertEquals("The point(10, 20) does"
             + " not lie entirely on the map of size 10 + 10", t.getMessage());
+        player.setLocation(new Location(1, 1));
+        player.setJumpCount(1);
+        player.move(Direction.NORTH);
+        assertEquals(new Location(1, 1), player.getLocation());
+        player.setJumpCount(3);
+        player.setLocation(new Location(1, 1));
+        player.move(Direction.NORTH);
+        assertEquals(new Location(1, 1), player.getLocation());
 
     }
 
@@ -167,11 +173,13 @@ public class PlayerTest
         player.setJumpImage();
         player.setWalkImage();
         player.movingStopped();
+        assertEquals(new Location(5, 0), player.getLocation());
         player.walk(Direction.WEST);
         player.setRestImage();
         player.setJumpImage();
         player.setWalkImage();
         player.movingStopped();
+        assertEquals(new Location(4, 0), player.getLocation());
         player.walk(Direction.EAST);
         player.setRestImage();
         player.setJumpImage();
@@ -210,18 +218,21 @@ public class PlayerTest
         assertEquals(new Location(5, 1), player.getLocation());
     }
 
+
     /**
      * test enemy collision
      */
-    public void testEnemyCollision()
+    public void testCheckEnemyCollision()
     {
         player.checkEnemyCollision();
         assertFalse(player.isAlive());
+        player.nextMove();
         setUp();
         player.setLocation(new Location(5, 3));
         player.checkEnemyCollision();
         assertTrue(player.isAlive());
     }
+
 
     /**
      * test not on normal tile
@@ -230,7 +241,20 @@ public class PlayerTest
     {
         player.act(Direction.SOUTH);
         player.act(Direction.EAST);
-        //assertFalse(player.checkCurrentStatus());
         player.move(Direction.SOUTH);
+        assertEquals(new Location(5, 0), player.getLocation());
     }
+
+
+    /**
+     * Tests the current status of the player.
+     */
+    public void testCurrentStatus()
+    {
+        player.setLocation(new Location(5, 10));
+        player.checkAndMove();
+        assertTrue(player.isAlive());
+
+    }
+
 }

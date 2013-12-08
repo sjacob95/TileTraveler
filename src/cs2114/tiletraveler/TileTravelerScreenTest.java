@@ -3,7 +3,6 @@ package cs2114.tiletraveler;
 import sofia.util.Timer;
 import android.os.Looper;
 import android.os.Handler;
-import android.widget.Button;
 
 /**
  * Class to tests the methods in TileTravlerScreen.
