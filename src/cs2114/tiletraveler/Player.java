@@ -127,11 +127,11 @@ public class Player
                 }
             }
 
-//            else if ((newMoveTile.equals(Tile.EMPTY) || newMoveTile
-//                .equals(Tile.WATER)) && jumpCount >= 2)
-//            {
-//                checkAndMove();
-//            }
+// else if ((newMoveTile.equals(Tile.EMPTY) || newMoveTile
+// .equals(Tile.WATER)) && jumpCount >= 2)
+// {
+// checkAndMove();
+// }
 
             else
             {
@@ -496,29 +496,6 @@ public class Player
 
 
     /**
-     * Returns the recieveInput variable for testing.
-     *
-     * @return boolean if true
-     */
-    public boolean setReceiveInput()
-    {
-        return receiveInput;
-    }
-
-
-    /**
-     * Sets the recieveInput variable for testing.
-     *
-     * @param receiveInput
-     *            a boolean representing whether the player can recieve input
-     */
-    public void setReceiveInput(boolean receiveInput)
-    {
-        this.receiveInput = receiveInput;
-    }
-
-
-    /**
      * Returns the current Direction for testing.
      *
      * @return Direction the direction the player is moving.
@@ -526,18 +503,6 @@ public class Player
     public Direction getNextAction()
     {
         return nextAction;
-    }
-
-
-    /**
-     * Sets the nextAction for testing.
-     *
-     * @param nextAction
-     *            the nextAction acted on by the player.
-     */
-    public void setNextAction(Direction nextAction)
-    {
-        this.nextAction = nextAction;
     }
 
 
@@ -588,18 +553,6 @@ public class Player
 
 
     /**
-     * Sets the moving variable for testing.
-     *
-     * @param moving
-     *            whether or not the player is moving.
-     */
-    public void setMoving(boolean moving)
-    {
-        this.moving = moving;
-    }
-
-
-    /**
      * Sets the alive variable for testing.
      *
      * @param alive
@@ -608,18 +561,6 @@ public class Player
     public void setAlive(boolean alive)
     {
         this.alive = alive;
-    }
-
-
-    /**
-     * Sets the won variable for testing.
-     *
-     * @param won
-     *            whether or not Player is alive.
-     */
-    public void setWon(boolean won)
-    {
-        this.won = won;
     }
 
 }
