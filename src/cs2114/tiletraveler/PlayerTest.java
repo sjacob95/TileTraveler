@@ -85,10 +85,12 @@ public class PlayerTest
             new OutsideMapException(new Location(10, 20), testMap);
         assertEquals("The point(10, 20) does"
             + " not lie entirely on the map of size 10 + 10", t.getMessage());
+        setUp();
         player.setLocation(new Location(2, 1));
         player.setJumpCount(1);
         player.move(Direction.WEST);
-        assertEquals(new Location(2, 1), player.getLocation());
+        assertEquals(new Location(1, 1), player.getLocation());
+        setUp();
         player.setJumpCount(3);
         player.setLocation(new Location(5, 1));
         player.move(Direction.WEST);
