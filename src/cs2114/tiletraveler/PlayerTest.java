@@ -90,9 +90,9 @@ public class PlayerTest
         player.move(Direction.WEST);
         assertEquals(new Location(2, 1), player.getLocation());
         player.setJumpCount(3);
-        player.setLocation(new Location(2, 1));
+        player.setLocation(new Location(5, 1));
         player.move(Direction.WEST);
-        assertEquals(new Location(2, 1), player.getLocation());
+        assertEquals(new Location(5, 1), player.getLocation());
 
     }
 
