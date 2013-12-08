@@ -1,5 +1,6 @@
 package cs2114.tiletraveler;
 
+import sofia.util.Timer;
 import android.os.Looper;
 import android.os.Handler;
 import android.widget.Button;
@@ -65,7 +66,6 @@ public class TileTravelerScreenTest
 
         });
         assertTrue(getScreen().getCurrentStage() instanceof Stage1);
-
     }
 
 
@@ -181,8 +181,8 @@ public class TileTravelerScreenTest
                 view.changeWasObserved(view.getPlayer(), true);
                 view.changeWasObserved(view.getPlayer(), false);
                 view.changeWasObserved(view.getPlayer(), "nextMove", 0);
-                // view.changeWasObserved(view.getPlayer(), 0, 0, 0);
-
+                assertTrue(view.getPlayer().isAlive());
+                Timer.callOnce(this, "callAnimationCWO", 0);
             }
 
         });
@@ -190,20 +190,12 @@ public class TileTravelerScreenTest
 
 
     /**
-     * Second method to test changeWasObserved.
+     * Calls the changeWasObserved(MovingEnemy, double, int, it) method that
+     * causes tests to hang
      */
-//    public void testChangeWasObservedTwo()
-//    {
-//
-//        Handler second = new Handler(Looper.getMainLooper());
-//        second.post(new Runnable() {
-//            public void run()
-//            {
-//                view.changeWasObserved(view.getPlayer(), 0.1, 0, 0);
-//
-//            }
-//
-//        });
-//    }
+    public void callAnimationCWO()
+    {
+        view.changeWasObserved(view.getPlayer(), 0.1, 0, 50);
+    }
 
 }
