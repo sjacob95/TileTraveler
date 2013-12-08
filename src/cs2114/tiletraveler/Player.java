@@ -127,11 +127,11 @@ public class Player
                 }
             }
 
-            else if ((newMoveTile.equals(Tile.EMPTY) || newMoveTile
-                .equals(Tile.WATER)) && jumpCount >= 2)
-            {
-                checkAndMove();
-            }
+//            else if ((newMoveTile.equals(Tile.EMPTY) || newMoveTile
+//                .equals(Tile.WATER)) && jumpCount >= 2)
+//            {
+//                checkAndMove();
+//            }
 
             else
             {

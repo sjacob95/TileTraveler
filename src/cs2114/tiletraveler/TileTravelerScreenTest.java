@@ -1,6 +1,5 @@
 package cs2114.tiletraveler;
 
-import sofia.util.Timer;
 import android.os.Looper;
 import android.os.Handler;
 
@@ -96,16 +95,14 @@ public class TileTravelerScreenTest
 
     }
 
-
     /**
      * Tests the upClicked() method
      */
-// public void testUpClicked()
-// {
-// view.getPlayer().setLocation(new Location(5, 10));
-// view.upClicked();
-// assertEquals(Direction.NORTH, view.getPlayer().getDirection());
-// }
+    public void testUpClicked()
+    {
+        view.upClicked();
+        assertEquals(Direction.NORTH, view.getPlayer().getDirection());
+    }
 
     /**
      * Tests the downClicked() method
@@ -181,20 +178,10 @@ public class TileTravelerScreenTest
                 view.changeWasObserved(view.getPlayer(), false);
                 view.changeWasObserved(view.getPlayer(), "nextMove", 0);
                 assertTrue(view.getPlayer().isAlive());
-                Timer.callOnce(this, "callAnimationCWO", 0);
+                view.changeWasObserved(view.getPlayer(), 1, 0, 50);
             }
 
         });
-    }
-
-
-    /**
-     * Calls the changeWasObserved(MovingEnemy, double, int, it) method that
-     * causes tests to hang
-     */
-    public void callAnimationCWO()
-    {
-        view.changeWasObserved(view.getPlayer(), 0.1, 0, 50);
     }
 
 }
