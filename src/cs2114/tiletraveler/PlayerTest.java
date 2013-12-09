@@ -17,10 +17,6 @@ public class PlayerTest
     private Player player;
     private Map    testMap;
 
-
-    // private Stage stage;
-    // private Location startLocation;
-
     /**
      * Sets up the test area using Stage 1 to test.
      */

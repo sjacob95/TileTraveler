@@ -126,13 +126,6 @@ public class Player
                     checkCurrentStatus();
                 }
             }
-
-// else if ((newMoveTile.equals(Tile.EMPTY) || newMoveTile
-// .equals(Tile.WATER)) && jumpCount >= 2)
-// {
-// checkAndMove();
-// }
-
             else
             {
                 jumpCount = 0;

@@ -45,7 +45,6 @@ public class TileTravelerScreenTest
     public void testStage1Clicked()
     {
 
-        // final TileTravelerScreen activity = getActivity();
         Handler refresh = new Handler(Looper.getMainLooper());
         refresh.post(new Runnable() {
             public void run()
